@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Французский за 84 дня</title>
+    <!-- Подключаем стильный и легкий шрифт -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        /* Палитра в стиле Pinterest (Пастельный зеленый / Sage Green) */
+        :root {
+            --bg-color: #f7f9f6;          /* Мягкий молочно-зеленый фон */
+            --card-bg: #ffffff;           /* Чистый белый для карточек */
+            --primary: #8fa882;           /* Приглушенный шалфейный (основной) */
+            --primary-dark: #6e8562;      /* Глубокий оливковый для акцентов */
+            --primary-light: #e8efe4;     /* Нежная пастельная мята для фонов */
+            --text-main: #3a4436;         /* Темно-зеленый, почти черный для текста */
+            --text-muted: #7a8a73;        /* Серо-зеленый для второстепенного текста */
+            --accent-error: #e2b6b6;      /* Пастельно-розовый для ошибок */
+            --accent-success: #cce2cb;    /* Пастельно-зеленый для успехов */
+            --shadow: 0 8px 24px rgba(143, 168, 130, 0.1); /* Легкая воздушная тень */
+            --radius: 16px;               /* Трендовое скругление углов */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 0 20px;
+        }
+
+        /* Ограничитель ширины сайта для аккуратного вида */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+
+        /* Эстетичная шапка */
+        header {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 500;
+            color: var(--text-main);
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            font-style: italic;
+        }
+
+        /* Навигация в стиле кнопок-тегов Pinterest */
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 500;
+            font-size: 0.9rem;
+            padding: 8px 16px;
+            background-color: var(--card-bg);
+            border-radius: 100px;
+            box-shadow: var(--shadow);
+            transition: all 0.2s ease;
+        }
+
+        nav a:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Минималистичные кнопки */
+        button, input[type="submit"] {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 500;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 100px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 12px rgba(143, 168, 130, 0.2);
+        }
+
+        button:hover, input[type="submit"]:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(143, 168, 130, 0.3);
+        }
+
+        /* Стили для инпутов/полей ввода */
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 14px 20px;
+            border: 1px solid #e1e8df;
+            background-color: var(--card-bg);
+            border-radius: var(--radius);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1rem;
+            color: var(--text-main);
+            transition: all 0.2s ease;
+            margin-bottom: 15px;
+        }
+
+        input[type="text"]:focus, input[type="password"]:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(143, 168, 130, 0.15);
+        }
+
+        /* Уведомления и плашки */
+        .flash-msg {
+            padding: 14px 20px;
+            margin-bottom: 25px;
+            border-radius: var(--radius);
+            font-size: 0.95rem;
+            font-weight: 500;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Футер */
+        footer {
+            margin-top: 60px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        footer hr {
+            border: none;
+            border-top: 1px solid #e1e8df;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav>
+                <a href="{{ url_for('index') }}">🗺 Все 84 Дня</a>
+                {% if session.get('user_id') %}
+                    <a href="{{ url_for('progress') }}">📊 Прогресс ({{ session.get('username') }})</a>
+                    <a href="{{ url_for('logout') }}" style="background-color: #fcebeb; color: #a94442;">Выйти</a>
+                {% else %}
+                    <a href="{{ url_for('login') }}">Войти</a>
+                    <a href="{{ url_for('register') }}">Регистрация</a>
+                {% endif %}
+            </nav>
+            <h1>Bonjour, Amis!</h1>
+            <p>Ваш эстетичный путь к французскому языку за 84 дня</p>
+        </header>
+
+        <!-- Вывод уведомлений -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="flash-msg" style="background-color: {% if category == 'success' %}var(--accent-success){% else %}var(--accent-error){% endif %}; color: var(--text-main);">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+
+        <footer>
+            <hr>
+            <p>© 2026 Лёгкий французский по 20 минут в день. Создано с вдохновением.</p>
+        </footer>
+    </div>
+</body>
+</html>

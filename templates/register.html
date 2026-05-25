@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+<div style="max-width: 450px; margin: 40px auto; background-color: var(--card-bg); padding: 40px; border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid #e1e8df; text-align: center;">
+    
+    <div style="background-color: var(--primary-light); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
+        <span style="font-size: 1.5rem;">🌱</span>
+    </div>
+
+    <h2 style="font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 10px; color: var(--text-main);">
+        Создать аккаунт
+    </h2>
+    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 30px;">
+        Присоединяйтесь к курсу и отслеживайте свой прогресс каждый день.
+    </p>
+
+    <!-- ВАЖНО: action указывает на register -->
+    <form method="POST" action="{{ url_for('register') }}">
+        <div style="text-align: left; margin-bottom: 15px;">
+            <label for="username" style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 5px; margin-left: 5px;">
+                Имя пользователя
+            </label>
+            <input type="text" name="username" id="username" required placeholder="Придумайте логин..." autocomplete="off">
+        </div>
+        
+        <div style="text-align: left; margin-bottom: 25px;">
+            <label for="password" style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 5px; margin-left: 5px;">
+                Пароль
+            </label>
+            <input type="password" name="password" id="password" required placeholder="Придумайте надежный пароль...">
+        </div>
+        
+        <button type="submit" style="width: 100%; padding: 14px; font-weight: 600; letter-spacing: 0.5px; font-size: 1rem; margin-bottom: 20px;">
+            Зарегистрироваться
+        </button>
+    </form>
+
+    <p style="font-size: 0.9rem; color: var(--text-muted);">
+        Уже есть аккаунт? 
+        <a href="{{ url_for('login') }}" style="color: var(--primary-dark); font-weight: 600; text-decoration: none; border-bottom: 1px dashed var(--primary);">
+            Войти здесь
+        </a>
+    </p>
+</div>
+{% endblock %}

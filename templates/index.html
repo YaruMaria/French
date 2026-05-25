@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div style="text-align: center; margin-bottom: 40px;">
+        <h2 style="font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 10px;">Выберите этап обучения</h2>
+        <p style="color: var(--text-muted);">Программа разбита на 3 логических шага. Двигайтесь шаг за шагом.</p>
+    </div>
+
+    <!-- Сетка из 3 больших карточек месяцев -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 20px;">
+        {% for id, info in months.items() %}
+            <div style="background-color: var(--card-bg); border-radius: var(--radius); padding: 30px; box-shadow: var(--shadow); border: 1px solid #e1e8df; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.3s ease;">
+                <div>
+                    <!-- Пастельный бейдж с уровнем -->
+                    <span style="display: inline-block; background-color: var(--primary-light); color: var(--primary-dark); font-size: 0.8rem; font-weight: 600; padding: 4px 12px; border-radius: 100px; margin-bottom: 15px;">
+                        {{ info.badge }}
+                    </span>
+
+                    <h3 style="font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 12px; color: var(--text-main);">
+                        {{ info.title }}
+                    </h3>
+
+                    <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 25px; line-height: 1.5;">
+                        {{ info.desc }}
+                    </p>
+                </div>
+
+                <a href="{{ url_for('month_view', month_id=id) }}" style="text-decoration: none;">
+                    <button style="width: 100%; padding: 14px; font-weight: 600; letter-spacing: 0.5px;">
+                        Открыть месяц →
+                    </button>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

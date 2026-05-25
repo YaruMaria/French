@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div style="margin-bottom: 30px;">
+        <a href="{{ url_for('index') }}" style="text-decoration: none; color: var(--text-muted); font-weight: 500; font-size: 0.9rem;">
+            ← Назад к выбору месяцев
+        </a>
+        <h2 style="font-family: 'Playfair Display', serif; font-size: 2rem; margin-top: 15px;">
+            Программа: Месяц {{ month_id }}
+        </h2>
+        <p style="color: var(--text-muted);">В этом месяце вас ждут 28 интерактивных дней практики по 20 минут.</p>
+    </div>
+    
+    <!-- Сетка дней в стиле Pinterest -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px;">
+        {% for day_id, data in days.items() %}
+            <div style="border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow); position: relative; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid #e1e8df;
+                        background-color: {% if day_id in completed_days %}var(--primary-light){% else %}var(--card-bg){% endif %};">
+                
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">ДЕНЬ {{ day_id }}</span>
+                        {% if day_id in completed_days %}
+                            <span style="color: var(--primary-dark); font-size: 0.9rem;">✅</span>
+                        {% endif %}
+                    </div>
+                    
+                    <!-- Извлекаем чистое название темы без приставки "День Х" -->
+                    <h4 style="font-size: 0.95rem; font-weight: 500; color: var(--text-main); margin-bottom: 15px; line-height: 1.4;">
+                        {{ data.title.split(': ')[1] if ':' in data.title else data.title }}
+                    </h4>
+                </div>
+                
+                <a href="{{ url_for('day', day_id=day_id) }}" style="text-decoration: none;">
+                    <button style="width: 100%; padding: 8px 16px; font-size: 0.85rem; 
+                                   background-color: {% if day_id in completed_days %}var(--card-bg){% else %}var(--primary){% endif %};
+                                   color: {% if day_id in completed_days %}var(--text-main){% else %}white{% endif %};
+                                   border: {% if day_id in completed_days %}1px solid #cce2cb{% else %}none{% endif %};">
+                        {% if day_id in completed_days %}Повторить{% else %}Начать{% endif %}
+                    </button>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
