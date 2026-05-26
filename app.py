@@ -2,8 +2,6 @@ from flask import Flask, render_template, request, redirect, url_for, flash, ses
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from course_data import COURSE_DAYS
-from reading_data import READINGS
-from review_data import REVIEWS
 
 app = Flask(__name__)
 app.secret_key = 'ultra_secure_and_secret_key_french_84_days'
@@ -25,7 +23,7 @@ class User(db.Model):
 class Progress(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    day_id = db.Column(db.String(50), nullable=False)
+    day_id = db.Column(db.String(50), nullable=False)  # String для поддержки тестов
 
 
 # Создание таблиц БД
@@ -49,71 +47,7 @@ def index():
             "desc": "Научитесь выражать мнение, шутить, использовать французский сленг и местоимения-заменители.",
             "badge": "Уровень A2.2+"}
     }
-
-    user_id = session.get('user_id')
-    user_progress = {}
-    completed_days = []
-
-    if user_id:
-        completed = Progress.query.filter_by(user_id=user_id).all()
-        completed_days = [int(p.day_id) if p.day_id.isdigit() else p.day_id for p in completed]
-
-        for day in range(1, 33):
-            user_progress[day] = day in completed_days
-
-        user_progress['test_1'] = 'test_1' in completed_days
-        user_progress['test_2'] = 'test_2' in completed_days
-        user_progress['test_3'] = 'test_3' in completed_days
-        user_progress['review_1'] = 'review_1' in completed_days
-        user_progress['review_2'] = 'review_2' in completed_days
-        user_progress['review_3'] = 'review_3' in completed_days
-    else:
-        for day in range(1, 33):
-            user_progress[day] = False
-        user_progress['test_1'] = False
-        user_progress['test_2'] = False
-        user_progress['test_3'] = False
-        user_progress['review_1'] = False
-        user_progress['review_2'] = False
-        user_progress['review_3'] = False
-
-    total_days = 32
-    completed_count = len([d for d in completed_days if isinstance(d, int) and 1 <= d <= 32])
-    progress_percent = int((completed_count / total_days) * 100) if total_days > 0 else 0
-    reading_progress = session.get('reading_progress', {}).get('captains_daughter', 0)
-
-    return render_template('index.html',
-                           months=months_info,
-                           user_progress=user_progress,
-                           completed_days=completed_days,
-                           total_days=total_days,
-                           completed_count=completed_count,
-                           progress_percent=progress_percent,
-                           reading_progress=reading_progress)
-
-
-# ========================================================
-# СТРАНИЦА СО ВСЕМИ УРОКАМИ
-# ========================================================
-@app.route('/lessons')
-def lessons():
-    user_id = session.get('user_id')
-    completed_days = []
-
-    if user_id:
-        completed = Progress.query.filter_by(user_id=user_id).all()
-        completed_days = [int(p.day_id) if p.day_id.isdigit() else p.day_id for p in completed]
-
-    all_lessons = []
-    for day_id in range(1, 33):
-        if day_id in COURSE_DAYS:
-            all_lessons.append({
-                'id': day_id,
-                'title': COURSE_DAYS[day_id].get('title', f'Урок {day_id}'),
-                'completed': day_id in completed_days
-            })
-
-    return render_template('lessons.html', lessons=all_lessons)
+    return render_template('index.html', months=months_info)
 
 
 # ========================================================
@@ -131,6 +65,7 @@ def month_view(month_id):
         completed = Progress.query.filter_by(user_id=user_id).all()
         completed_days = [p.day_id for p in completed]
 
+    # Распределение дней по месяцам
     month_days = {}
     for key, data in COURSE_DAYS.items():
         if not isinstance(key, int):
@@ -145,11 +80,13 @@ def month_view(month_id):
 
     month_days = dict(sorted(month_days.items()))
 
+    # В month_view (app.py)
     return render_template('month.html',
                            month_id=month_id,
                            days=month_days,
                            completed_days=completed_days,
-                           COURSE_DAYS=COURSE_DAYS)
+                           COURSE_DAYS=COURSE_DAYS,
+                           month_name=month_id)  # добавьте это
 
 
 # ========================================================
@@ -157,6 +94,7 @@ def month_view(month_id):
 # ========================================================
 @app.route('/day/<day_id>', methods=['GET', 'POST'])
 def day(day_id):
+    # Пробуем преобразовать в число, если это урок
     try:
         day_id_int = int(day_id)
         if day_id_int in COURSE_DAYS:
@@ -164,16 +102,33 @@ def day(day_id):
     except (ValueError, TypeError):
         pass
 
+    # Проверяем существование
     if day_id not in COURSE_DAYS:
         flash('Такой урок не найден!', 'error')
         return redirect(url_for('index'))
 
     day_item = COURSE_DAYS[day_id]
+
+    # ========== ОПРЕДЕЛЯЕМ МЕСЯЦ ДЛЯ НАВИГАЦИИ ==========
+    try:
+        day_num = int(day_id)
+        if 1 <= day_num <= 30:
+            month_id = 1
+        elif 31 <= day_num <= 61:
+            month_id = 2
+        elif 62 <= day_num <= 92:
+            month_id = 3
+        else:
+            month_id = 1
+    except:
+        month_id = 1
+
     feedback = None
     is_correct = False
     already_completed = False
     user_id = session.get('user_id')
 
+    # Обработка ответа
     if request.method == 'POST':
         user_answer = request.form.get('answer', '').strip().lower()
         correct = day_item.get('correct_answer', '').strip().lower()
@@ -182,6 +137,7 @@ def day(day_id):
             is_correct = True
             feedback = "✅ Правильно! Отличная работа!"
 
+            # Сохраняем прогресс для ВСЕХ (уроки и тесты)
             if user_id:
                 existing = Progress.query.filter_by(user_id=user_id, day_id=str(day_id)).first()
                 if not existing:
@@ -196,6 +152,7 @@ def day(day_id):
             is_correct = False
             feedback = f"❌ Неправильно. Правильный ответ: {correct}"
 
+    # Проверяем, пройден ли урок ранее
     if user_id and not already_completed:
         existing = Progress.query.filter_by(user_id=user_id, day_id=str(day_id)).first()
         if existing:
@@ -209,8 +166,8 @@ def day(day_id):
                            feedback=feedback,
                            is_correct=is_correct,
                            already_completed=already_completed,
-                           total_days=total_days)
-
+                           total_days=total_days,
+                           month_id=month_id)  # ← ВАЖНО: добавили month_id
 
 # ========================================================
 # РЕГИСТРАЦИЯ
@@ -282,6 +239,7 @@ def progress():
 
     completed = Progress.query.filter_by(user_id=user_id).all()
 
+    # Разделяем числовые уроки и тесты
     numeric_completed = []
     test_completed = []
     for p in completed:
@@ -295,127 +253,26 @@ def progress():
     completed_count = len([d for d in numeric_completed if 1 <= d <= 92])
     percent = int((completed_count / total_days) * 100) if total_days > 0 else 0
 
+    # Прогресс по месяцам (только числовые уроки)
     month1_count = sum(1 for d in numeric_completed if 1 <= d <= 30)
     month2_count = sum(1 for d in numeric_completed if 31 <= d <= 61)
     month3_count = sum(1 for d in numeric_completed if 62 <= d <= 92)
 
+    # Количество пройденных тестов
     tests_passed = len(test_completed)
 
-    return render_template('progress.html',
-                           completed_days=sorted(numeric_completed),
-                           total=total_days,
-                           count=completed_count,
-                           percent=percent,
-                           days=COURSE_DAYS,
-                           month1_count=month1_count,
-                           month2_count=month2_count,
-                           month3_count=month3_count,
-                           tests_passed=tests_passed)
-
-
-# ========================================================
-# ОТРАБОТКА СЛОВ
-# ========================================================
-@app.route('/review/<review_id>', methods=['GET', 'POST'])
-def review(review_id):
-    if review_id not in REVIEWS:
-        flash('Отработка не найдена!', 'error')
-        return redirect(url_for('index'))
-
-    review_data = REVIEWS[review_id]
-    user_id = session.get('user_id')
-
-    if request.method == 'POST':
-        if user_id:
-            existing = Progress.query.filter_by(user_id=user_id, day_id=review_id).first()
-            if not existing:
-                new_progress = Progress(user_id=user_id, day_id=review_id)
-                db.session.add(new_progress)
-                db.session.commit()
-                flash('✅ Отработка завершена!', 'success')
-        else:
-            flash('✅ Отработка завершена! Войдите, чтобы сохранить прогресс.', 'success')
-        return redirect(url_for('index'))
-
-    return render_template('review.html', review=review_data, review_id=review_id)
-
-
-# ========================================================
-# ТЕСТЫ
-# ========================================================
-@app.route('/test/<test_id>', methods=['GET', 'POST'])
-def test(test_id):
-    if test_id not in COURSE_DAYS:
-        flash('Тест не найден!', 'error')
-        return redirect(url_for('index'))
-
-    test_data = COURSE_DAYS[test_id]
-    user_id = session.get('user_id')
-
-    if request.method == 'POST':
-        if user_id:
-            existing = Progress.query.filter_by(user_id=user_id, day_id=test_id).first()
-            if not existing:
-                new_progress = Progress(user_id=user_id, day_id=test_id)
-                db.session.add(new_progress)
-                db.session.commit()
-                flash('✅ Тест пройден!', 'success')
-        else:
-            flash('✅ Тест пройден! Войдите, чтобы сохранить прогресс.', 'success')
-        return redirect(url_for('index'))
-
-    return render_template('day.html', day_id=test_id, day=test_data, feedback=None,
-                           is_correct=False, already_completed=False, total_days=0)
-
-
-# ========================================================
-# ЧТЕНИЕ КНИГИ
-# ========================================================
-@app.route('/reading/<reading_id>/<int:part>', methods=['GET', 'POST'])
-def reading(reading_id, part):
-    if reading_id not in READINGS:
-        flash('Книга не найдена!', 'error')
-        return redirect(url_for('index'))
-
-    book = READINGS[reading_id]
-    total_parts = book['total_parts']
-
-    if part < 1 or part > total_parts:
-        flash('Часть не найдена!', 'error')
-        return redirect(url_for('index'))
-
-    part_data = book['parts'][part]
-    user_id = session.get('user_id')
-
-    if request.method == 'POST':
-        if 'reading_progress' not in session:
-            session['reading_progress'] = {}
-        session['reading_progress'][reading_id] = part
-        session.modified = True
-
-        if user_id:
-            progress_id = f"{reading_id}_part_{part}"
-            existing = Progress.query.filter_by(user_id=user_id, day_id=progress_id).first()
-            if not existing:
-                new_progress = Progress(user_id=user_id, day_id=progress_id)
-                db.session.add(new_progress)
-                db.session.commit()
-
-        if part == total_parts:
-            flash('🎉 Поздравляем! Вы закончили книгу!', 'success')
-            return redirect(url_for('index'))
-        else:
-            flash(f'✅ Часть {part} завершена!', 'success')
-            return redirect(url_for('reading', reading_id=reading_id, part=part + 1))
-
-    return render_template('reading.html',
-                           reading=part_data,
-                           reading_id=reading_id,
-                           part_num=part,
-                           total_parts=total_parts,
-                           questions=part_data.get('questions', []),
-                           prev_part=part - 1 if part > 1 else None,
-                           next_part=part + 1 if part < total_parts else None)
+    return render_template(
+        'progress.html',
+        completed_days=sorted(numeric_completed),
+        total=total_days,
+        count=completed_count,
+        percent=percent,
+        days=COURSE_DAYS,
+        month1_count=month1_count,
+        month2_count=month2_count,
+        month3_count=month3_count,
+        tests_passed=tests_passed  # <-- Добавляем информацию о тестах
+    )
 
 
 if __name__ == '__main__':

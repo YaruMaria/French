@@ -166,11 +166,11 @@
     <h1 class="reading-title">{{ reading.title }}</h1>
     <div class="reading-meta">
         <span>📖 Часть {{ part_num }} из {{ total_parts }}</span>
-        <span style="margin-left: 15px;">🔍 Нажмите правой кнопкой мыши на слово → перевод</span>
+        <span style="margin-left: 15px;">🔍 Выделите слово мышкой → перевод</span>
     </div>
 
     <div class="legend">
-        <div class="legend-item"><span>🖱️</span> <span>— нажмите ПРАВОЙ кнопкой мыши на слово → перевод</span></div>
+        <div class="legend-item"><span>🖱️</span> <span>— выделите слово мышкой → перевод</span></div>
         <div class="legend-item"><span>📖</span> <span>— текст для чтения</span></div>
     </div>
 
@@ -225,237 +225,359 @@
 </div>
 
 <script>
-    // ========== ПОЛНЫЙ СЛОВАРЬ ==========
+    // ========== СЛОВАРЬ ВСЕХ СЛОВ ИЗ ГЛАВ I-II ==========
     const dictionary = {
-        // Простые слова
+        // === ГЛАГОЛЫ ===
+        "avoir": "иметь", "ai": "имею", "as": "имеешь", "a": "имеет", "avons": "имеем", "avez": "имеете", "ont": "имеют",
+        "avais": "имел", "avait": "имел, был", "avaient": "имели",
+        "être": "быть", "suis": "есть (я)", "es": "есть (ты)", "est": "есть, находится",
+        "sommes": "есть (мы)", "êtes": "есть (вы)", "sont": "находятся",
+        "était": "был", "étais": "был", "étaient": "были", "fut": "был",
+        "faire": "делать", "fais": "делаю", "fait": "делает", "font": "делают", "fit": "сделал",
+        "aller": "идти", "vais": "иду", "va": "идет", "allons": "идем", "allez": "идете", "vont": "идут",
+        "venir": "приходить", "viens": "прихожу", "vient": "приходит", "venez": "приходите",
+        "voir": "видеть", "vois": "вижу", "voit": "видит", "voyons": "видим", "voyaient": "видели",
+        "prendre": "брать", "prends": "беру", "prend": "берет", "prenons": "берем",
+        "mettre": "класть", "mets": "кладу", "met": "кладет", "mis": "положил",
+        "parler": "говорить", "parle": "говорю", "parles": "говоришь", "parlent": "говорят",
+        "dire": "сказать", "dis": "говорю", "dit": "сказал", "dites": "говорите",
+        "pouvoir": "мочь", "peux": "могу", "peut": "может", "peuvent": "могут", "pu": "смог",
+        "vouloir": "хотеть", "veux": "хочу", "veut": "хочет", "voulons": "хотим", "voulez": "хотите",
+        "savoir": "знать", "sais": "знаю", "sait": "знает", "savons": "знаем",
+        "devoir": "должен", "dois": "должен", "doit": "должен", "doivent": "должны",
+        "écrire": "писать", "écris": "пишу", "écrit": "пишет",
+        "lire": "читать", "lis": "читаю", "lit": "читает",
+        "répondre": "отвечать", "réponds": "отвечаю", "répondit": "ответил",
+        "partir": "уезжать", "pars": "уезжаю", "partit": "уехал",
+        "arriver": "прибывать", "arrive": "прибываю", "arriva": "приехал",
+        "rester": "оставаться", "reste": "остаюсь", "resta": "остался",
+        "donner": "давать", "donne": "даю", "donna": "дал",
+        "regarder": "смотреть", "regarde": "смотрю", "regarda": "посмотрел",
+        "demander": "спрашивать", "demande": "спрашиваю", "demanda": "спросил",
+        "servir": "служить", "servi": "служил",
+        "quitter": "покидать", "quitté": "покинул",
+        "habiter": "жить", "habité": "жил",
+        "survivre": "выжить", "survécus": "выжил",
+        "mourir": "умирать", "moururent": "умерли",
+        "devenir": "становиться", "devint": "стал",
+        "connaître": "знать", "connus": "узнал",
+        "croire": "верить", "crus": "подумал",
+        "paraître": "казаться", "parut": "показался",
+        "entrer": "входить", "entra": "вошел",
+        "sortir": "выходить", "sortit": "вышел",
+        "monter": "подниматься", "monta": "поднялся",
+        "descendre": "спускаться", "descendit": "спустился",
+        "tenir": "держать", "tenait": "держал",
+        "marcher": "идти пешком", "marchait": "шел",
+        "crier": "кричать", "cria": "крикнул",
+        "consoler": "утешать", "consoler": "утешить",
+        "calmer": "успокаивать", "calma": "успокоился",
+        "oublier": "забывать", "oubliai": "забыл",
+        "comprendre": "понимать", "compris": "понял",
+        "expliquer": "объяснять", "expliqua": "объяснил",
+        "sembler": "казаться", "semblait": "казалось",
+        "devenir": "становиться", "devint": "стал",
+        "reconnaître": "узнавать", "reconnus": "узнал",
+        "s'écrier": "воскликнуть", "s'écria": "воскликнул",
+
+        // === МЕСТОИМЕНИЯ И АРТИКЛИ ===
+        "je": "я", "tu": "ты", "il": "он", "elle": "она", "nous": "мы", "vous": "вы",
+        "ils": "они", "elles": "они", "on": "люди, мы, они",
+        "le": "его / определенный артикль", "la": "её / определенный артикль",
+        "les": "их / определенный артикль", "l'": "его/её (перед гласной)",
+        "un": "один / неопределенный артикль", "une": "одна / неопределенный артикль",
+        "des": "несколько / неопределенный артикль мн.ч.",
+        "ce": "этот", "cet": "этот (перед гласной)", "cette": "эта", "ces": "эти",
         "mon": "мой", "ma": "моя", "mes": "мои",
         "ton": "твой", "ta": "твоя", "tes": "твои",
         "son": "его/её", "sa": "его/её", "ses": "его/её",
-        "notre": "наш", "votre": "ваш", "leur": "их",
-        "ce": "этот", "cette": "эта", "ces": "эти",
-        "je": "я", "tu": "ты", "il": "он", "elle": "она",
-        "nous": "мы", "vous": "вы", "ils": "они (м.р.)", "elles": "они (ж.р.)",
-        "le": "его / определенный артикль", "la": "её / определенный артикль",
-        "les": "их / определенный артикль", "un": "один", "une": "одна",
-        "des": "несколько", "de": "из, от", "du": "из (м.р.)",
+        "notre": "наш", "nos": "наши", "votre": "ваш", "vos": "ваши",
+        "leur": "их", "leurs": "их",
+        "me": "меня, мне", "te": "тебя, тебе", "se": "себя, себе",
+        "y": "там, туда", "en": "оттуда, из",
+
+        // === ПРЕДЛОГИ ===
+        "dans": "в", "sur": "на", "sous": "под", "avec": "с",
+        "sans": "без", "pour": "для", "par": "через, по",
+        "de": "из, от", "du": "из (м.р.)", "des": "из (мн.ч.)",
         "à": "в, к, на", "au": "в (м.р.)", "aux": "в (мн.ч.)", "en": "в (ж.р.)",
-        "dans": "в", "sur": "на", "sous": "под", "avec": "с", "sans": "без",
-        "pour": "для", "par": "через", "chez": "у, к", "entre": "между",
-        "pendant": "в течение", "après": "после", "avant": "до",
-        "depuis": "с", "jusque": "до", "et": "и", "ou": "или", "mais": "но",
-        "donc": "итак", "car": "потому что", "si": "если", "que": "что",
-        "quand": "когда", "comme": "как", "très": "очень", "bien": "хорошо",
-        "mal": "плохо", "vite": "быстро", "toujours": "всегда", "jamais": "никогда",
-        "souvent": "часто", "parfois": "иногда", "maintenant": "теперь",
-        "alors": "тогда", "ici": "здесь", "là": "там", "partout": "везде",
-        "rien": "ничего", "tout": "все", "beaucoup": "много", "peu": "мало",
-        "assez": "достаточно", "trop": "слишком", "encore": "еще, опять",
-        "déjà": "уже", "bientôt": "скоро", "enfin": "наконец", "ensuite": "затем",
-        "aujourd'hui": "сегодня", "demain": "завтра", "hier": "вчера",
-        "tôt": "рано", "tard": "поздно", "seulement": "только",
-        "vraiment": "действительно", "qui": "кто", "que": "что", "quoi": "что",
-        "où": "где", "comment": "как", "pourquoi": "почему", "quel": "какой",
+        "chez": "у, к", "entre": "между", "pendant": "в течение",
+        "après": "после", "avant": "до, перед", "depuis": "с (времени)",
+        "jusque": "до", "vers": "около, к", "contre": "против",
+        "parmi": "среди", "malgré": "несмотря на", "sauf": "кроме",
 
-        // Глаголы
-        "est": "есть, находится", "sont": "находятся", "était": "был",
-        "étaient": "были", "avait": "имел", "avaient": "имели",
-        "a": "имеет", "ont": "имеют", "fut": "был", "fit": "сделал",
-        "dit": "сказал", "va": "идет", "vont": "идут", "fait": "делает",
-        "font": "делают", "peut": "может", "peuvent": "могут", "veut": "хочет",
-        "veulent": "хотят", "doit": "должен", "doivent": "должны",
-        "sait": "знает", "savent": "знают", "voit": "видит", "voient": "видят",
-        "prend": "берет", "prennent": "берут", "met": "кладет", "mettent": "кладут",
-        "donne": "дает", "donnent": "дают", "parle": "говорит", "parlent": "говорят",
-        "regarde": "смотрит", "demande": "спрашивает", "répond": "отвечает",
-        "arrive": "прибывает", "part": "уезжает", "reste": "остается",
+        // === СОЮЗЫ ===
+        "et": "и", "ou": "или", "mais": "но", "donc": "итак",
+        "car": "потому что", "si": "если", "que": "что",
+        "quand": "когда", "comme": "как", "parce que": "потому что",
+        "puisque": "так как", "tandis que": "в то время как",
 
-        // Существительные
+        // === НАРЕЧИЯ ===
+        "très": "очень", "bien": "хорошо", "mal": "плохо",
+        "vite": "быстро", "lentement": "медленно",
+        "toujours": "всегда", "jamais": "никогда",
+        "parfois": "иногда", "souvent": "часто",
+        "maintenant": "теперь", "alors": "тогда", "ensuite": "затем",
+        "ici": "здесь", "là": "там", "partout": "везде",
+        "rien": "ничего", "tout": "все", "beaucoup": "много",
+        "peu": "мало", "assez": "достаточно", "trop": "слишком",
+        "encore": "еще", "déjà": "уже", "bientôt": "скоро",
+        "enfin": "наконец", "aujourd'hui": "сегодня", "demain": "завтра",
+        "hier": "вчера", "tôt": "рано", "tard": "поздно",
+        "seulement": "только", "vraiment": "действительно",
+
+        // === ВОПРОСИТЕЛЬНЫЕ ===
+        "qui": "кто", "que": "что", "quoi": "что",
+        "où": "где", "quand": "когда", "comment": "как",
+        "pourquoi": "почему", "quel": "какой", "quelle": "какая",
+        "quels": "какие (м.р.)", "quelles": "какие (ж.р.)",
+
+        // === СУЩЕСТВИТЕЛЬНЫЕ ===
         "père": "отец", "mère": "мать", "frère": "брат", "sœur": "сестра",
-        "fils": "сын", "fille": "дочь", "enfant": "ребенок", "parents": "родители",
-        "ami": "друг", "amie": "подруга", "homme": "мужчина", "femme": "женщина",
-        "maison": "дом", "ville": "город", "pays": "страна", "monde": "мир",
-        "vie": "жизнь", "jour": "день", "nuit": "ночь", "temps": "время",
-        "eau": "вода", "pain": "хлеб", "livre": "книга", "table": "стол",
-        "chaise": "стул", "porte": "дверь", "fenêtre": "окно", "argent": "деньги",
-        "travail": "работа", "école": "школа", "voiture": "машина", "train": "поезд",
+        "fils": "сын", "fille": "дочь", "enfant": "ребенок",
+        "parents": "родители", "maison": "дом", "ville": "город",
+        "pays": "страна", "monde": "мир", "vie": "жизнь",
+        "jour": "день", "nuit": "ночь", "temps": "время",
+        "eau": "вода", "pain": "хлеб", "livre": "книга",
+        "table": "стол", "porte": "дверь", "argent": "деньги",
+        "école": "школа", "travail": "работа", "lit": "кровать",
+        "chambre": "комната", "fenêtre": "окно",
 
-        // Прилагательные
+        // === ПРИЛАГАТЕЛЬНЫЕ ===
         "grand": "большой", "grande": "большая", "petit": "маленький",
         "petite": "маленькая", "bon": "хороший", "bonne": "хорошая",
-        "beau": "красивый", "belle": "красивая", "nouveau": "новый",
-        "nouvelle": "новая", "vieux": "старый", "vieille": "старая",
-        "jeune": "молодой", "heureux": "счастливый", "heureuse": "счастливая",
-        "triste": "грустный", "content": "довольный", "fatigué": "усталый",
-        "malade": "больной", "libre": "свободный", "seul": "один", "seule": "одна",
+        "mauvais": "плохой", "mauvaise": "плохая",
+        "beau": "красивый", "belle": "красивая", "bel": "красивый (перед гласной)",
+        "nouveau": "новый", "nouvelle": "новая", "nouvel": "новый (перед гласной)",
+        "vieux": "старый", "vieille": "старая", "vieil": "старый (перед гласной)",
+        "jeune": "молодой", "heureux": "счастливый", "triste": "грустный",
+        "content": "довольный", "fatigué": "усталый", "malade": "больной",
+        "libre": "свободный", "seul": "один", "seule": "одна",
+        "plein": "полный", "vide": "пустой", "facile": "легкий",
+        "difficile": "трудный", "intéressant": "интересный",
 
-        // Слова из текста
+        // === СЛОВА ИЗ ГЛАВЫ I ===
         "servi": "служил", "jeunesse": "молодость", "comte": "граф",
         "quitté": "покинул", "militaire": "военный", "grade": "звание",
-        "premier": "первый", "major": "майор", "habité": "жил",
-        "terre": "земля, имение", "gouvernement": "губерния",
-        "épousa": "женился", "pauvre": "бедный", "voisinage": "соседство",
-        "enfants": "детей", "survécus": "выжил", "moururent": "умерли",
-        "sergent": "сержант", "régiment": "полк", "faveur": "милость",
-        "prince": "князь", "parent": "родственник", "éducation": "образование",
+        "premier": "первый", "major": "майор", "constamment": "постоянно",
+        "habité": "жил", "terre": "земля, имение", "gouvernement": "губерния",
+        "simbirsk": "Симбирск", "épousa": "женился", "pauvre": "бедный",
+        "gentilhomme": "дворянин", "voisinage": "соседство", "enfants": "детей",
+        "survécus": "выжил", "moururent": "умерли", "bas âge": "ранний возраст",
+        "inscrit": "записан", "sergent": "сержант", "régiment": "полк",
+        "faveur": "милость", "prince": "князь", "parent": "родственник",
+        "censé": "считался", "congé": "отпуск", "éducation": "образование",
         "élevait": "воспитывали", "autrement": "по-другому",
-        "piqueur": "стремянный", "digne": "достойный", "devenir": "стать",
-        "menin": "воспитатель", "savais": "умел", "pouvais": "мог",
-        "apprécier": "оценить", "certitude": "уверенность",
-        "qualités": "качества", "lévrier": "борзая", "chasse": "охота",
-        "époque": "время", "achever": "завершить", "instruire": "обучать",
-        "prit": "взял", "gages": "наем", "français": "француз",
-        "moscou": "Москвы", "provision": "запас", "annuelle": "годовой",
-        "vin": "вино", "huile": "масло", "provence": "Прованс",
-        "arrivée": "прибытие", "déplut": "не понравилась", "fort": "сильно",
-        "semble": "кажется", "dieu": "бог", "lavé": "вымыт", "peigné": "причесан",
-        "nourri": "накормлен", "dépenser": "тратить", "louer": "нанимать",
-        "moussié": "мусье", "domestiques": "слуги", "patrie": "родина",
-        "coiffeur": "парикмахер", "soldat": "солдат", "prusse": "Пруссия",
-        "venu": "приехал", "russie": "Россия", "outchitel": "учитель",
-        "signification": "значение", "mot": "слово", "garçon": "парень",
-        "distrait": "рассеянный", "étourdi": "ветреный", "ennemi": "враг",
-        "bouteille": "бутылка", "aimait": "любил", "boire": "пить",
-        "présentait": "подавали", "petits verres": "маленькие рюмки",
-        "occasions": "случаях", "passait": "обходили", "habitua": "привык",
-        "eau-de-vie": "водка", "préférer": "предпочитать", "stomachique": "полезный",
-        "devînmes": "стали", "amis": "друзья", "amitié": "дружба",
-        "quoique": "хотя", "contrat": "договор", "engagé": "обязался",
-        "apprendre": "учить", "allemand": "немецкий", "sciences": "науки",
-        "babiller": "болтать", "tant bien que mal": "кое-как",
+        "confié": "доверен", "piqueur": "стремянный", "sobriété": "трезвость",
+        "digne": "достойный", "devenir": "стать", "menin": "дядька-воспитатель",
+        "soins": "заботы", "savais": "умел", "lire": "читать",
+        "écrire": "писать", "pouvais": "мог", "apprécier": "оценить",
+        "certitude": "уверенность", "qualités": "качества",
+        "lévrier": "борзая", "chasse": "охота", "époque": "время",
+        "achever": "завершить", "instruire": "обучать", "gages": "наем",
+        "français": "французский", "moscou": "Москва", "provision": "запас",
+        "annuelle": "годовой", "vin": "вино", "huile": "масло",
+        "provence": "Прованс", "arrivée": "прибытие", "déplut": "не понравилась",
+        "fort": "сильно", "semble": "кажется", "dieu": "бог",
+        "lavé": "вымыт", "peigné": "причесан", "nourri": "накормлен",
+        "dépenser": "тратить", "louer": "нанимать", "moussié": "мусье",
+        "domestiques": "слуги", "patrie": "родина", "coiffeur": "парикмахер",
+        "soldat": "солдат", "prusse": "Пруссия", "venu": "приехал",
+        "russie": "Россия", "outchitel": "учитель", "signification": "значение",
+        "mot": "слово", "garçon": "парень", "distrait": "рассеянный",
+        "étourdi": "ветреный", "ennemi": "враг", "bouteille": "бутылка",
+        "aimait": "любил", "boire": "пить", "habitua": "привык",
+        "eau-de-vie": "водка", "préférer": "предпочитать",
+        "stomachique": "полезный для желудка", "devînmes": "стали",
+        "amis": "друзья", "amitié": "дружба", "quoique": "хотя",
+        "contrat": "договор", "engagé": "обязался", "apprendre": "учить",
+        "allemand": "немецкий", "sciences": "науки", "babiller": "болтать",
         "chacun": "каждый", "occupait": "занимался", "affaires": "делами",
         "inaltérable": "нерушимая", "désirais": "желал", "mentor": "наставник",
         "destin": "судьба", "sépara": "разлучила", "événement": "событие",
-        "raconter": "рассказать",
+        "raconter": "рассказать", "raconte": "рассказывает", "enivrait": "напивался",
+        "plaisanter": "шутить", "chapitre": "тема", "plaignit": "пожаловалась",
+        "expéditif": "решительный", "manda": "потребовал", "canaille": "мерзавец",
+        "humblement": "смиренно", "leçon": "урок", "accourut": "прибежал",
+        "dormait": "спал", "sommeil": "сон", "innocence": "невинность",
+        "livré": "занят", "occupation": "занятие", "carte": "карта",
+        "géographie": "география", "pendait": "висела", "tentait": "манила",
+        "largeur": "ширина", "solidité": "прочность", "papier": "бумага",
+        "cerf-volant": "воздушный змей", "profitant": "пользуясь",
+        "ouvrage": "работа", "instant": "мгновение", "attachais": "привязывал",
+        "queue": "хвост", "cap": "мыс", "bonne-espérance": "Доброй Надежды",
+        "vue": "вид", "travaux": "работы", "secoua": "встряхнул",
+        "rudement": "грубо", "oreille": "ухо", "élança": "бросился",
+        "éveillant": "разбудив", "précaution": "осторожность",
+        "accabler": "осыпать", "reproches": "упреками", "trouble": "замешательство",
+        "vainement": "напрасно", "ivre mort": "мертвецки пьян",
+        "souleva": "поднял", "collet": "воротник", "habit": "одежда",
+        "jeta": "выбросил", "chassa": "выгнал", "joie": "радость",
+        "inexprimable": "невыразимая", "termina": "закончилось",
+        "vivais": "жил", "amusant": "забавляясь", "tourbillonner": "кружить",
+        "pigeons": "голуби", "toits": "крыши", "jouant": "играя",
+        "cheval fondu": "лошадка", "cour": "двор", "arrivai": "достиг",
+        "subit": "претерпел", "changement": "изменение", "automne": "осень",
+        "confitures": "варенье", "miel": "мед", "léchant": "облизывая",
+        "lèvres": "губы", "bouillonnement": "кипение", "liqueur": "жидкость",
+        "assis": "сидя", "almanach": "альманах", "recevait": "получал",
+        "influence": "влияние", "attention": "внимание", "lecture": "чтение",
+        "don": "дар", "remuer": "волновать", "bile": "желчь",
+        "par coeur": "наизусть", "habitudes": "привычки",
+        "bizarreries": "странности", "cacher": "прятать", "entiers": "целые",
+        "tombât": "попала", "yeux": "глаза", "lâchait": "выпускал",
+        "heures": "часы", "haussant": "пожимая", "épaules": "плечи",
+        "murmurant": "бормоча", "général": "генерал",
+        "chevalier": "кавалер", "ordres": "орденов", "lança": "швырнул",
+        "sofa": "диван", "plongé": "погруженный", "méditation": "размышление",
+        "présageait": "предвещало", "brusquement": "внезапно",
+        "s'adressant": "обращаясь", "âge": "возраст", "petite année": "годок",
+        "tante": "тетя", "perdu": "потеряла", "oeil": "глаз",
+        "séparation": "разлука", "prochaine": "скорая",
+        "laissa tomber": "уронила", "cuiller": "ложка", "casserole": "кастрюля",
+        "larmes": "слезы", "exprimer": "выразить", "saisit": "охватила",
+        "liberté": "свобода", "plaisirs": "удовольствия", "offre": "предлагает",
+        "officier": "офицер", "opinion": "мнение", "comble": "вершина",
+        "félicité": "счастье", "changer": "менять", "exécution": "выполнение",
+        "fixé": "назначен", "lettre": "письмо", "futur": "будущий",
+        "plumes": "перья", "flaire": "понюхает", "poudre": "порох",
+        "fainéant": "бездельник", "use": "протирает", "courroies": "ремни",
+        "sac": "мешок", "ôta": "снял", "lunettes": "очки", "appela": "позвал",
+        "adressée": "адресована", "camarade": "товарищ", "orenbourg": "Оренбург",
+        "espérances": "надежды", "évanouies": "исчезли", "gaie": "веселая",
+        "animée": "оживленная", "pétersbourg": "Петербург", "ennui": "скука",
+        "lointaine": "далекая", "sauvage": "дикая", "kibitka": "кибитка",
+        "perron": "крыльцо", "bénédiction": "благословение", "auberge": "гостиница",
+        "ruelle": "улочка", "sale": "грязная", "errer": "бродить",
+        "billard": "бильярд", "monsieur": "господин", "escadron": "эскадрон",
+        "hussards": "гусары", "invita": "пригласил", "dîner": "обедать",
+        "roubles": "рубли", "réveillai": "проснулся", "mal de tête": "головная боль",
+        "billet": "записка", "commandai": "приказал", "remettre": "отдать",
+        "partis": "уехал", "conscience": "совесть", "inquiète": "беспокойная",
+        "remords": "угрызения", "silencieux": "молчаливые",
+
+        // === СЛОВА ИЗ ГЛАВЫ II ===
+        "réflexions": "размышления", "perte": "потеря", "conduite": "поведение",
+        "sottes": "глупые", "coupable": "виновный", "tourmentait": "мучило",
+        "silence": "молчание", "morne": "мрачный", "traîneau": "сани",
+        "détournant": "отворачивая", "toux": "кашель", "fermement": "твердо",
+        "résolu": "решил", "paix": "мир", "fautif": "виноват",
+        "bêtises": "глупости", "offensé": "обидел", "promets": "обещаю",
+        "sage": "мудрый, разумный", "avenir": "будущее", "fâche": "сердись",
+        "soupir": "вздох", "tort": "виноват", "diable": "дьявол",
+        "diacre": "дьякон", "commère": "кума", "proverbe": "пословица",
+        "prison": "тюрьма", "malheur": "несчастье", "reparaitre": "показаться",
+        "maîtres": "господа", "buveur": "пьяница", "joueur": "игрок",
+        "consoler": "утешить", "parole": "слово", "disposerais": "распоряжался",
+        "kopek": "копейка", "consentement": "согласие", "calma": "успокоился",
+        "grommeler": "ворчать", "branlant": "качая", "destination": "назначение",
+        "désert": "пустыня", "entrecoupé": "пересеченный", "collines": "холмы",
+        "ravins": "овраги", "profonds": "глубокие", "couvert": "покрыт",
+        "neige": "снег", "se couchait": "садилось", "étroit": "узкий",
+        "chemin": "путь, дорога", "trace": "след", "cocher": "кучер",
+        "bonnet": "шапка", "roule": "катит", "fouet": "кнут",
+        "orient": "восток", "steppe": "степь", "serein": "ясный",
+        "nuage": "облако", "horizon": "горизонт", "éloignée": "отдаленная",
+        "présageait": "предвещал", "bourane": "буран", "chasse-neige": "метель",
+        "contrées": "края", "engloutissent": "поглощают", "caravanes": "караваны",
+        "relais": "станция", "redoubler": "увеличить", "vitesse": "скорость",
+        "galop": "галоп", "nuée": "туча", "s'élevait": "поднималась",
+        "croissait": "росла", "s'étendait": "расширялась", "envahir": "захватывать",
+        "précipita": "устремилась", "flocons": "хлопья", "siffler": "свистеть",
+        "hurler": "выть", "confondit": "смешалось", "soulevait": "поднимал",
+        "disparut": "исчезло", "s'écria": "воскликнул", "obscurité": "темнота",
+        "tourbillon": "вихрь", "féroce": "свирепый", "animé": "одушевленный",
+        "amoncelait": "накапливалась", "couvrait": "покрывала", "immobiles": "неподвижные",
+        "baissée": "опущенная", "tressaillaient": "вздрагивали", "gronder": "бранить",
+        "défense": "защита", "hâte": "спешка", "marier": "жениться",
+        "amas": "куча", "formait": "образовывалась", "distinguer": "различить",
+        "noir": "черный", "attentivement": "внимательно", "loup": "волк",
+        "reconnus": "узнал", "passant": "прохожий", "endroit": "место",
+        "dur": "твердый", "paysan": "крестьянин", "parcourue": "проехал",
+        "ouragan": "ураган", "cessera": "прекратится", "étoiles": "звезды",
+        "sang-froid": "хладнокровие", "abandonnant": "вверяя", "grâce": "милость",
+        "banc": "скамья", "siège": "сиденье", "habitation": "жилье",
+        "odeur": "запах", "fumée": "дым", "preuve": "доказательство",
+        "proche": "близко", "sagacité": "проницательность", "finesse": "тонкость",
+        "odorat": "обоняние", "remplirent": "наполнили", "étonnement": "удивление",
+        "lourdement": "тяжело", "s'avançait": "продвигалась", "lenteur": "медленность",
+        "soulevée": "поднятая", "précipitée": "брошенная", "fosse": "яма",
+        "balançant": "раскачиваясь", "ressemblait": "напоминало", "barque": "лодка",
+        "agitée": "взволнованное", "gémissements": "стоны", "tsinovka": "циновка",
+        "pelisse": "шуба", "m'endormis": "заснул", "bercé": "укачиваемый",
+        "chant": "пение", "roulis": "качка", "songe": "сон",
+        "prophétique": "пророческий", "aventures": "приключения", "lecteur": "читатель",
+        "excusera": "извинит", "expérience": "опыт", "superstition": "суеверие",
+        "mépris": "презрение", "affiche": "выставляет", "disposition": "состояние",
+        "âme": "душа", "réalité": "реальность", "fantaisie": "фантазия",
+        "visions": "видения", "assoupissement": "дремота", "errions": "блуждали",
+        "porte cochère": "ворота", "seigneuriale": "господская", "involontaire": "невольный",
+        "toit": "крыша", "tristesse": "печаль", "agonie": "агония",
+        "désire": "желает", "adieu": "прощай", "effroi": "ужас",
+        "éclairé": "освещена", "abattue": "подавленная", "soulève": "поднимает",
+        "rideau": "занавес", "maladie": "болезнь", "genoux": "колени",
+        "mourant": "умирающий", "barbe": "борода", "gaieté": "веселье",
+        "surprise": "удивление", "bénisse": "благословит", "consentir": "согласиться",
+        "s'élança": "бросился", "hache": "топор", "ceinture": "пояс",
+        "brandir": "размахивать", "enfuir": "убежать", "cadavres": "трупы",
+        "trébuchais": "спотыкался", "glissaient": "скользили", "mares": "лужи",
+        "sang": "кровь", "douceur": "мягкость", "stupeur": "оцепенение",
+        "emparés": "овладели", "m'éveillai": "проснулся", "arrêtés": "остановились",
+        "frottant": "протирая", "réchauffer": "согреться", "quittai": "покинул",
+        "durait": "продолжался", "violence": "сила", "crever": "выколоть",
+        "hôte": "хозяин", "lanterne": "фонарь", "cafetan": "кафтан",
+        "introduisit": "ввел", "propre": "чистая", "loutchina": "лучина",
+        "éclairait": "освещала", "carabine": "карабин",
     };
 
-    // Функция для получения перевода слова
+    let currentPopup = null;
+
     function getTranslation(word) {
         if (!word) return null;
-
         let cleanWord = word.toLowerCase().trim();
         cleanWord = cleanWord.replace(/[.,!?;:()\[\]{}'"]/g, '');
-
-        if (dictionary[cleanWord]) {
-            return dictionary[cleanWord];
-        }
-
-        // Множественное число на -s
-        if (cleanWord.endsWith('s') && dictionary[cleanWord.slice(0, -1)]) {
-            return dictionary[cleanWord.slice(0, -1)] + " (мн.ч.)";
-        }
-
-        // Женский род на -e
-        if (cleanWord.endsWith('e') && dictionary[cleanWord.slice(0, -1)]) {
-            return dictionary[cleanWord.slice(0, -1)] + " (ж.р.)";
-        }
-
-        return null;
+        return dictionary[cleanWord] || null;
     }
 
-    // Обработчик правого клика
-    function handleContextMenu(event) {
-        const selection = window.getSelection();
-        let word = '';
-
-        if (selection.rangeCount > 0) {
-            const range = selection.getRangeAt(0);
-            const text = range.toString().trim();
-            if (text && !text.includes(' ') && text.length < 30) {
-                word = text;
-            }
-        }
-
-        if (!word) {
-            const target = event.target;
-            if (target && target.nodeType === Node.TEXT_NODE) {
-                const text = target.textContent;
-                const rect = range.getBoundingClientRect();
-
-                if (text && text.length < 30 && !text.includes(' ')) {
-                    word = text;
-                }
-            }
-        }
-
-        if (word) {
-            event.preventDefault();
-            const translation = getTranslation(word);
-
-            if (translation) {
-                const popup = document.createElement('div');
-                popup.className = 'translation-popup';
-                popup.innerHTML = `<strong>${word}</strong><br>→ ${translation}`;
-                popup.style.left = (event.clientX + 15) + 'px';
-                popup.style.top = (event.clientY - 50) + 'px';
-                document.body.appendChild(popup);
-
-                setTimeout(() => popup.remove(), 3500);
-            }
-        }
-    }
-
-    // Обработчик выделения текста
     function handleTextSelection() {
         const selection = window.getSelection();
         const selectedText = selection.toString().trim();
 
-        if (selectedText && !selectedText.includes(' ') && selectedText.length < 30) {
+        if (selectedText && !selectedText.includes(' ') && selectedText.length < 40) {
             const translation = getTranslation(selectedText);
-
             if (translation) {
+                if (currentPopup) currentPopup.remove();
                 const range = selection.getRangeAt(0);
                 const rect = range.getBoundingClientRect();
-
                 const popup = document.createElement('div');
                 popup.className = 'translation-popup';
                 popup.innerHTML = `<strong>${selectedText}</strong><br>→ ${translation}`;
                 popup.style.left = (rect.left + rect.width/2 - 100) + 'px';
                 popup.style.top = (rect.top - 50) + 'px';
                 document.body.appendChild(popup);
-
-                setTimeout(() => popup.remove(), 3500);
+                currentPopup = popup;
+                setTimeout(() => { if (currentPopup) currentPopup.remove(); currentPopup = null; }, 4000);
             }
         }
     }
 
-    // Убираем стандартное контекстное меню в области текста
-    const textContainer = document.getElementById('reading-text');
-    if (textContainer) {
-        textContainer.addEventListener('contextmenu', handleContextMenu);
-        textContainer.addEventListener('mouseup', handleTextSelection);
-    }
+    document.addEventListener('mouseup', handleTextSelection);
 
-    // Функция проверки ответов
     function checkAnswer(qId) {
         const fbDiv = document.getElementById('fb-' + qId);
         const selectedRadio = document.querySelector(`input[name="q${qId}"]:checked`);
         const textInput = document.querySelector(`input[name="q${qId}"]`);
         const correctHidden = document.querySelector(`input[name="correct_${qId}"]`);
-
         if (!correctHidden) return;
-
         const correctAnswer = correctHidden.value;
         let userAnswer = '';
-
-        if (selectedRadio) {
-            userAnswer = selectedRadio.value;
-        } else if (textInput) {
-            userAnswer = textInput.value.trim().toLowerCase();
-        } else {
-            fbDiv.style.display = 'block';
-            fbDiv.className = 'feedback wrong';
-            fbDiv.innerHTML = '❌ Пожалуйста, выберите вариант ответа.';
-            return;
-        }
-
+        if (selectedRadio) userAnswer = selectedRadio.value;
+        else if (textInput) userAnswer = textInput.value.trim().toLowerCase();
+        else { fbDiv.style.display = 'block'; fbDiv.className = 'feedback wrong'; fbDiv.innerHTML = '❌ Выберите ответ.'; return; }
         if (userAnswer === correctAnswer) {
-            fbDiv.style.display = 'block';
-            fbDiv.className = 'feedback correct';
-            fbDiv.innerHTML = '✅ Правильно!';
+            fbDiv.style.display = 'block'; fbDiv.className = 'feedback correct'; fbDiv.innerHTML = '✅ Правильно!';
         } else {
-            fbDiv.style.display = 'block';
-            fbDiv.className = 'feedback wrong';
-            fbDiv.innerHTML = `❌ Неправильно. Правильный ответ: ${correctAnswer}`;
+            fbDiv.style.display = 'block'; fbDiv.className = 'feedback wrong'; fbDiv.innerHTML = `❌ Правильный ответ: ${correctAnswer}`;
         }
     }
 </script>

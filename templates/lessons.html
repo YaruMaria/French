@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="max-width: 800px; margin: 0 auto; padding: 20px;">
+    <h1 style="font-family: 'Playfair Display', serif; text-align: center; margin-bottom: 30px;">📚 Все уроки курса</h1>
+    
+    <div style="display: grid; gap: 15px;">
+        {% for lesson in lessons %}
+        <div style="background: var(--card-bg); border-radius: var(--radius); padding: 20px; border: 1px solid #e1e8df; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <div style="width: 50px; height: 50px; background: {{ 'var(--primary-dark)' if lesson.completed else '#e0e0e0' }}; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">{{ lesson.id }}</div>
+                <div>
+                    <div style="font-weight: 600;">{{ lesson.title }}</div>
+                    <div style="font-size: 0.8rem; color: var(--text-muted);">
+                        {% if lesson.completed %}✅ Пройдено{% else %}⏳ Не начато{% endif %}
+                    </div>
+                </div>
+            </div>
+            <a href="{{ url_for('day', day_id=lesson.id) }}" class="btn btn-small" style="padding: 8px 20px; background-color: var(--primary-dark); color: white; text-decoration: none; border-radius: 25px;">{{ '🔄 Повторить' if lesson.completed else '📚 Начать' }}</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<style>
+    .btn-small {
+        display: inline-block;
+        transition: all 0.2s ease;
+    }
+    .btn-small:hover {
+        transform: translateY(-2px);
+        opacity: 0.9;
+    }
+</style>
+{% endblock %}

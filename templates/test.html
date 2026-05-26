@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="max-width: 800px; margin: 0 auto; padding: 20px;">
+    <h2 style="text-align: center; margin-bottom: 30px;">{{ test.title }}</h2>
+    
+    {% if already_completed %}
+        <div style="background: #d4edda; border-radius: 10px; padding: 20px; text-align: center; margin-bottom: 30px;">
+            <p style="color: #155724; font-size: 1.1rem;">✅ Вы уже успешно прошли этот тест!</p>
+            <a href="{{ url_for('index') }}" class="btn">Вернуться на главную</a>
+        </div>
+    {% else %}
+    
+    <form method="POST">
+        {% for q in test.questions %}
+        <div style="background: var(--card-bg); border-radius: 10px; padding: 20px; margin-bottom: 20px; border: 1px solid #e1e8df;">
+            <p style="font-weight: 600; margin-bottom: 15px;">{{ loop.index }}. {{ q.question }}</p>
+            
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+                {% for option in q.options %}
+                <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; padding: 5px;">
+                    <input type="radio" name="q{{ loop.index }}" value="{{ option }}" 
+                           {% if results and user_answers and user_answers[loop.index] == option %}checked{% endif %}>
+                    {{ option }}
+                </label>
+                {% endfor %}
+            </div>
+            
+            {% if results and user_answers %}
+                {% set is_correct = user_answers[loop.index] == q.correct %}
+                <div style="margin-top: 10px; padding: 8px; border-radius: 5px; background: {{ '#d4edda' if is_correct else '#f8d7da' }}; color: {{ '#155724' if is_correct else '#721c24' }};">
+                    {% if is_correct %}✅ Правильно!{% else %}❌ Правильный ответ: {{ q.correct }}{% endif %}
+                </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+        
+        <button type="submit" style="width: 100%; padding: 15px; font-size: 1.1rem;">📝 Проверить тест</button>
+    </form>
+    
+    {% endif %}
+</div>
+{% endblock %}
