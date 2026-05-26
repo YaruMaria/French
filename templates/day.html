@@ -161,27 +161,61 @@
         {% if day.practice_tasks %}
             <!-- Цикл по интерактивным карточкам -->
             {% for task in day.practice_tasks %}
-            <div class="task-card" id="task-box-{{ task.id }}" style="background-color: var(--card-bg); border-radius: var(--radius); padding: 35px; box-shadow: var(--shadow); border: 1px solid #e1e8df; margin-bottom: 25px; transition: all 0.3s ease;">
-                <h4 style="font-size: 1.1rem; color: var(--text-main); margin-bottom: 20px; line-height: 1.5;">
-                    {{ task.question }}
-                </h4>
 
-                <!-- Варианты ответов в стиле кнопок -->
-                <div style="display: flex; flex-direction: column; gap: 12px;">
-                    {% for option in task.options %}
-                        <button type="button" class="option-btn-{{ task.id }}" onclick="checkCardAnswer('{{ task.id }}', '{{ option }}', '{{ task.correct }}', this)"
-                                style="width: 100%; text-align: left; background-color: var(--bg-color); color: var(--text-main); border: 1px solid #e1e8df; border-radius: 12px; padding: 14px 20px; box-shadow: none; font-size: 0.95rem;">
-                            {{ option }}
-                        </button>
-                    {% endfor %}
+                <!-- Тип: INFO (информационный блок) -->
+                {% if task.type == "info" %}
+                <div class="task-card" style="background-color: var(--primary-light); border-radius: var(--radius); padding: 25px; box-shadow: var(--shadow); border: 1px solid #cce2cb; margin-bottom: 25px;">
+                    <h4 style="font-size: 1.1rem; color: var(--primary-dark); margin-bottom: 15px;">
+                        {{ task.title }}
+                    </h4>
+                    <p style="color: var(--text-main); font-size: 0.95rem; line-height: 1.5;">
+                        {{ task.content | safe }}
+                    </p>
                 </div>
 
-                <!-- Сообщение о результате внутри карточки -->
-                <div id="result-msg-{{ task.id }}" style="margin-top: 15px; font-weight: 600; font-size: 0.95rem; display: none; padding: 10px; border-radius: 8px;"></div>
-            </div>
+                <!-- Тип: QUIZ (выбор варианта) -->
+                {% elif task.type == "quiz" %}
+                <div class="task-card" id="task-box-{{ task.id }}" style="background-color: var(--card-bg); border-radius: var(--radius); padding: 35px; box-shadow: var(--shadow); border: 1px solid #e1e8df; margin-bottom: 25px; transition: all 0.3s ease;">
+                    <h4 style="font-size: 1.1rem; color: var(--text-main); margin-bottom: 20px; line-height: 1.5;">
+                        {{ task.question }}
+                    </h4>
+
+                    <div style="display: flex; flex-direction: column; gap: 12px;">
+                        {% for option in task.options %}
+                            <button type="button" class="option-btn-{{ task.id }}" onclick="checkCardAnswer('{{ task.id }}', '{{ option }}', '{{ task.correct }}', this)"
+                                    style="width: 100%; text-align: left; background-color: var(--bg-color); color: var(--text-main); border: 1px solid #e1e8df; border-radius: 12px; padding: 14px 20px; box-shadow: none; font-size: 0.95rem;">
+                                {{ option }}
+                            </button>
+                        {% endfor %}
+                    </div>
+
+                    <div id="result-msg-{{ task.id }}" style="margin-top: 15px; font-weight: 600; font-size: 0.95rem; display: none; padding: 10px; border-radius: 8px;"></div>
+                </div>
+
+                <!-- Тип: INPUT (поле для ввода текста) -->
+                {% elif task.type == "input" %}
+                <div class="task-card" id="task-box-{{ task.id }}" style="background-color: var(--card-bg); border-radius: var(--radius); padding: 35px; box-shadow: var(--shadow); border: 1px solid #e1e8df; margin-bottom: 25px;">
+                    <h4 style="font-size: 1.1rem; color: var(--text-main); margin-bottom: 20px;">
+                        {{ task.question }}
+                    </h4>
+
+                    <div style="margin-bottom: 15px;">
+                        <input type="text" id="input-{{ task.id }}" placeholder="{{ task.placeholder|default('Введите ответ...') }}"
+                               style="width: 100%; padding: 12px; border: 1px solid #e1e8df; border-radius: 12px; font-size: 1rem;">
+                    </div>
+
+                    <button onclick="checkInputAnswer('{{ task.id }}', '{{ task.correct }}', this)"
+                            style="background-color: var(--primary-dark); color: white; border: none; padding: 10px 20px; border-radius: 30px; cursor: pointer;">
+                        Проверить
+                    </button>
+
+                    <div id="result-msg-{{ task.id }}" style="margin-top: 15px; font-weight: 600; font-size: 0.95rem; display: none; padding: 10px; border-radius: 8px;"></div>
+                </div>
+                {% endif %}
+
             {% endfor %}
 
-            <!-- Финальная скрытая форма, которая отправит сигнал во Flask, что всё пройдено -->
+            <!-- Финальная скрытая форма -->
             <div id="final-submit-box" style="display: none; text-align: center; margin-top: 30px; background: var(--primary-light); padding: 30px; border-radius: var(--radius); border: 1px solid #cce2cb;">
                 <h4 style="font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--primary-dark); margin-bottom: 10px;">🌟 Все карточки успешно пройдены!</h4>
                 <p style="color: var(--text-main); font-size: 0.95rem; margin-bottom: 20px;">Отправьте результат, чтобы зафиксировать сегодняшний прогресс в личном кабинете.</p>
@@ -192,7 +226,7 @@
                 </form>
             </div>
         {% else %}
-            <!-- Резервный вариант, если заданий в уроке нет -->
+            <!-- Резервный вариант -->
             <div style="background-color: var(--card-bg); border-radius: var(--radius); padding: 35px; box-shadow: var(--shadow); border: 1px solid #e1e8df; text-align: center;">
                 <p style="color: var(--text-muted);">Для этого дня используется стандартная форма ответа.</p>
                 <form method="POST">
@@ -257,26 +291,23 @@
         window.scrollTo(0, 0);
     }
 
-    // Функция проверки ответа кликом по карточке
+    // Функция проверки ответа для QUIZ (выбор варианта)
     function checkCardAnswer(taskId, selectedOption, correctOption, buttonElement) {
         const resultMsg = document.getElementById('result-msg-' + taskId);
-        const cardBox = document.getElementById('task-box-' + taskId);
         const allButtons = document.getElementsByClassName('option-btn-' + taskId);
 
-        // Блокируем остальные кнопки в этой карточке, чтобы нельзя было кликать бесконечно
+        // Блокируем все кнопки в этой карточке
         for (let btn of allButtons) {
             btn.disabled = true;
             btn.style.opacity = "0.7";
         }
 
         if (selectedOption === correctOption) {
-            // Подсвечиваем выбранную кнопку нежно-зеленым
             buttonElement.style.backgroundColor = "#d4edda";
             buttonElement.style.borderColor = "#28a745";
             buttonElement.style.color = "#155724";
             buttonElement.style.opacity = "1";
 
-            // Показываем сообщение об успехе
             resultMsg.style.display = "block";
             resultMsg.style.backgroundColor = "#d4edda";
             resultMsg.style.color = "#155724";
@@ -284,7 +315,6 @@
 
             completedCards++;
 
-            // Если все карточки решены верно, открываем финальную кнопку отправки
             if (completedCards === totalCardsNeeded) {
                 document.getElementById('final-submit-box').style.display = "block";
                 setTimeout(() => {
@@ -292,7 +322,6 @@
                 }, 200);
             }
         } else {
-            // Подсвечиваем кнопку нежно-розовым (ошибка)
             buttonElement.style.backgroundColor = "#f8d7da";
             buttonElement.style.borderColor = "#dc3545";
             buttonElement.style.color = "#721c24";
@@ -303,7 +332,6 @@
             resultMsg.style.color = "#721c24";
             resultMsg.innerHTML = "❌ Ошибка. Правильный ответ: " + correctOption;
 
-            // Через 2 секунды даем шанс пересдать — разблокируем кнопки
             setTimeout(() => {
                 for (let btn of allButtons) {
                     btn.disabled = false;
@@ -312,6 +340,46 @@
                     btn.style.borderColor = "#e1e8df";
                     btn.style.color = "var(--text-main)";
                 }
+                resultMsg.style.display = "none";
+            }, 2000);
+        }
+    }
+
+    // Функция проверки ответа для INPUT (поле ввода)
+    function checkInputAnswer(taskId, correctAnswer, buttonElement) {
+        const userInput = document.getElementById('input-' + taskId);
+        const userAnswer = userInput.value.trim().toLowerCase();
+        const resultMsg = document.getElementById('result-msg-' + taskId);
+
+        // Нормализация (убираем accents)
+        const normalizedUser = userAnswer.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        const normalizedCorrect = correctAnswer.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+        if (normalizedUser === normalizedCorrect) {
+            resultMsg.style.display = "block";
+            resultMsg.style.backgroundColor = "#d4edda";
+            resultMsg.style.color = "#155724";
+            resultMsg.innerHTML = "✨ Прекрасно! Абсолютно верно.";
+
+            userInput.disabled = true;
+            buttonElement.disabled = true;
+            buttonElement.style.opacity = "0.5";
+
+            completedCards++;
+
+            if (completedCards === totalCardsNeeded) {
+                document.getElementById('final-submit-box').style.display = "block";
+                setTimeout(() => {
+                    document.getElementById('final-submit-box').scrollIntoView({ behavior: 'smooth' });
+                }, 200);
+            }
+        } else {
+            resultMsg.style.display = "block";
+            resultMsg.style.backgroundColor = "#f8d7da";
+            resultMsg.style.color = "#721c24";
+            resultMsg.innerHTML = "❌ Неправильно. Правильный ответ: " + correctAnswer;
+
+            setTimeout(() => {
                 resultMsg.style.display = "none";
             }, 2000);
         }

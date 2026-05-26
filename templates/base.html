@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Французский за 84 дня</title>
     <!-- Подключаем стильный и легкий шрифт -->
-    <link rel="preconnect" href="https://googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;1,400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;1,400&display=swap" rel="stylesheet">
 
     <style>
         /* Палитра в стиле Pinterest (Пастельный зеленый / Sage Green) */
@@ -41,7 +41,7 @@
 
         /* Ограничитель ширины сайта для аккуратного вида */
         .container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 40px 0;
         }
@@ -94,7 +94,35 @@
             transform: translateY(-2px);
         }
 
-        /* Минималистичные кнопки */
+        /* Стили для кнопок */
+        .btn {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 500;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 100px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(143, 168, 130, 0.2);
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(143, 168, 130, 0.3);
+        }
+
+        .btn-small {
+            padding: 8px 20px;
+            font-size: 0.85rem;
+        }
+
         button, input[type="submit"] {
             font-family: 'Plus Jakarta Sans', sans-serif;
             font-weight: 500;
@@ -116,7 +144,7 @@
         }
 
         /* Стили для инпутов/полей ввода */
-        input[type="text"], input[type="password"] {
+        input[type="text"], input[type="password"], input[type="email"] {
             width: 100%;
             padding: 14px 20px;
             border: 1px solid #e1e8df;
@@ -129,7 +157,7 @@
             margin-bottom: 15px;
         }
 
-        input[type="text"]:focus, input[type="password"]:focus {
+        input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus {
             outline: none;
             border-color: var(--primary);
             box-shadow: 0 0 0 4px rgba(143, 168, 130, 0.15);
@@ -163,23 +191,42 @@
             border-top: 1px solid #e1e8df;
             margin-bottom: 20px;
         }
+
+        /* Прогресс-бар */
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e1e8df;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--primary-dark);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
             <nav>
-                <a href="{{ url_for('index') }}">🗺 Все 84 Дня</a>
+                <a href="{{ url_for('index') }}">🗺 Главная</a>
+                <a href="{{ url_for('lessons') }}">📚 Все уроки</a>
                 {% if session.get('user_id') %}
                     <a href="{{ url_for('progress') }}">📊 Прогресс ({{ session.get('username') }})</a>
-                    <a href="{{ url_for('logout') }}" style="background-color: #fcebeb; color: #a94442;">Выйти</a>
+                    <a href="{{ url_for('reading', reading_id='captains_daughter', part=1) }}">📖 Читать книгу</a>
+                    <a href="{{ url_for('review', review_id='review_1') }}">📝 Отработка слов</a>
+                    <a href="{{ url_for('logout') }}" style="background-color: #fcebeb; color: #a94442;">🚪 Выйти</a>
                 {% else %}
-                    <a href="{{ url_for('login') }}">Войти</a>
-                    <a href="{{ url_for('register') }}">Регистрация</a>
+                    <a href="{{ url_for('login') }}">🔑 Войти</a>
+                    <a href="{{ url_for('register') }}">📝 Регистрация</a>
                 {% endif %}
             </nav>
-            <h1>Bonjour, Amis!</h1>
-            <p>Ваш эстетичный путь к французскому языку за 84 дня</p>
+            <h1>🇫🇷 Bonjour, Amis!</h1>
+            <p>Ваш эстетичный путь к французскому языку</p>
         </header>
 
         <!-- Вывод уведомлений -->
@@ -199,7 +246,7 @@
 
         <footer>
             <hr>
-            <p>© 2026 Лёгкий французский по 20 минут в день. Создано с вдохновением.</p>
+            <p>© 2026 Лёгкий французский язык. Создано с вдохновением. 🇫🇷✨</p>
         </footer>
     </div>
 </body>

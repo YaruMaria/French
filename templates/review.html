@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% extends 'base.html' %}
+
+{% block content %}
+<div style="max-width: 800px; margin: 0 auto; padding: 20px;">
+    <h1 style="font-family: 'Playfair Display', serif; text-align: center; margin-bottom: 10px;">{{ review.title }}</h1>
+    <p style="text-align: center; color: var(--text-muted); margin-bottom: 30px;">{{ review.description }}</p>
+
+    <form method="POST" id="review-form">
+        {% for word in review.words %}
+        <div class="word-card" style="background: var(--card-bg); border-radius: var(--radius); padding: 20px; margin-bottom: 15px; border: 1px solid #e1e8df;">
+            <div style="font-size: 1.3rem; font-weight: 600; color: var(--primary-dark); margin-bottom: 10px;">
+                {{ word.fr }}
+            </div>
+            <input type="text" name="word_{{ loop.index }}" placeholder="Введите перевод..." 
+                   style="width: 100%; padding: 12px; border: 1px solid #e1e8df; border-radius: 12px; font-size: 1rem;">
+            <div class="feedback" id="fb-{{ loop.index }}" style="margin-top: 10px; font-size: 0.85rem; display: none;"></div>
+        </div>
+        {% endfor %}
+
+        <div style="display: flex; gap: 15px; margin-top: 30px;">
+            <button type="button" onclick="checkAllAnswers()" style="flex: 1;">✅ Проверить все ответы</button>
+            <button type="submit" id="submit-btn" style="flex: 1; display: none;">📤 Завершить отработку</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    const correctAnswers = {
+        {% for word in review.words %}
+        "word_{{ loop.index }}": "{{ word.ru }}",
+        {% endfor %}
+    };
+    
+    let allCorrect = false;
+    const totalWords = {{ review.words|length }};
+    let correctCount = 0;
+
+    function checkAllAnswers() {
+        correctCount = 0;
+        
+        for (let i = 1; i <= totalWords; i++) {
+            const input = document.querySelector(`input[name="word_${i}"]`);
+            const fb = document.getElementById(`fb-${i}`);
+            const userAnswer = input.value.trim().toLowerCase();
+            const correctAnswer = correctAnswers[`word_${i}`].toLowerCase();
+            
+            if (userAnswer === correctAnswer) {
+                fb.style.display = 'block';
+                fb.style.backgroundColor = '#d4edda';
+                fb.style.color = '#155724';
+                fb.innerHTML = '✅ Правильно!';
+                correctCount++;
+            } else {
+                fb.style.display = 'block';
+                fb.style.backgroundColor = '#f8d7da';
+                fb.style.color = '#721c24';
+                fb.innerHTML = `❌ Неправильно. Правильный ответ: ${correctAnswers[`word_${i}`]}`;
+            }
+        }
+        
+        if (correctCount === totalWords) {
+            allCorrect = true;
+            document.getElementById('submit-btn').style.display = 'block';
+            alert('🎉 Поздравляю! Все ответы правильные! Нажмите "Завершить отработку" чтобы сохранить прогресс.');
+        } else {
+            allCorrect = false;
+            document.getElementById('submit-btn').style.display = 'none';
+            alert(`⚠️ Вы правильно ответили на ${correctCount} из ${totalWords} слов. Исправьте ошибки и попробуйте снова.`);
+        }
+    }
+    
+    document.getElementById('review-form').addEventListener('submit', function(e) {
+        if (!allCorrect) {
+            e.preventDefault();
+            alert('❌ Сначала проверьте все ответы и исправьте ошибки!');
+        }
+    });
+</script>
+{% endblock %}</title>
+</head>
+<body>
+
+</body>
+</html>

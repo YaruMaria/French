@@ -1,0 +1,462 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    .reading-container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 20px;
+        background: var(--card-bg);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+    }
+
+    .reading-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 2rem;
+        color: var(--primary-dark);
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .reading-meta {
+        text-align: center;
+        color: var(--text-muted);
+        margin-bottom: 30px;
+        font-size: 0.9rem;
+    }
+
+    .reading-text {
+        font-size: 1.05rem;
+        line-height: 1.8;
+        color: var(--text-main);
+        font-family: 'Georgia', serif;
+        user-select: text;
+    }
+
+    .reading-text ::selection {
+        background-color: #cce2cb;
+        color: #2c3e24;
+    }
+
+    .translation-popup {
+        position: fixed;
+        background: #2c3e24;
+        color: white;
+        padding: 10px 18px;
+        border-radius: 25px;
+        font-size: 0.9rem;
+        z-index: 10000;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        max-width: 350px;
+        white-space: normal;
+        word-wrap: break-word;
+        text-align: center;
+        font-family: monospace;
+    }
+
+    .legend {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 30px;
+        padding: 15px;
+        background: #f0f2f0;
+        border-radius: 10px;
+        font-size: 0.85rem;
+        flex-wrap: wrap;
+    }
+
+    .legend-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .questions-section {
+        margin-top: 40px;
+        padding: 25px;
+        background: var(--primary-light);
+        border-radius: var(--radius);
+    }
+
+    .question-item {
+        margin-bottom: 25px;
+        padding: 15px;
+        background: white;
+        border-radius: 10px;
+    }
+
+    .question-text {
+        font-weight: 600;
+        margin-bottom: 12px;
+        color: var(--text-main);
+    }
+
+    .answer-input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #e1e8df;
+        border-radius: 8px;
+        font-size: 0.95rem;
+    }
+
+    .check-btn {
+        margin-top: 10px;
+        background-color: var(--primary-dark);
+        color: white;
+        border: none;
+        padding: 8px 20px;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 0.85rem;
+    }
+
+    .feedback {
+        margin-top: 10px;
+        padding: 8px;
+        border-radius: 8px;
+        font-size: 0.9rem;
+    }
+
+    .feedback.correct {
+        background-color: #d4edda;
+        color: #155724;
+    }
+
+    .feedback.wrong {
+        background-color: #f8d7da;
+        color: #721c24;
+    }
+
+    .nav-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 40px;
+        gap: 20px;
+    }
+
+    .nav-btn {
+        background-color: var(--primary-dark);
+        color: white;
+        padding: 12px 24px;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: 500;
+        text-align: center;
+        flex: 1;
+    }
+
+    .submit-btn {
+        background-color: #2e7d32;
+        width: 100%;
+        margin-top: 30px;
+        padding: 14px;
+        font-size: 1rem;
+    }
+
+    hr {
+        margin: 30px 0;
+        border: none;
+        height: 1px;
+        background: #e1e8df;
+    }
+</style>
+
+<div class="reading-container">
+    <h1 class="reading-title">{{ reading.title }}</h1>
+    <div class="reading-meta">
+        <span>📖 Часть {{ part_num }} из {{ total_parts }}</span>
+        <span style="margin-left: 15px;">🔍 Нажмите правой кнопкой мыши на слово → перевод</span>
+    </div>
+
+    <div class="legend">
+        <div class="legend-item"><span>🖱️</span> <span>— нажмите ПРАВОЙ кнопкой мыши на слово → перевод</span></div>
+        <div class="legend-item"><span>📖</span> <span>— текст для чтения</span></div>
+    </div>
+
+    <div class="reading-text" id="reading-text">
+        {{ reading.text|safe }}
+    </div>
+
+    <div class="questions-section">
+        <h3 style="font-family: 'Playfair Display', serif; margin-bottom: 20px;">📝 Questions de compréhension</h3>
+
+        <form method="POST" id="main-form">
+            {% for q in questions %}
+            <div class="question-item" id="q-{{ q.id }}">
+                <div class="question-text">{{ loop.index }}. {{ q.question }}</div>
+                {% if q.type == 'quiz' %}
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        {% for opt in q.options %}
+                        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                            <input type="radio" name="q{{ q.id }}" value="{{ opt }}">
+                            {{ opt }}
+                        </label>
+                        {% endfor %}
+                    </div>
+                    <input type="hidden" name="correct_{{ q.id }}" value="{{ q.correct }}">
+                {% else %}
+                    <input type="text" class="answer-input" name="q{{ q.id }}" placeholder="Введите ответ по-французски...">
+                    <input type="hidden" name="correct_{{ q.id }}" value="{{ q.correct }}">
+                {% endif %}
+                <button type="button" class="check-btn" onclick="checkAnswer({{ q.id }})">Проверить</button>
+                <div class="feedback" id="fb-{{ q.id }}" style="display: none;"></div>
+            </div>
+            {% endfor %}
+
+            <input type="hidden" name="answer" value="готово">
+            <button type="submit" class="check-btn submit-btn">📤 Завершить чтение и сохранить прогресс</button>
+        </form>
+    </div>
+
+    <div class="nav-buttons">
+        {% if prev_part %}
+        <a href="{{ url_for('reading', reading_id=reading_id, part=prev_part) }}" class="nav-btn">← Предыдущая часть</a>
+        {% else %}
+        <div style="flex: 1;"></div>
+        {% endif %}
+
+        {% if next_part %}
+        <a href="{{ url_for('reading', reading_id=reading_id, part=next_part) }}" class="nav-btn">Следующая часть →</a>
+        {% else %}
+        <a href="{{ url_for('index') }}" class="nav-btn">🏠 Завершить книгу →</a>
+        {% endif %}
+    </div>
+</div>
+
+<script>
+    // ========== ПОЛНЫЙ СЛОВАРЬ ==========
+    const dictionary = {
+        // Простые слова
+        "mon": "мой", "ma": "моя", "mes": "мои",
+        "ton": "твой", "ta": "твоя", "tes": "твои",
+        "son": "его/её", "sa": "его/её", "ses": "его/её",
+        "notre": "наш", "votre": "ваш", "leur": "их",
+        "ce": "этот", "cette": "эта", "ces": "эти",
+        "je": "я", "tu": "ты", "il": "он", "elle": "она",
+        "nous": "мы", "vous": "вы", "ils": "они (м.р.)", "elles": "они (ж.р.)",
+        "le": "его / определенный артикль", "la": "её / определенный артикль",
+        "les": "их / определенный артикль", "un": "один", "une": "одна",
+        "des": "несколько", "de": "из, от", "du": "из (м.р.)",
+        "à": "в, к, на", "au": "в (м.р.)", "aux": "в (мн.ч.)", "en": "в (ж.р.)",
+        "dans": "в", "sur": "на", "sous": "под", "avec": "с", "sans": "без",
+        "pour": "для", "par": "через", "chez": "у, к", "entre": "между",
+        "pendant": "в течение", "après": "после", "avant": "до",
+        "depuis": "с", "jusque": "до", "et": "и", "ou": "или", "mais": "но",
+        "donc": "итак", "car": "потому что", "si": "если", "que": "что",
+        "quand": "когда", "comme": "как", "très": "очень", "bien": "хорошо",
+        "mal": "плохо", "vite": "быстро", "toujours": "всегда", "jamais": "никогда",
+        "souvent": "часто", "parfois": "иногда", "maintenant": "теперь",
+        "alors": "тогда", "ici": "здесь", "là": "там", "partout": "везде",
+        "rien": "ничего", "tout": "все", "beaucoup": "много", "peu": "мало",
+        "assez": "достаточно", "trop": "слишком", "encore": "еще, опять",
+        "déjà": "уже", "bientôt": "скоро", "enfin": "наконец", "ensuite": "затем",
+        "aujourd'hui": "сегодня", "demain": "завтра", "hier": "вчера",
+        "tôt": "рано", "tard": "поздно", "seulement": "только",
+        "vraiment": "действительно", "qui": "кто", "que": "что", "quoi": "что",
+        "où": "где", "comment": "как", "pourquoi": "почему", "quel": "какой",
+
+        // Глаголы
+        "est": "есть, находится", "sont": "находятся", "était": "был",
+        "étaient": "были", "avait": "имел", "avaient": "имели",
+        "a": "имеет", "ont": "имеют", "fut": "был", "fit": "сделал",
+        "dit": "сказал", "va": "идет", "vont": "идут", "fait": "делает",
+        "font": "делают", "peut": "может", "peuvent": "могут", "veut": "хочет",
+        "veulent": "хотят", "doit": "должен", "doivent": "должны",
+        "sait": "знает", "savent": "знают", "voit": "видит", "voient": "видят",
+        "prend": "берет", "prennent": "берут", "met": "кладет", "mettent": "кладут",
+        "donne": "дает", "donnent": "дают", "parle": "говорит", "parlent": "говорят",
+        "regarde": "смотрит", "demande": "спрашивает", "répond": "отвечает",
+        "arrive": "прибывает", "part": "уезжает", "reste": "остается",
+
+        // Существительные
+        "père": "отец", "mère": "мать", "frère": "брат", "sœur": "сестра",
+        "fils": "сын", "fille": "дочь", "enfant": "ребенок", "parents": "родители",
+        "ami": "друг", "amie": "подруга", "homme": "мужчина", "femme": "женщина",
+        "maison": "дом", "ville": "город", "pays": "страна", "monde": "мир",
+        "vie": "жизнь", "jour": "день", "nuit": "ночь", "temps": "время",
+        "eau": "вода", "pain": "хлеб", "livre": "книга", "table": "стол",
+        "chaise": "стул", "porte": "дверь", "fenêtre": "окно", "argent": "деньги",
+        "travail": "работа", "école": "школа", "voiture": "машина", "train": "поезд",
+
+        // Прилагательные
+        "grand": "большой", "grande": "большая", "petit": "маленький",
+        "petite": "маленькая", "bon": "хороший", "bonne": "хорошая",
+        "beau": "красивый", "belle": "красивая", "nouveau": "новый",
+        "nouvelle": "новая", "vieux": "старый", "vieille": "старая",
+        "jeune": "молодой", "heureux": "счастливый", "heureuse": "счастливая",
+        "triste": "грустный", "content": "довольный", "fatigué": "усталый",
+        "malade": "больной", "libre": "свободный", "seul": "один", "seule": "одна",
+
+        // Слова из текста
+        "servi": "служил", "jeunesse": "молодость", "comte": "граф",
+        "quitté": "покинул", "militaire": "военный", "grade": "звание",
+        "premier": "первый", "major": "майор", "habité": "жил",
+        "terre": "земля, имение", "gouvernement": "губерния",
+        "épousa": "женился", "pauvre": "бедный", "voisinage": "соседство",
+        "enfants": "детей", "survécus": "выжил", "moururent": "умерли",
+        "sergent": "сержант", "régiment": "полк", "faveur": "милость",
+        "prince": "князь", "parent": "родственник", "éducation": "образование",
+        "élevait": "воспитывали", "autrement": "по-другому",
+        "piqueur": "стремянный", "digne": "достойный", "devenir": "стать",
+        "menin": "воспитатель", "savais": "умел", "pouvais": "мог",
+        "apprécier": "оценить", "certitude": "уверенность",
+        "qualités": "качества", "lévrier": "борзая", "chasse": "охота",
+        "époque": "время", "achever": "завершить", "instruire": "обучать",
+        "prit": "взял", "gages": "наем", "français": "француз",
+        "moscou": "Москвы", "provision": "запас", "annuelle": "годовой",
+        "vin": "вино", "huile": "масло", "provence": "Прованс",
+        "arrivée": "прибытие", "déplut": "не понравилась", "fort": "сильно",
+        "semble": "кажется", "dieu": "бог", "lavé": "вымыт", "peigné": "причесан",
+        "nourri": "накормлен", "dépenser": "тратить", "louer": "нанимать",
+        "moussié": "мусье", "domestiques": "слуги", "patrie": "родина",
+        "coiffeur": "парикмахер", "soldat": "солдат", "prusse": "Пруссия",
+        "venu": "приехал", "russie": "Россия", "outchitel": "учитель",
+        "signification": "значение", "mot": "слово", "garçon": "парень",
+        "distrait": "рассеянный", "étourdi": "ветреный", "ennemi": "враг",
+        "bouteille": "бутылка", "aimait": "любил", "boire": "пить",
+        "présentait": "подавали", "petits verres": "маленькие рюмки",
+        "occasions": "случаях", "passait": "обходили", "habitua": "привык",
+        "eau-de-vie": "водка", "préférer": "предпочитать", "stomachique": "полезный",
+        "devînmes": "стали", "amis": "друзья", "amitié": "дружба",
+        "quoique": "хотя", "contrat": "договор", "engagé": "обязался",
+        "apprendre": "учить", "allemand": "немецкий", "sciences": "науки",
+        "babiller": "болтать", "tant bien que mal": "кое-как",
+        "chacun": "каждый", "occupait": "занимался", "affaires": "делами",
+        "inaltérable": "нерушимая", "désirais": "желал", "mentor": "наставник",
+        "destin": "судьба", "sépara": "разлучила", "événement": "событие",
+        "raconter": "рассказать",
+    };
+
+    // Функция для получения перевода слова
+    function getTranslation(word) {
+        if (!word) return null;
+
+        let cleanWord = word.toLowerCase().trim();
+        cleanWord = cleanWord.replace(/[.,!?;:()\[\]{}'"]/g, '');
+
+        if (dictionary[cleanWord]) {
+            return dictionary[cleanWord];
+        }
+
+        // Множественное число на -s
+        if (cleanWord.endsWith('s') && dictionary[cleanWord.slice(0, -1)]) {
+            return dictionary[cleanWord.slice(0, -1)] + " (мн.ч.)";
+        }
+
+        // Женский род на -e
+        if (cleanWord.endsWith('e') && dictionary[cleanWord.slice(0, -1)]) {
+            return dictionary[cleanWord.slice(0, -1)] + " (ж.р.)";
+        }
+
+        return null;
+    }
+
+    // Обработчик правого клика
+    function handleContextMenu(event) {
+        const selection = window.getSelection();
+        let word = '';
+
+        if (selection.rangeCount > 0) {
+            const range = selection.getRangeAt(0);
+            const text = range.toString().trim();
+            if (text && !text.includes(' ') && text.length < 30) {
+                word = text;
+            }
+        }
+
+        if (!word) {
+            const target = event.target;
+            if (target && target.nodeType === Node.TEXT_NODE) {
+                const text = target.textContent;
+                const rect = range.getBoundingClientRect();
+
+                if (text && text.length < 30 && !text.includes(' ')) {
+                    word = text;
+                }
+            }
+        }
+
+        if (word) {
+            event.preventDefault();
+            const translation = getTranslation(word);
+
+            if (translation) {
+                const popup = document.createElement('div');
+                popup.className = 'translation-popup';
+                popup.innerHTML = `<strong>${word}</strong><br>→ ${translation}`;
+                popup.style.left = (event.clientX + 15) + 'px';
+                popup.style.top = (event.clientY - 50) + 'px';
+                document.body.appendChild(popup);
+
+                setTimeout(() => popup.remove(), 3500);
+            }
+        }
+    }
+
+    // Обработчик выделения текста
+    function handleTextSelection() {
+        const selection = window.getSelection();
+        const selectedText = selection.toString().trim();
+
+        if (selectedText && !selectedText.includes(' ') && selectedText.length < 30) {
+            const translation = getTranslation(selectedText);
+
+            if (translation) {
+                const range = selection.getRangeAt(0);
+                const rect = range.getBoundingClientRect();
+
+                const popup = document.createElement('div');
+                popup.className = 'translation-popup';
+                popup.innerHTML = `<strong>${selectedText}</strong><br>→ ${translation}`;
+                popup.style.left = (rect.left + rect.width/2 - 100) + 'px';
+                popup.style.top = (rect.top - 50) + 'px';
+                document.body.appendChild(popup);
+
+                setTimeout(() => popup.remove(), 3500);
+            }
+        }
+    }
+
+    // Убираем стандартное контекстное меню в области текста
+    const textContainer = document.getElementById('reading-text');
+    if (textContainer) {
+        textContainer.addEventListener('contextmenu', handleContextMenu);
+        textContainer.addEventListener('mouseup', handleTextSelection);
+    }
+
+    // Функция проверки ответов
+    function checkAnswer(qId) {
+        const fbDiv = document.getElementById('fb-' + qId);
+        const selectedRadio = document.querySelector(`input[name="q${qId}"]:checked`);
+        const textInput = document.querySelector(`input[name="q${qId}"]`);
+        const correctHidden = document.querySelector(`input[name="correct_${qId}"]`);
+
+        if (!correctHidden) return;
+
+        const correctAnswer = correctHidden.value;
+        let userAnswer = '';
+
+        if (selectedRadio) {
+            userAnswer = selectedRadio.value;
+        } else if (textInput) {
+            userAnswer = textInput.value.trim().toLowerCase();
+        } else {
+            fbDiv.style.display = 'block';
+            fbDiv.className = 'feedback wrong';
+            fbDiv.innerHTML = '❌ Пожалуйста, выберите вариант ответа.';
+            return;
+        }
+
+        if (userAnswer === correctAnswer) {
+            fbDiv.style.display = 'block';
+            fbDiv.className = 'feedback correct';
+            fbDiv.innerHTML = '✅ Правильно!';
+        } else {
+            fbDiv.style.display = 'block';
+            fbDiv.className = 'feedback wrong';
+            fbDiv.innerHTML = `❌ Неправильно. Правильный ответ: ${correctAnswer}`;
+        }
+    }
+</script>
+{% endblock %}
