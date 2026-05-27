@@ -26,12 +26,42 @@
         font-size: 0.9rem;
     }
 
+    /* КРАСИВЫЙ ТЕКСТ ДЛЯ ЧТЕНИЯ */
     .reading-text {
         font-size: 1.05rem;
-        line-height: 1.8;
+        line-height: 1.9;
         color: var(--text-main);
-        font-family: 'Georgia', serif;
+        font-family: 'Georgia', 'Playfair Display', serif;
         user-select: text;
+        background: #fefaf5;
+        padding: 35px 40px;
+        border-radius: 20px;
+        margin-bottom: 30px;
+        border: 1px solid #e8e0d5;
+        position: relative;
+    }
+
+    /* Декоративный элемент для текста */
+    .reading-text::before {
+        content: "❦";
+        position: absolute;
+        top: -12px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #fefaf5;
+        padding: 0 15px;
+        color: #c4b5a5;
+        font-size: 1rem;
+        font-family: serif;
+    }
+
+    .reading-text p {
+        margin-bottom: 1.2em;
+    }
+
+    .reading-text strong {
+        color: #8fa882;
+        font-weight: 600;
     }
 
     .reading-text ::selection {
@@ -57,19 +87,24 @@
 
     .legend {
         display: flex;
-        gap: 20px;
+        justify-content: center;
+        gap: 25px;
         margin-bottom: 30px;
-        padding: 15px;
+        padding: 12px 25px;
         background: #f0f2f0;
-        border-radius: 10px;
+        border-radius: 50px;
         font-size: 0.85rem;
         flex-wrap: wrap;
+        width: fit-content;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .legend-item {
         display: flex;
         align-items: center;
         gap: 8px;
+        color: #5a6e52;
     }
 
     .questions-section {
@@ -81,40 +116,56 @@
 
     .question-item {
         margin-bottom: 25px;
-        padding: 15px;
+        padding: 18px;
         background: white;
-        border-radius: 10px;
+        border-radius: 16px;
+        border-left: 4px solid #8fa882;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.03);
     }
 
     .question-text {
         font-weight: 600;
         margin-bottom: 12px;
         color: var(--text-main);
+        font-family: 'Playfair Display', serif;
     }
 
     .answer-input {
         width: 100%;
-        padding: 10px;
-        border: 1px solid #e1e8df;
-        border-radius: 8px;
+        padding: 12px 16px;
+        border: 1px solid #d4dcd0;
+        border-radius: 30px;
         font-size: 0.95rem;
+        background: white;
+    }
+
+    .answer-input:focus {
+        outline: none;
+        border-color: #8fa882;
+        box-shadow: 0 0 0 3px rgba(143, 168, 130, 0.15);
     }
 
     .check-btn {
-        margin-top: 10px;
+        margin-top: 12px;
         background-color: var(--primary-dark);
         color: white;
         border: none;
-        padding: 8px 20px;
-        border-radius: 25px;
+        padding: 8px 24px;
+        border-radius: 30px;
         cursor: pointer;
         font-size: 0.85rem;
+        transition: all 0.2s ease;
+    }
+
+    .check-btn:hover {
+        background-color: #5a7a4a;
+        transform: scale(1.02);
     }
 
     .feedback {
-        margin-top: 10px;
-        padding: 8px;
-        border-radius: 8px;
+        margin-top: 12px;
+        padding: 10px 15px;
+        border-radius: 30px;
         font-size: 0.9rem;
     }
 
@@ -138,12 +189,18 @@
     .nav-btn {
         background-color: var(--primary-dark);
         color: white;
-        padding: 12px 24px;
-        border-radius: 30px;
+        padding: 12px 28px;
+        border-radius: 40px;
         text-decoration: none;
         font-weight: 500;
         text-align: center;
         flex: 1;
+        transition: all 0.2s ease;
+    }
+
+    .nav-btn:hover {
+        background-color: #5a7a4a;
+        transform: translateY(-2px);
     }
 
     .submit-btn {
@@ -152,6 +209,7 @@
         margin-top: 30px;
         padding: 14px;
         font-size: 1rem;
+        border-radius: 40px;
     }
 
     hr {
@@ -160,35 +218,63 @@
         height: 1px;
         background: #e1e8df;
     }
+
+    /* Стили для вариантов ответов */
+    .quiz-option {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 16px;
+        background: #fafbfa;
+        border: 1px solid #e1e8df;
+        border-radius: 40px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .quiz-option:hover {
+        background: #f0f2ef;
+        border-color: #8fa882;
+    }
+
+    .quiz-option input {
+        margin: 0;
+        width: 18px;
+        height: 18px;
+        accent-color: #8fa882;
+    }
 </style>
 
 <div class="reading-container">
     <h1 class="reading-title">{{ reading.title }}</h1>
     <div class="reading-meta">
-        <span>📖 Часть {{ part_num }} из {{ total_parts }}</span>
+        <span>{{ reading.subtitle }}</span>
         <span style="margin-left: 15px;">🔍 Выделите слово мышкой → перевод</span>
     </div>
 
     <div class="legend">
-        <div class="legend-item"><span>🖱️</span> <span>— выделите слово мышкой → перевод</span></div>
-        <div class="legend-item"><span>📖</span> <span>— текст для чтения</span></div>
+        <div class="legend-item"><span>🖱️</span> <span>выделите слово → перевод</span></div>
+        <div class="legend-item"><span>📖</span> <span>текст для чтения</span></div>
+        <div class="legend-item"><span>📝</span> <span>вопросы внизу</span></div>
     </div>
 
+    <!-- ТЕКСТ ДЛЯ ЧТЕНИЯ -->
     <div class="reading-text" id="reading-text">
         {{ reading.text|safe }}
     </div>
 
+    <!-- ВОПРОСЫ ПО ТЕКСТУ -->
     <div class="questions-section">
-        <h3 style="font-family: 'Playfair Display', serif; margin-bottom: 20px;">📝 Questions de compréhension</h3>
+        <h3 style="font-family: 'Playfair Display', serif; margin-bottom: 20px; color: #5a6e52;">📝 Questions de compréhension</h3>
 
         <form method="POST" id="main-form">
             {% for q in questions %}
             <div class="question-item" id="q-{{ q.id }}">
                 <div class="question-text">{{ loop.index }}. {{ q.question }}</div>
                 {% if q.type == 'quiz' %}
-                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
                         {% for opt in q.options %}
-                        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                        <label class="quiz-option">
                             <input type="radio" name="q{{ q.id }}" value="{{ opt }}">
                             {{ opt }}
                         </label>
@@ -196,7 +282,7 @@
                     </div>
                     <input type="hidden" name="correct_{{ q.id }}" value="{{ q.correct }}">
                 {% else %}
-                    <input type="text" class="answer-input" name="q{{ q.id }}" placeholder="Введите ответ по-французски...">
+                    <input type="text" class="answer-input" name="q{{ q.id }}" placeholder="✎ Введите ответ по-французски...">
                     <input type="hidden" name="correct_{{ q.id }}" value="{{ q.correct }}">
                 {% endif %}
                 <button type="button" class="check-btn" onclick="checkAnswer({{ q.id }})">Проверить</button>
@@ -209,23 +295,24 @@
         </form>
     </div>
 
+    <!-- Навигация между днями (без навигации по частям книги) -->
     <div class="nav-buttons">
-        {% if prev_part %}
-        <a href="{{ url_for('reading', reading_id=reading_id, part=prev_part) }}" class="nav-btn">← Предыдущая часть</a>
+        {% if day_id > 1 %}
+        <a href="{{ url_for('day', day_id=day_id-1) }}" class="nav-btn">← Предыдущий день</a>
         {% else %}
         <div style="flex: 1;"></div>
         {% endif %}
 
-        {% if next_part %}
-        <a href="{{ url_for('reading', reading_id=reading_id, part=next_part) }}" class="nav-btn">Следующая часть →</a>
+        {% if day_id < total_days %}
+        <a href="{{ url_for('day', day_id=day_id+1) }}" class="nav-btn">Следующий день →</a>
         {% else %}
-        <a href="{{ url_for('index') }}" class="nav-btn">🏠 Завершить книгу →</a>
+        <div style="flex: 1;"></div>
         {% endif %}
     </div>
 </div>
 
 <script>
-    // ========== СЛОВАРЬ ВСЕХ СЛОВ ИЗ ГЛАВ I-II ==========
+    // ========== СЛОВАРЬ (ваш существующий) ==========
     const dictionary = {
         // === ГЛАГОЛЫ ===
         "avoir": "иметь", "ai": "имею", "as": "имеешь", "a": "имеет", "avons": "имеем", "avez": "имеете", "ont": "имеют",

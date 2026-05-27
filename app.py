@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, flash, ses
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from course_data import COURSE_DAYS
+from reading_data import READINGS  # ДОБАВЛЯЕМ ИМПОРТ
 
 app = Flask(__name__)
 app.secret_key = 'ultra_secure_and_secret_key_french_84_days'
@@ -23,7 +24,7 @@ class User(db.Model):
 class Progress(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    day_id = db.Column(db.String(50), nullable=False)  # String для поддержки тестов
+    day_id = db.Column(db.String(50), nullable=False)
 
 
 # Создание таблиц БД
@@ -80,21 +81,20 @@ def month_view(month_id):
 
     month_days = dict(sorted(month_days.items()))
 
-    # В month_view (app.py)
     return render_template('month.html',
                            month_id=month_id,
                            days=month_days,
                            completed_days=completed_days,
                            COURSE_DAYS=COURSE_DAYS,
-                           month_name=month_id)  # добавьте это
+                           month_name=month_id)
 
 
 # ========================================================
-# СТРАНИЦА УРОКА/ТЕСТА
+# СТРАНИЦА УРОКА/ТЕСТА/ЧТЕНИЯ
 # ========================================================
 @app.route('/day/<day_id>', methods=['GET', 'POST'])
 def day(day_id):
-    # Пробуем преобразовать в число, если это урок
+    # Пробуем преобразовать в число
     try:
         day_id_int = int(day_id)
         if day_id_int in COURSE_DAYS:
@@ -109,7 +109,7 @@ def day(day_id):
 
     day_item = COURSE_DAYS[day_id]
 
-    # ========== ОПРЕДЕЛЯЕМ МЕСЯЦ ДЛЯ НАВИГАЦИИ ==========
+    # Определяем месяц для навигации
     try:
         day_num = int(day_id)
         if 1 <= day_num <= 30:
@@ -137,7 +137,6 @@ def day(day_id):
             is_correct = True
             feedback = "✅ Правильно! Отличная работа!"
 
-            # Сохраняем прогресс для ВСЕХ (уроки и тесты)
             if user_id:
                 existing = Progress.query.filter_by(user_id=user_id, day_id=str(day_id)).first()
                 if not existing:
@@ -160,6 +159,43 @@ def day(day_id):
 
     total_days = 92
 
+    # ====================================================
+    # ЕСЛИ ЭТО ДЕНЬ ЧТЕНИЯ (type == 'reading')
+    # ====================================================
+    if day_item.get('type') == 'reading':
+        reading_id = day_item.get('reading_id', 'captains_daughter')
+        chapter_part = day_item.get('chapter_part', 1)
+
+        # Получаем данные из reading_data.py
+        reading_data = READINGS.get(reading_id, {})
+        part_data = reading_data.get('parts', {}).get(chapter_part, {})
+
+        reading_info = {
+            'title': reading_data.get('title', 'La Fille du capitaine'),
+            'subtitle': part_data.get('title', f'Partie {chapter_part}'),
+            'text': part_data.get('text', '<p>Текст не найден</p>'),
+            'questions': part_data.get('questions', [])
+        }
+
+        return render_template('reading.html',
+                               day_id=day_id,
+                               day=day_item,
+                               reading=reading_info,
+                               questions=reading_info['questions'],
+                               part_num=chapter_part,
+                               total_parts=reading_data.get('total_parts', 8),
+                               reading_id=reading_id,
+                               prev_part=chapter_part - 1 if chapter_part > 1 else None,
+                               next_part=chapter_part + 1 if chapter_part < reading_data.get('total_parts',
+                                                                                             8) else None,
+                               feedback=feedback,
+                               already_completed=already_completed,
+                               total_days=total_days,
+                               month_id=month_id)
+
+    # ====================================================
+    # ЕСЛИ ЭТО ТЕСТ ИЛИ ОБЫЧНЫЙ УРОК
+    # ====================================================
     return render_template('day.html',
                            day_id=day_id,
                            day=day_item,
@@ -167,7 +203,8 @@ def day(day_id):
                            is_correct=is_correct,
                            already_completed=already_completed,
                            total_days=total_days,
-                           month_id=month_id)  # ← ВАЖНО: добавили month_id
+                           month_id=month_id)
+
 
 # ========================================================
 # РЕГИСТРАЦИЯ
@@ -271,7 +308,7 @@ def progress():
         month1_count=month1_count,
         month2_count=month2_count,
         month3_count=month3_count,
-        tests_passed=tests_passed  # <-- Добавляем информацию о тестах
+        tests_passed=tests_passed
     )
 
 
