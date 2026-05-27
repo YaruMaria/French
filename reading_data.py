@@ -94,22 +94,22 @@ READINGS = {
             3: {
                 "title": "Partie 3/4: La décision du père",
                 "text": """
-<p><strong>Chapitre I. LE SERGENT AUX GARDES (suite).</strong></p>
-
-<p>Un jour d'automne, ma mère préparait dans son salon des confitures au miel, et moi, tout en me léchant les lèvres, je regardais le bouillonnement de la liqueur. Mon père, assis près de la fenêtre, venait d'ouvrir l'Almanach de la cour, qu'il recevait chaque année. Ce livre exerçait sur lui une grande influence; il ne le lisait qu'avec une extrême attention, et cette lecture avait le don de lui remuer prodigieusement la bile.</p>
-
-<p>Ma mère, qui savait par coeur ses habitudes et ses bizarreries, tâchait de cacher si bien le malheureux livre, que des mois entiers se passaient sans que l'Almanach de la cour lui tombât sous les yeux. En revanche, quand il lui arrivait de le trouver, il ne le lâchait plus durant des heures entières.</p>
-
-<p>Ainsi donc mon père lisait l'Almanach de la cour en haussant fréquemment les épaules et en murmurant à demi-voix: « Général!... il a été sergent dans ma compagnie. Chevalier des ordres de la Russie!... y a-t-il si longtemps que nous...? » Finalement mon père lança l'Almanach loin de lui sur le sofa et resta plongé dans une méditation profonde, ce qui ne présageait jamais rien de bon.</p>
-
-<p>« Avdotia Vassiliéva, dit-il brusquement en s'adressant à ma mère, quel âge a Pétroucha? »</p>
-
-<p>— Sa dix-septième petite année vient de commencer, répondit ma mère. Pétroucha est né la même année que notre tante Nastasia Garasimovna a perdu un oeil, et que...</p>
-
-<p>— Bien, bien, reprit mon père; il est temps de le mettre au service. »</p>
-
-<p>La pensée d'une séparation prochaine fit sur ma mère une telle impression qu'elle laissa tomber sa cuiller dans sa casserole, et des larmes coulèrent de ses yeux. Quant à moi, il est difficile d'exprimer la joie qui me saisit. L'idée du service se confondait dans ma tête avec celle de la liberté et des plaisirs qu'offre la ville de Saint-Pétersbourg. Je me voyais déjà officier de la garde, ce qui, dans mon opinion, était le comble de la félicité humaine.</p>
-""",
+        <p><strong>Chapitre I. LE SERGENT AUX GARDES (suite).</strong></p>
+        
+        <p>Un jour d'automne, ma mère préparait dans son salon des confitures au miel, et moi, tout en me léchant les lèvres, je regardais le bouillonnement de la liqueur. Mon père, assis près de la fenêtre, venait d'ouvrir l'Almanach de la cour, qu'il recevait chaque année. Ce livre exerçait sur lui une grande influence; il ne le lisait qu'avec une extrême attention, et cette lecture avait le don de lui remuer prodigieusement la bile.</p>
+        
+        <p>Ma mère, qui savait par coeur ses habitudes et ses bizarreries, tâchait de cacher si bien le malheureux livre, que des mois entiers se passaient sans que l'Almanach de la cour lui tombât sous les yeux. En revanche, quand il lui arrivait de le trouver, il ne le lâchait plus durant des heures entières.</p>
+        
+        <p>Ainsi donc mon père lisait l'Almanach de la cour en haussant fréquemment les épaules et en murmurant à demi-voix: « Général!... il a été sergent dans ma compagnie. Chevalier des ordres de la Russie!... y a-t-il si longtemps que nous...? » Finalement mon père lança l'Almanach loin de lui sur le sofa et resta plongé dans une méditation profonde, ce qui ne présageait jamais rien de bon.</p>
+        
+        <p>« Avdotia Vassiliéva, dit-il brusquement en s'adressant à ma mère, quel âge a Pétroucha? »</p>
+        
+        <p>— Sa dix-septième petite année vient de commencer, répondit ma mère. Pétroucha est né la même année que notre tante Nastasia Garasimovna a perdu un oeil, et que...</p>
+        
+        <p>— Bien, bien, reprit mon père; il est temps de le mettre au service. »</p>
+        
+        <p>La pensée d'une séparation prochaine fit sur ma mère une telle impression qu'elle laissa tomber sa cuiller dans sa casserole, et des larmes coulèrent de ses yeux. Quant à moi, il est difficile d'exprimer la joie qui me saisit. L'idée du service se confondait dans ma tête avec celle de la liberté et des plaisirs qu'offre la ville de Saint-Pétersbourg. Je me voyais déjà officier de la garde, ce qui, dans mon opinion, était le comble de la félicité humaine.</p>
+        """,
                 "questions": [
                     {"id": 1, "type": "quiz", "question": "Que lisait mon père?",
                      "options": ["Un roman", "L'Almanach de la cour", "Une lettre", "Un journal"],

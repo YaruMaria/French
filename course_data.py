@@ -957,39 +957,633 @@ COURSE_DAYS[8] = {
 }
 
 # ---------- ДЕНЬ 9: УРОК 5 ----------
+# ---------- ДЕНЬ 9: УРОК 5 (Звуки [i], [j], немая h и согласные на конце слов) ----------
 COURSE_DAYS[9] = {
-    "title": "Урок 5: Звуки [i], [j], немая h",
+    "title": "Урок 5: Звуки [i], [j], немая h и согласные на конце слов",
     "type": "lesson",
     "has_alphabet": False,
-    "sounds_table": [],
-    "grammar_blocks": [],
-    "vocabulary": [],
-    "audio_tracks": [],
-    "practice_tasks": [
-        {"id": 1, "type": "quiz", "question": "Вопрос дня 9: Введите 'готово' чтобы завершить урок",
-         "options": ["готово"], "correct": "готово"}
+    "sounds_table": [
+        {
+            "sound": "гласный [i]",
+            "russian": "[и] как в слове нить (но с улыбкой!)",
+            "letters": "I, i<br>Î, î<br>Y, y",
+            "notes": "• Оттяните уголки рта в стороны, настройтесь на улыбку!<br>• Французский [i] очень 'улыбчивый' звук.<br>• Гласные звучат одинаково четко под ударением и без него.<br>• Пример: milice [milis] — милиция (оба [i] четкие)."
+        },
+        {
+            "sound": "полугласный [j]",
+            "russian": "[й] как в начале слов яд, ель, ёлка, юг",
+            "letters": "ill<br>il<br>i (перед гласной)",
+            "notes": "• Буквосочетание ill → [j] (кроме: mille, ville, Lille).<br>• Буквосочетание il → [j] после произносимой гласной (détail [detaj]).<br>• Буква i → [j] перед произносимой гласной (rivière [rivjɛr]).<br>• [j] никогда не ослабляется и не 'заглатывается'!"
+        }
     ],
-    "question": "Пройдите карточки",
+    "grammar_blocks": [
+        {
+            "subtitle": "🔇 Немая буква H",
+            "text": "Во французском алфавите есть буква, которая <b>никогда не читается</b> и потому называется <b>немой</b> — <b>h</b> (прописная H).<br><br>"
+                    "Примеры: hiver [ivɛr] — зима, habile [abil] — ловкий."
+        },
+        {
+            "subtitle": "🔇 Согласные s, t, d на конце слов",
+            "text": "Буквы <b>s, t, d</b> на конце слов, как правило, <b>не читаются</b>.<br><br>"
+                    "Примеры:<br>"
+                    "• très [trɛ] — очень<br>"
+                    "• mais [mɛ] — но<br>"
+                    "• ils [il] — они (м.р.)<br>"
+                    "• elles [ɛl] — они (ж.р.)<br>"
+                    "• tard [tar] — поздно<br>"
+                    "• prêt [prɛ] — готов (м.р.)<br>"
+                    "• prête [prɛt] — готова (ж.р.) — t читается!"
+        },
+        {
+            "subtitle": "🔗 Связывание с très",
+            "text": "Буква <b>s</b> на конце слова <b>très</b> читается как <b>[z]</b> перед словами, начинающимися на гласный или <b>h</b> немую.<br><br>"
+                    "Примеры:<br>"
+                    "• très avare [trɛzavar] — очень скупой<br>"
+                    "• très habile [trɛzabil] — очень ловкий"
+        },
+        {
+            "subtitle": "🎧 Упражнение № 1. Прочтите слова, стараясь запомнить их:",
+            "text": "• il [il] — он, она, оно (употребляется вместо французских слов мужского рода)<br>"
+                    "• île [il] — остров<br>"
+                    "• idée [ide] — идея<br>"
+                    "• Yves [iv] — Ив (мужское имя)<br>"
+                    "• ici [isi] — здесь<br>"
+                    "• fils [fis] — сын (буква l в этом слове не читается)<br>"
+                    "• type [tip] — тип<br>"
+                    "• vite [vit] — быстро<br>"
+                    "• mille [mil] — тысяча<br>"
+                    "• ville [vil] — город<br>"
+                    "• Lille [lil] — Лилль (город во Франции)"
+        },
+        {
+            "subtitle": "🎧 Упражнение № 2. Прочтите:",
+            "text": "• cette idée [sɛt ide] — эта идея<br>"
+                    "• ses idées [sez ide] — его идеи<br>"
+                    "• il est libre [il ɛ libr] — он свободен<br>"
+                    "• elle est libre [ɛl ɛ libr] — она свободна<br>"
+                    "• mes amies [mez ami] — мои подруги<br>"
+                    "• les villes [le vil] — города<br>"
+                    "• ces systèmes [se sistem] — эти системы"
+        },
+        {
+            "subtitle": "🎧 Упражнение № 4. Прочтите и постарайтесь запомнить глаголы со звуком [i]:",
+            "text": "• dîner [dine] — ужинать<br>"
+                    "• décider [deside] — решать<br>"
+                    "• terminer [termine] — заканчивать<br>"
+                    "• imiter [imite] — имитировать<br>"
+                    "• arriver [arive] — приезжать<br>"
+                    "• visiter [vizite] — посещать<br>"
+                    "• dire [dir] — говорить<br>"
+                    "• lire [lir] — читать<br>"
+                    "• rire [rir] — смеяться<br>"
+                    "• vivre [vivr] — жить<br>"
+                    "• finir [finir] — заканчивать"
+        },
+        {
+            "subtitle": "🎧 Упражнение № 6. Прочтите и постарайтесь запомнить новые слова:",
+            "text": "• habiter [abite] — жить<br>"
+                    "• hiver [ivɛr] — зима<br>"
+                    "• trahir [trair] — предавать<br>"
+                    "• habile [abil] — ловкий, -ая, -ое<br>"
+                    "• hybride [ibrid] — гибрид<br>"
+                    "• hymne [imn] — гимн<br>"
+                    "• hésiter [ezite] — колебаться"
+        },
+        {
+            "subtitle": "🎧 Упражнение № 7. Прочтите слова и постарайтесь запомнить их:",
+            "text": "• famille [famij] — семья<br>"
+                    "• fille [fij] — дочь<br>"
+                    "• il travaille [il travaj] — он работает<br>"
+                    "• travail [travaj] — работа<br>"
+                    "• détail [detaj] — подробность<br>"
+                    "• pièce [pjɛs] — комната<br>"
+                    "• ciel [sjɛl] — небо<br>"
+                    "• Pierre [pjɛr] — Пьер (мужское имя)<br>"
+                    "• pierre [pjɛr] — камень<br>"
+                    "• hier [jɛr] — вчера<br>"
+                    "• rivière [rivjɛr] — река<br>"
+                    "• marié [marje] — женатый, женат<br>"
+                    "• mariée [marje] — замужняя, замужем"
+        },
+        {
+            "subtitle": "🎧 Упражнение № 9. Прочтите, обращая внимание на выделенные буквы, и выучите новые слова:",
+            "text": "• après [aprɛ] — после<br>"
+                    "• très [trɛ] — очень<br>"
+                    "• mais [mɛ] — но (союз)<br>"
+                    "• ils [il] — они (употребляется вместо французских слов мужского рода)<br>"
+                    "• elles [ɛl] — они (употребляется вместо французских слов женского рода)<br>"
+                    "• les hivers [lezivɛr] — зимы<br>"
+                    "• bas [ba] — низкий, -ая, -ое (при французских словах мужского рода)<br>"
+                    "• lait [lɛ] — молоко<br>"
+                    "• tard [tar] — поздно<br>"
+                    "• il est prêt [ilɛprɛ] — он готов<br>"
+                    "• elle est prête [ɛlɛprɛt] — она готова"
+        }
+    ],
+    "vocabulary": [
+        {"fr": "il", "tr": "[il]", "ru": "он (для слов мужского рода)"},
+        {"fr": "île", "tr": "[il]", "ru": "остров"},
+        {"fr": "idée", "tr": "[ide]", "ru": "идея"},
+        {"fr": "Yves", "tr": "[iv]", "ru": "Ив (мужское имя)"},
+        {"fr": "ici", "tr": "[isi]", "ru": "здесь"},
+        {"fr": "fils", "tr": "[fis]", "ru": "сын"},
+        {"fr": "type", "tr": "[tip]", "ru": "тип"},
+        {"fr": "vite", "tr": "[vit]", "ru": "быстро"},
+        {"fr": "mille", "tr": "[mil]", "ru": "тысяча"},
+        {"fr": "ville", "tr": "[vil]", "ru": "город"},
+        {"fr": "Lille", "tr": "[lil]", "ru": "Лилль"},
+        {"fr": "cette idée", "tr": "[sɛt ide]", "ru": "эта идея"},
+        {"fr": "ses idées", "tr": "[sez ide]", "ru": "его идеи"},
+        {"fr": "il est libre", "tr": "[il ɛ libr]", "ru": "он свободен"},
+        {"fr": "elle est libre", "tr": "[ɛl ɛ libr]", "ru": "она свободна"},
+        {"fr": "mes amies", "tr": "[mez ami]", "ru": "мои подруги"},
+        {"fr": "les villes", "tr": "[le vil]", "ru": "города"},
+        {"fr": "ces systèmes", "tr": "[se sistem]", "ru": "эти системы"},
+        {"fr": "dîner", "tr": "[dine]", "ru": "ужинать"},
+        {"fr": "décider", "tr": "[deside]", "ru": "решать"},
+        {"fr": "terminer", "tr": "[termine]", "ru": "заканчивать"},
+        {"fr": "imiter", "tr": "[imite]", "ru": "имитировать"},
+        {"fr": "arriver", "tr": "[arive]", "ru": "приезжать"},
+        {"fr": "visiter", "tr": "[vizite]", "ru": "посещать"},
+        {"fr": "dire", "tr": "[dir]", "ru": "говорить"},
+        {"fr": "lire", "tr": "[lir]", "ru": "читать"},
+        {"fr": "rire", "tr": "[rir]", "ru": "смеяться"},
+        {"fr": "vivre", "tr": "[vivr]", "ru": "жить"},
+        {"fr": "finir", "tr": "[finir]", "ru": "заканчивать"},
+        {"fr": "habiter", "tr": "[abite]", "ru": "жить"},
+        {"fr": "hiver", "tr": "[ivɛr]", "ru": "зима"},
+        {"fr": "trahir", "tr": "[trair]", "ru": "предавать"},
+        {"fr": "habile", "tr": "[abil]", "ru": "ловкий"},
+        {"fr": "hybride", "tr": "[ibrid]", "ru": "гибрид"},
+        {"fr": "hymne", "tr": "[imn]", "ru": "гимн"},
+        {"fr": "hésiter", "tr": "[ezite]", "ru": "колебаться"},
+        {"fr": "famille", "tr": "[famij]", "ru": "семья"},
+        {"fr": "fille", "tr": "[fij]", "ru": "дочь"},
+        {"fr": "il travaille", "tr": "[il travaj]", "ru": "он работает"},
+        {"fr": "travail", "tr": "[travaj]", "ru": "работа"},
+        {"fr": "détail", "tr": "[detaj]", "ru": "подробность"},
+        {"fr": "pièce", "tr": "[pjɛs]", "ru": "комната"},
+        {"fr": "ciel", "tr": "[sjɛl]", "ru": "небо"},
+        {"fr": "Pierre", "tr": "[pjɛr]", "ru": "Пьер"},
+        {"fr": "pierre", "tr": "[pjɛr]", "ru": "камень"},
+        {"fr": "hier", "tr": "[jɛr]", "ru": "вчера"},
+        {"fr": "rivière", "tr": "[rivjɛr]", "ru": "река"},
+        {"fr": "marié", "tr": "[marje]", "ru": "женатый"},
+        {"fr": "mariée", "tr": "[marje]", "ru": "замужняя"},
+        {"fr": "après", "tr": "[aprɛ]", "ru": "после"},
+        {"fr": "très", "tr": "[trɛ]", "ru": "очень"},
+        {"fr": "mais", "tr": "[mɛ]", "ru": "но"},
+        {"fr": "ils", "tr": "[il]", "ru": "они (м.р.)"},
+        {"fr": "elles", "tr": "[ɛl]", "ru": "они (ж.р.)"},
+        {"fr": "les hivers", "tr": "[lezivɛr]", "ru": "зимы"},
+        {"fr": "bas", "tr": "[ba]", "ru": "низкий"},
+        {"fr": "lait", "tr": "[lɛ]", "ru": "молоко"},
+        {"fr": "tard", "tr": "[tar]", "ru": "поздно"},
+        {"fr": "il est prêt", "tr": "[ilɛprɛ]", "ru": "он готов"},
+        {"fr": "elle est prête", "tr": "[ɛlɛprɛt]", "ru": "она готова"},
+        {"fr": "Paris et Lille", "tr": "[pari e lil]", "ru": "Париж и Лилль"},
+        {"fr": "Anne", "tr": "[an]", "ru": "Анна"},
+        {"fr": "direz", "tr": "[dire]", "ru": "скажите"},
+        {"fr": "dînez", "tr": "[dine]", "ru": "ужинайте"},
+        {"fr": "terminez", "tr": "[termine]", "ru": "заканчивайте"},
+        {"fr": "allez", "tr": "[ale]", "ru": "идите"},
+        {"fr": "ces rivières", "tr": "[se rivjɛr]", "ru": "эти реки"},
+        {"fr": "les pierres", "tr": "[le pjɛr]", "ru": "камни"},
+        {"fr": "Elle travaille", "tr": "[ɛl travaj]", "ru": "Она работает"},
+        {"fr": "Ma famille est là", "tr": "[ma famij ɛ la]", "ru": "Моя семья там"},
+        {"fr": "Sa fille est mariée", "tr": "[sa fij ɛ marje]", "ru": "Его дочь замужем"},
+        {"fr": "Yves est marié", "tr": "[iv ɛ marje]", "ru": "Ив женат"},
+        {"fr": "Pierre est malade et triste", "tr": "[pjɛr ɛ malad e trist]", "ru": "Пьер болен и грустен"},
+        {"fr": "Il travaille ici", "tr": "[il travaj isi]", "ru": "Он работает здесь"},
+        {"fr": "libre", "tr": "[libr]", "ru": "свободный"},
+        {"fr": "triste", "tr": "[trist]", "ru": "грустный"},
+        {"fr": "merci", "tr": "[mersi]", "ru": "спасибо"},
+        {"fr": "ami", "tr": "[ami]", "ru": "друг"},
+        {"fr": "livre", "tr": "[livr]", "ru": "книга"},
+        {"fr": "lycée", "tr": "[lise]", "ru": "лицей"},
+        {"fr": "système", "tr": "[sistem]", "ru": "система"}
+    ],
+    "audio_tracks": [
+        {"title": "Упражнение №1: Слова со звуком [i]", "url": "/static/audio/lesson5_1.mp3"},
+        {"title": "Упражнение №4: Глаголы со звуком [i]", "url": "/static/audio/lesson5_2.mp3"},
+        {"title": "Упражнение №6: Немая H", "url": "/static/audio/lesson5_3.mp3"},
+        {"title": "Упражнение №7: Звук [j] (ill, il)", "url": "/static/audio/lesson5_4.mp3"},
+        {"title": "Упражнение №9: Конечные согласные", "url": "/static/audio/lesson5_5.mp3"}
+    ],
+    "practice_tasks": [
+        # ========== ФОНЕТИКА (quiz) ==========
+        {"id": 1, "type": "quiz", "question": "🔊 Как правильно произносится французский звук [i]?",
+         "options": ["Как русский [и], без изменений", "С оттянутыми уголками рта, 'улыбчиво'",
+                     "С округленными губами", "Как [ы]"], "correct": "С оттянутыми уголками рта, 'улыбчиво'"},
+        {"id": 2, "type": "quiz", "question": "🔊 Как читается слово 'fils' (сын)?",
+         "options": ["[fils]", "[fil]", "[fis]", "[fi]"], "correct": "[fis]"},
+        {"id": 3, "type": "quiz", "question": "🔊 Как читается слово 'type'?",
+         "options": ["[tip]", "[typ]", "[tɪp]", "[tɛp]"], "correct": "[tip]"},
+        {"id": 4, "type": "quiz", "question": "🔊 Как читается буквосочетание 'ill' в слове 'famille'?",
+         "options": ["[il]", "[ij]", "[j]", "[ilj]"], "correct": "[j]"},
+        {"id": 5, "type": "quiz", "question": "🔊 Какое слово является исключением и читается с [il] вместо [j]?",
+         "options": ["famille", "fille", "ville", "travailler"], "correct": "ville"},
+        {"id": 6, "type": "quiz", "question": "🔇 Читается ли буква 'h' во французском?",
+         "options": ["Да, всегда", "Нет, никогда", "Только в начале слов", "Только в конце слов"],
+         "correct": "Нет, никогда"},
+        {"id": 7, "type": "quiz", "question": "🔇 Как читается слово 'hiver' (зима)?",
+         "options": ["[hivɛr]", "[ivɛr]", "[hivɛ]", "[ivɛ]"], "correct": "[ivɛr]"},
+        {"id": 8, "type": "quiz", "question": "🔇 Какие согласные на конце слов обычно НЕ читаются?",
+         "options": ["p, b, m", "s, t, d", "c, g, f", "l, r, n"], "correct": "s, t, d"},
+        {"id": 9, "type": "quiz", "question": "🔇 Как читается слово 'prêt' (готов, м.р.)?",
+         "options": ["[prɛt]", "[prɛ]", "[prɛtə]", "[prɛt]"], "correct": "[prɛ]"},
+        {"id": 10, "type": "quiz", "question": "🔇 Как читается слово 'prête' (готова, ж.р.)?",
+         "options": ["[prɛt]", "[prɛ]", "[prɛtə]", "[prɛt]"], "correct": "[prɛt]"},
+
+        # ========== УПРАЖНЕНИЕ №3: ПЕРЕВОД НА ФРАНЦУЗСКИЙ ==========
+        {"id": 11, "type": "text_input", "question": "📝 Переведите на французский: 'твои подруги'", "correct": "tes amies"},
+        {"id": 12, "type": "text_input", "question": "📝 Переведите на французский: 'эти города'", "correct": "ces villes"},
+        {"id": 13, "type": "text_input", "question": "📝 Переведите на французский: 'свои системы'", "correct": "ses systèmes"},
+        {"id": 14, "type": "text_input", "question": "📝 Переведите на французский: 'его книги'", "correct": "ses livres"},
+        {"id": 15, "type": "text_input", "question": "📝 Переведите на французский: 'эти типы'", "correct": "ces types"},
+        {"id": 16, "type": "text_input", "question": "📝 Переведите на французский: 'лицеи'", "correct": "les lycées"},
+        {"id": 17, "type": "text_input", "question": "📝 Переведите на французский: 'Париж и Лилль'", "correct": "Paris et Lille"},
+        {"id": 18, "type": "text_input", "question": "📝 Переведите на французский: 'город находится там'", "correct": "la ville est là"},
+        {"id": 19, "type": "text_input", "question": "📝 Переведите на французский: 'Ив свободен'", "correct": "Yves est libre"},
+        {"id": 20, "type": "text_input", "question": "📝 Переведите на французский: 'он там'", "correct": "il est là"},
+        {"id": 21, "type": "text_input", "question": "📝 Переведите на французский: 'Анна грустна'", "correct": "Anne est triste"},
+
+        # ========== УПРАЖНЕНИЕ №5: ПЕРЕВОД С ФРАНЦУЗСКОГО ==========
+        {"id": 22, "type": "text_input", "question": "📖 Переведите на русский: 'faire vite'", "correct": "делать быстро"},
+        {"id": 23, "type": "text_input", "question": "📖 Переведите на русский: 'direz!'", "correct": "скажите"},
+        {"id": 24, "type": "text_input", "question": "📖 Переведите на русский: 'lire et rire'", "correct": "читать и смеяться"},
+        {"id": 25, "type": "text_input", "question": "📖 Переведите на русский: 'dînez là!'", "correct": "ужинайте там"},
+        {"id": 26, "type": "text_input", "question": "📖 Переведите на русский: 'terminez!'", "correct": "заканчивайте"},
+        {"id": 27, "type": "text_input", "question": "📖 Переведите на русский: 'allez vite!'", "correct": "идите быстро"},
+
+        # ========== УПРАЖНЕНИЕ №8: ПЕРЕВОД ФРАЗ ==========
+        {"id": 28, "type": "text_input", "question": "📖 Переведите на русский: 'ces rivières'", "correct": "эти реки"},
+        {"id": 29, "type": "text_input", "question": "📖 Переведите на русский: 'les pierres'", "correct": "камни"},
+        {"id": 30, "type": "text_input", "question": "📖 Переведите на русский: 'Elle travaille'", "correct": "Она работает"},
+        {"id": 31, "type": "text_input", "question": "📖 Переведите на русский: 'Ma famille est là'", "correct": "Моя семья там"},
+        {"id": 32, "type": "text_input", "question": "📖 Переведите на русский: 'Sa fille est mariée'", "correct": "Его дочь замужем"},
+        {"id": 33, "type": "text_input", "question": "📖 Переведите на русский: 'Yves est marié'", "correct": "Ив женат"},
+        {"id": 34, "type": "text_input", "question": "📖 Переведите на русский: 'Pierre est malade et triste'", "correct": "Пьер болен и грустен"},
+        {"id": 35, "type": "text_input", "question": "📖 Переведите на русский: 'Il travaille ici'", "correct": "Он работает здесь"},
+
+        # ========== УПРАЖНЕНИЕ №9: НОВЫЕ СЛОВА ==========
+        {"id": 36, "type": "quiz", "question": "📖 Как переводится 'après'?",
+         "options": ["после", "перед", "очень", "но"], "correct": "после"},
+        {"id": 37, "type": "quiz", "question": "📖 Как переводится 'très'?",
+         "options": ["после", "очень", "но", "там"], "correct": "очень"},
+        {"id": 38, "type": "quiz", "question": "📖 Как переводится 'mais'?",
+         "options": ["очень", "после", "но", "и"], "correct": "но"},
+        {"id": 39, "type": "quiz", "question": "📖 Как переводится 'ils'?",
+         "options": ["они (м.р.)", "они (ж.р.)", "он", "она"], "correct": "они (м.р.)"},
+        {"id": 40, "type": "quiz", "question": "📖 Как переводится 'elles'?",
+         "options": ["они (м.р.)", "они (ж.р.)", "он", "она"], "correct": "они (ж.р.)"},
+        {"id": 41, "type": "text_input", "question": "📝 Переведите на французский: 'зимы'", "correct": "les hivers"},
+        {"id": 42, "type": "text_input", "question": "📝 Переведите на французский: 'низкий'", "correct": "bas"},
+        {"id": 43, "type": "text_input", "question": "📝 Переведите на французский: 'молоко'", "correct": "lait"},
+        {"id": 44, "type": "text_input", "question": "📝 Переведите на французский: 'поздно'", "correct": "tard"},
+        {"id": 45, "type": "text_input", "question": "📝 Переведите на французский: 'он готов'", "correct": "il est prêt"},
+        {"id": 46, "type": "text_input", "question": "📝 Переведите на французский: 'она готова'", "correct": "elle est prête"},
+
+        # ========== ПЕРЕВОД СЛОВ (quiz) ==========
+        {"id": 47, "type": "quiz", "question": "📖 Как переводится 'merci'?",
+         "options": ["Пожалуйста", "Спасибо", "Извините", "Здравствуйте"], "correct": "Спасибо"},
+        {"id": 48, "type": "quiz", "question": "📖 Как переводится 'triste'?",
+         "options": ["Веселый", "Грустный", "Большой", "Маленький"], "correct": "Грустный"},
+        {"id": 49, "type": "quiz", "question": "📖 Как переводится 'ami'?",
+         "options": ["Подруга", "Друг", "Муж", "Брат"], "correct": "Друг"},
+        {"id": 50, "type": "quiz", "question": "📖 Как переводится 'livre'?",
+         "options": ["Свободный", "Книга", "Город", "Остров"], "correct": "Книга"},
+        {"id": 51, "type": "quiz", "question": "📖 Как переводится 'famille'?",
+         "options": ["Дочь", "Семья", "Работа", "Комната"], "correct": "Семья"},
+        {"id": 52, "type": "quiz", "question": "📖 Как переводится 'lire'?",
+         "options": ["Говорить", "Читать", "Смеяться", "Жить"], "correct": "Читать"},
+
+        # ========== ПЕРЕВОД С РУССКОГО (слова) ==========
+        {"id": 53, "type": "text_input", "question": "🔄 Напишите по-французски 'друг'", "correct": "ami"},
+        {"id": 54, "type": "text_input", "question": "🔄 Напишите по-французски 'книга'", "correct": "livre"},
+        {"id": 55, "type": "text_input", "question": "🔄 Напишите по-французски 'семья'", "correct": "famille"},
+        {"id": 56, "type": "text_input", "question": "🔄 Напишите по-французски 'работа'", "correct": "travail"},
+        {"id": 57, "type": "text_input", "question": "🔄 Напишите по-французски 'спасибо'", "correct": "merci"},
+        {"id": 58, "type": "text_input", "question": "🔄 Напишите по-французски 'грустный'", "correct": "triste"},
+        {"id": 59, "type": "text_input", "question": "🔄 Напишите по-французски 'зима'", "correct": "hiver"},
+        {"id": 60, "type": "text_input", "question": "🔄 Напишите по-французски 'они (м.р.)'", "correct": "ils"},
+        {"id": 61, "type": "text_input", "question": "🔄 Напишите по-французски 'они (ж.р.)'", "correct": "elles"},
+        {"id": 62, "type": "text_input", "question": "🔄 Напишите по-французски 'город'", "correct": "ville"},
+        {"id": 63, "type": "text_input", "question": "🔄 Напишите по-французски 'остров'", "correct": "île"},
+        {"id": 64, "type": "text_input", "question": "🔄 Напишите по-французски 'идея'", "correct": "idée"},
+        {"id": 65, "type": "text_input", "question": "🔄 Напишите по-французски 'здесь'", "correct": "ici"},
+
+        # ========== ТРАНСКРИПЦИЯ ==========
+        {"id": 66, "type": "text_input", "question": "📝 Запишите транскрипцию слова 'merci'", "correct": "[mersi]"},
+        {"id": 67, "type": "text_input", "question": "📝 Запишите транскрипцию слова 'triste'", "correct": "[trist]"},
+        {"id": 68, "type": "text_input", "question": "📝 Запишите транскрипцию слова 'hiver'", "correct": "[ivɛr]"},
+        {"id": 69, "type": "text_input", "question": "📝 Запишите транскрипцию слова 'famille'", "correct": "[famij]"},
+        {"id": 70, "type": "text_input", "question": "📝 Запишите транскрипцию слова 'travail'", "correct": "[travaj]"},
+        {"id": 71, "type": "text_input", "question": "📝 Запишите транскрипцию слова 'ville'", "correct": "[vil]"},
+        {"id": 72, "type": "text_input", "question": "📝 Запишите транскрипцию слова 'libre'", "correct": "[libr]"}
+    ],
+    "question": "Пройдите все 72 карточки практики!",
     "correct_answer": "готово"
 }
 
 # ---------- ДЕНЬ 10: УРОК 6 ----------
+# ---------- ДЕНЬ 10: УРОК 6 (Звуки [k], [g], [ɔ] и правила чтения) ----------
 COURSE_DAYS[10] = {
-    "title": "Урок 6: Звуки [k], [g], [ɔ]",
+    "title": "Урок 6: Звуки [k], [g], [ɔ] и правила чтения",
     "type": "lesson",
     "has_alphabet": False,
-    "sounds_table": [],
-    "grammar_blocks": [],
-    "vocabulary": [],
-    "audio_tracks": [],
-    "practice_tasks": [
-        {"id": 1, "type": "quiz", "question": "Вопрос дня 10: Введите 'готово' чтобы завершить урок",
-         "options": ["готово"], "correct": "готово"}
+    "sounds_table": [
+        {
+            "sound": "согласный [k]",
+            "russian": "[к] как в слове куст",
+            "letters": "C, c<br>Qu, qu",
+            "notes": "• Буква c читается как [k] перед всеми буквами, кроме e, i, y, h.<br>• Буква u после q не читается (qu → [k])."
+        },
+        {
+            "sound": "звукосочетание [ks]",
+            "russian": "[кс]",
+            "letters": "X, x",
+            "notes": "Буква x читается как [ks], если не находится в позиции между двумя произносимыми гласными."
+        },
+        {
+            "sound": "согласный [g]",
+            "russian": "[г] как в слове густо",
+            "letters": "G, g<br>Gu, gu",
+            "notes": "• Буква g читается как [g] перед всеми буквами, кроме e, i, y.<br>• Буква u после g не читается (gu → [g])."
+        },
+        {
+            "sound": "звукосочетание [gz]",
+            "russian": "[гз]",
+            "letters": "X, x",
+            "notes": "Буква x читается как [gz] между двумя произносимыми гласными звуками."
+        },
+        {
+            "sound": "гласный [ɔ]",
+            "russian": "отсутствует",
+            "letters": "O, o",
+            "notes": "Буква o читается как [ɔ] перед всеми произносимыми согласными, кроме z."
+        }
     ],
-    "question": "Пройдите карточки",
+    "grammar_blocks": [
+        {
+            "subtitle": "📝 Правила чтения буквы C",
+            "text": "Буква <b>C</b> читается по-разному в зависимости от следующей буквы:<br><br>"
+                    "• <b>C → [k]</b> перед a, o, u и согласными<br>"
+                    "• <b>C → [s]</b> перед e, i, y<br>"
+                    "• <b>Ç (cédille) → [s]</b> перед a, o"
+        },
+        {
+            "subtitle": "📝 Правила чтения буквы G",
+            "text": "Буква <b>G</b> также читается по-разному:<br><br>"
+                    "• <b>G → [g]</b> перед a, o, u и согласными<br>"
+                    "• <b>G → [ʒ]</b> перед e, i, y<br>"
+                    "• Буквосочетание <b>gu → [g]</b> (u не читается)"
+        },
+        {
+            "subtitle": "🎯 Французский звук [ɔ] (открытый о)",
+            "text": "Чтобы приблизиться к правильному произношению французского [ɔ], проделайте следующее. Перед зеркалом четко произнесите русские звуки [у] и [о]. Повторите это несколько раз, обращая внимание на положение своих губ. Вы увидите, что они сильно напряжены и вытянуты вперед, а разница между [у] и [о] в зеркале малозаметна. Это объясняется тем, что русский звук [о] неоднороден, он начинается кратким призвуком [у]. <b>Избавьтесь от этого призвука</b> — и вы достигнете примерно того, что нужно: французского [ɔ]! Избавьтесь — это значит произносите русское [о], но не вытягивайте губы резко вперед и не напрягайте их.<br><br>"
+                    "Попробуем по-другому: представьте, что вы собрались протереть очки, и «дыхните» на воображаемые стекла — ваши губы займут именно то положение, которое требуется для французского [ɔ]. Зафиксируйте на несколько секунд это положение и, не меняя его, произнесите русское [о]. Получится французское [ɔ], словно легко слетающее с губ!"
+        },
+        {
+            "subtitle": "🎧 Упражнение № 1. Прочтите и постарайтесь запомнить слова:",
+            "text": "• café [kafe] — кофе; кафе<br>"
+                    "• calme [kalm] — спокойный, -ая, -ое<br>"
+                    "• capitale [kapital] — столица<br>"
+                    "• climat [klima] — климат; погода<br>"
+                    "• écrire [ekrir] — писать<br>"
+                    "• carte [kart] — карта<br>"
+                    "• classe [klas] — класс<br>"
+                    "• clé [kle] — ключ<br>"
+                    "• article [artikl] — товар<br>"
+                    "• quatre [katr] — четыре<br>"
+                    "• qui [ki] — кто<br>"
+                    "• quitter [kite] — покидать (оставлять)<br>"
+                    "• clinique [klinik] — клиника<br>"
+                    "• explicable [eksplikabl] — объяснимый, -ая, -ое<br>"
+                    "• extase [ekstaz] — экстаз, восторг"
+        },
+        {
+            "subtitle": "🎧 Упражнение № 4. Прочтите и постарайтесь запомнить слова:",
+            "text": "• gare [gar] — вокзал<br>"
+                    "• garder [garde] — охранять<br>"
+                    "• gai [ge] — веселый, -ая, -ое (при французских словах мужского рода)<br>"
+                    "• grave [grav] — серьезный, -ая, -ое<br>"
+                    "• guide [gid] — гид<br>"
+                    "• guerre [gɛr] — война<br>"
+                    "• guérir [gerir] — выздоравливать<br>"
+                    "• grève [grɛv] — забастовка<br>"
+                    "• grammaire [gramɛr] — грамматика<br>"
+                    "• glace [glas] — зеркало<br>"
+                    "• fatigué [fatige] — усталый, -ая, -ое (при французских словах мужского рода)<br>"
+                    "• exact [egzakt] — точный, -ая, -ое (при французских словах мужского рода)"
+        },
+        {
+            "subtitle": "🎧 Упражнение № 7. Прочтите слова и выучите их:",
+            "text": "• pomme [pɔm] — яблоко<br>"
+                    "• homme [ɔm] — мужчина<br>"
+                    "• robe [rɔb] — платье<br>"
+                    "• porte [pɔrt] — дверь<br>"
+                    "• fort [fɔr] — сильный, -ая, -ое; крепкий, -ая, -ое (при французских словах мужского рода)<br>"
+                    "• la Sorbonne [sɔrbɔn] — Сорбонна (Парижский университет)<br>"
+                    "• octobre [ɔktɔbr] — октябрь<br>"
+                    "• police [pɔlis] — полиция<br>"
+                    "• bonne [bɔn] — хороший, -ая, -ое; вкусный, -ая, -ое (при французских словах женского рода)<br>"
+                    "• école [ekɔl] — школа<br>"
+                    "• téléphone [telefɔn] — телефон<br>"
+                    "• notre [nɔtr] — наш, наша, наше<br>"
+                    "• votre [vɔtr] — ваш, ваша, ваше<br>"
+                    "• donner [dɔne] — давать<br>"
+                    "• porter [pɔrte] — носить<br>"
+                    "• sonner [sɔne] — звонить<br>"
+                    "• apporter [apɔrte] — приносить"
+        },
+        {
+            "subtitle": "🎧 Упражнение № 2. Прочитайте, перепишите и переведите:",
+            "text": "• les articles<br>"
+                    "• quatre classes<br>"
+                    "• écrire vite<br>"
+                    "• quitter Paris<br>"
+                    "• Pierre est calme<br>"
+                    "• Quittez la clinique !<br>"
+                    "• Qui est ta fille ?"
+        },
+        {
+            "subtitle": "🎧 Упражнение № 5. Прочтите, перепишите и переведите:",
+            "text": "• La gare est là<br>"
+                    "• Yves est gai et Nana est grave<br>"
+                    "• Répétez la grammaire!<br>"
+                    "• Gardez la gare!<br>"
+                    "• Qui est Pierre ? — Il est guide. Il travaille. Il est très fatigué."
+        }
+    ],
+    "vocabulary": [
+        {"fr": "café", "tr": "[kafe]", "ru": "кофе; кафе"},
+        {"fr": "calme", "tr": "[kalm]", "ru": "спокойный, -ая, -ое"},
+        {"fr": "capitale", "tr": "[kapital]", "ru": "столица"},
+        {"fr": "climat", "tr": "[klima]", "ru": "климат; погода"},
+        {"fr": "écrire", "tr": "[ekrir]", "ru": "писать"},
+        {"fr": "carte", "tr": "[kart]", "ru": "карта"},
+        {"fr": "classe", "tr": "[klas]", "ru": "класс"},
+        {"fr": "clé", "tr": "[kle]", "ru": "ключ"},
+        {"fr": "article", "tr": "[artikl]", "ru": "товар"},
+        {"fr": "quatre", "tr": "[katr]", "ru": "четыре"},
+        {"fr": "qui", "tr": "[ki]", "ru": "кто"},
+        {"fr": "quitter", "tr": "[kite]", "ru": "покидать (оставлять)"},
+        {"fr": "clinique", "tr": "[klinik]", "ru": "клиника"},
+        {"fr": "explicable", "tr": "[eksplikabl]", "ru": "объяснимый, -ая, -ое"},
+        {"fr": "extase", "tr": "[ekstaz]", "ru": "экстаз, восторг"},
+        {"fr": "gare", "tr": "[gar]", "ru": "вокзал"},
+        {"fr": "garder", "tr": "[garde]", "ru": "охранять"},
+        {"fr": "gai", "tr": "[ge]", "ru": "веселый, -ая, -ое"},
+        {"fr": "grave", "tr": "[grav]", "ru": "серьезный, -ая, -ое"},
+        {"fr": "guide", "tr": "[gid]", "ru": "гид"},
+        {"fr": "guerre", "tr": "[gɛr]", "ru": "война"},
+        {"fr": "guérir", "tr": "[gerir]", "ru": "выздоравливать"},
+        {"fr": "grève", "tr": "[grɛv]", "ru": "забастовка"},
+        {"fr": "grammaire", "tr": "[gramɛr]", "ru": "грамматика"},
+        {"fr": "glace", "tr": "[glas]", "ru": "зеркало"},
+        {"fr": "fatigué", "tr": "[fatige]", "ru": "усталый, -ая, -ое"},
+        {"fr": "exact", "tr": "[egzakt]", "ru": "точный, -ая, -ое"},
+        {"fr": "pomme", "tr": "[pɔm]", "ru": "яблоко"},
+        {"fr": "homme", "tr": "[ɔm]", "ru": "мужчина"},
+        {"fr": "robe", "tr": "[rɔb]", "ru": "платье"},
+        {"fr": "porte", "tr": "[pɔrt]", "ru": "дверь"},
+        {"fr": "fort", "tr": "[fɔr]", "ru": "сильный, -ая, -ое; крепкий, -ая, -ое"},
+        {"fr": "la Sorbonne", "tr": "[sɔrbɔn]", "ru": "Сорбонна"},
+        {"fr": "octobre", "tr": "[ɔktɔbr]", "ru": "октябрь"},
+        {"fr": "police", "tr": "[pɔlis]", "ru": "полиция"},
+        {"fr": "bonne", "tr": "[bɔn]", "ru": "хороший, -ая, -ое; вкусный, -ая, -ое"},
+        {"fr": "école", "tr": "[ekɔl]", "ru": "школа"},
+        {"fr": "téléphone", "tr": "[telefɔn]", "ru": "телефон"},
+        {"fr": "notre", "tr": "[nɔtr]", "ru": "наш, наша, наше"},
+        {"fr": "votre", "tr": "[vɔtr]", "ru": "ваш, ваша, ваше"},
+        {"fr": "donner", "tr": "[dɔne]", "ru": "давать"},
+        {"fr": "porter", "tr": "[pɔrte]", "ru": "носить"},
+        {"fr": "sonner", "tr": "[sɔne]", "ru": "звонить"},
+        {"fr": "apporter", "tr": "[apɔrte]", "ru": "приносить"},
+        {"fr": "salade", "tr": "[salad]", "ru": "салат"},
+        {"fr": "lettre", "tr": "[lɛtr]", "ru": "письмо"},
+        {"fr": "veste", "tr": "[vɛst]", "ru": "куртка"}
+    ],
+    "audio_tracks": [
+        {"title": "Упражнение №1: Слова со звуком [k]", "url": "/static/audio/lesson6_1.mp3"},
+        {"title": "Упражнение №4: Слова со звуком [g]", "url": "/static/audio/lesson6_2.mp3"},
+        {"title": "Упражнение №7: Слова со звуком [ɔ]", "url": "/static/audio/lesson6_3.mp3"},
+        {"title": "Упражнение №2 и №5: Фразы для перевода", "url": "/static/audio/lesson6_4.mp3"}
+    ],
+    "practice_tasks": [
+        # ========== ФОНЕТИКА И ПРАВИЛА (quiz) ==========
+        {"id": 1, "type": "quiz", "question": "🔊 Как читается буква 'c' в слове 'café'?",
+         "options": ["[s]", "[k]", "[g]", "[ʃ]"], "correct": "[k]"},
+        {"id": 2, "type": "quiz", "question": "🔊 Как читается буква 'c' в слове 'pièce' (перед e)?",
+         "options": ["[k]", "[s]", "[g]", "[ʃ]"], "correct": "[s]"},
+        {"id": 3, "type": "quiz", "question": "🔊 Как читается буквосочетание 'qu' в слове 'quatre'?",
+         "options": ["[kw]", "[ku]", "[k]", "[g]"], "correct": "[k]"},
+        {"id": 4, "type": "quiz", "question": "🔊 Как читается буква 'x' в слове 'exact'?",
+         "options": ["[gz]", "[ks]", "[z]", "[s]"], "correct": "[gz]"},
+        {"id": 5, "type": "quiz", "question": "🔊 Как читается буква 'g' в слове 'gare'?",
+         "options": ["[ʒ]", "[g]", "[k]", "[ʃ]"], "correct": "[g]"},
+        {"id": 6, "type": "quiz", "question": "🔊 Как читается буквосочетание 'gu' в слове 'guerre'?",
+         "options": ["[gy]", "[gu]", "[g]", "[ʒ]"], "correct": "[g]"},
+        {"id": 7, "type": "quiz", "question": "🔊 Как произносится французский звук [ɔ]?",
+         "options": ["Как русский [о] с вытянутыми губами",
+                     "Как русский [о] без призвука [у], губы не напрягать",
+                     "Как [у]", "Как [а]"], "correct": "Как русский [о] без призвука [у], губы не напрягать"},
+        {"id": 8, "type": "quiz", "question": "🔊 Как читается буква 'o' в слове 'pomme'?",
+         "options": ["[o]", "[ɔ]", "[u]", "[ə]"], "correct": "[ɔ]"},
+
+        # ========== УПРАЖНЕНИЕ №3: ТРАНСКРИПЦИЯ ==========
+        {"id": 9, "type": "text_input", "question": "📝 Запишите транскрипцию слова 'pièce'", "correct": "[pjɛs]"},
+        {"id": 10, "type": "text_input", "question": "📝 Запишите транскрипцию слова 'ciel'", "correct": "[sjɛl]"},
+        {"id": 11, "type": "text_input", "question": "📝 Запишите транскрипцию слова 'capitale'", "correct": "[kapital]"},
+        {"id": 12, "type": "text_input", "question": "📝 Запишите транскрипцию слова 'cahier'", "correct": "[kaje]"},
+        {"id": 13, "type": "text_input", "question": "📝 Запишите транскрипцию слова 'difficile'", "correct": "[difisil]"},
+        {"id": 14, "type": "text_input", "question": "📝 Запишите транскрипцию слова 'clair'", "correct": "[klɛr]"},
+        {"id": 15, "type": "text_input", "question": "📝 Запишите транскрипцию слова 'facile'", "correct": "[fasil]"},
+        {"id": 16, "type": "text_input", "question": "📝 Запишите транскрипцию слова 'caisse'", "correct": "[kɛs]"},
+        {"id": 17, "type": "text_input", "question": "📝 Запишите транскрипцию слова 'merci'", "correct": "[mersi]"},
+        {"id": 18, "type": "text_input", "question": "📝 Запишите транскрипцию слова 'cesser'", "correct": "[sese]"},
+
+        # ========== УПРАЖНЕНИЕ №2: ПЕРЕВОД ФРАЗ ==========
+        {"id": 19, "type": "text_input", "question": "📖 Переведите на русский: 'les articles'", "correct": "артикли"},
+        {"id": 20, "type": "text_input", "question": "📖 Переведите на русский: 'quatre classes'", "correct": "четыре класса"},
+        {"id": 21, "type": "text_input", "question": "📖 Переведите на русский: 'écrire vite'", "correct": "писать быстро"},
+        {"id": 22, "type": "text_input", "question": "📖 Переведите на русский: 'quitter Paris'", "correct": "покидать Париж"},
+        {"id": 23, "type": "text_input", "question": "📖 Переведите на русский: 'Pierre est calme'", "correct": "Пьер спокоен"},
+        {"id": 24, "type": "text_input", "question": "📖 Переведите на русский: 'Quittez la clinique!'", "correct": "Покиньте клинику"},
+        {"id": 25, "type": "text_input", "question": "📖 Переведите на русский: 'Qui est ta fille?'", "correct": "Кто твоя дочь"},
+
+        # ========== УПРАЖНЕНИЕ №5: ПЕРЕВОД ФРАЗ ==========
+        {"id": 26, "type": "text_input", "question": "📖 Переведите на русский: 'La gare est là'", "correct": "Вокзал там"},
+        {"id": 27, "type": "text_input", "question": "📖 Переведите на русский: 'Yves est gai et Nana est grave'",
+         "correct": "Ив веселый, а Нана серьезная"},
+        {"id": 28, "type": "text_input", "question": "📖 Переведите на русский: 'Répétez la grammaire!'", "correct": "Повторите грамматику"},
+        {"id": 29, "type": "text_input", "question": "📖 Переведите на русский: 'Gardez la gare!'", "correct": "Охраняйте вокзал"},
+        {"id": 30, "type": "text_input", "question": "📖 Переведите на русский: 'Qui est Pierre? — Il est guide. Il travaille. Il est très fatigué.'",
+         "correct": "Кто Пьер? — Он гид. Он работает. Он очень устал"},
+
+        # ========== УПРАЖНЕНИЕ №8: ПЕРЕВОД ФРАЗ ==========
+        {"id": 31, "type": "text_input", "question": "📖 Переведите на русский: 'porter la robe'", "correct": "носить платье"},
+        {"id": 32, "type": "text_input", "question": "📖 Переведите на русский: 'apporter la salade'", "correct": "приносить салат"},
+        {"id": 33, "type": "text_input", "question": "📖 Переведите на русский: 'fermer la porte'", "correct": "закрыть дверь"},
+        {"id": 34, "type": "text_input", "question": "📖 Переведите на русский: 'notre école'", "correct": "наша школа"},
+        {"id": 35, "type": "text_input", "question": "📖 Переведите на русский: 'votre ami'", "correct": "ваш друг"},
+        {"id": 36, "type": "text_input", "question": "📖 Переведите на русский: 'La pomme est très bonne'", "correct": "Яблоко очень вкусное"},
+
+        # ========== УПРАЖНЕНИЕ №9: ПЕРЕВОД С РУССКОГО ==========
+        {"id": 37, "type": "text_input", "question": "🔄 Переведите на французский: 'приносить письма'", "correct": "apporter les lettres"},
+        {"id": 38, "type": "text_input", "question": "🔄 Переведите на французский: 'носить куртки'", "correct": "porter les vestes"},
+        {"id": 39, "type": "text_input", "question": "🔄 Переведите на французский: 'Закройте дверь!'", "correct": "Fermez la porte"},
+        {"id": 40, "type": "text_input", "question": "🔄 Переведите на французский: 'Платье грязное'", "correct": "La robe est sale"},
+        {"id": 41, "type": "text_input", "question": "🔄 Переведите на французский: 'Салат очень вкусный'", "correct": "La salade est très bonne"},
+        {"id": 42, "type": "text_input", "question": "🔄 Переведите на французский: 'Наша школа там'", "correct": "Notre école est là"},
+        {"id": 43, "type": "text_input", "question": "🔄 Переведите на французский: 'Принесите ваш товар!'", "correct": "Apportez votre article"},
+
+        # ========== ПЕРЕВОД СЛОВ (quiz) ==========
+        {"id": 44, "type": "quiz", "question": "📖 Как переводится 'gare'?",
+         "options": ["Поезд", "Вокзал", "Улица", "Город"], "correct": "Вокзал"},
+        {"id": 45, "type": "quiz", "question": "📖 Как переводится 'fatigué'?",
+         "options": ["Счастливый", "Усталый", "Веселый", "Грустный"], "correct": "Усталый"},
+        {"id": 46, "type": "quiz", "question": "📖 Как переводится 'pomme'?",
+         "options": ["Груша", "Яблоко", "Апельсин", "Банан"], "correct": "Яблоко"},
+        {"id": 47, "type": "quiz", "question": "📖 Как переводится 'porte'?",
+         "options": ["Окно", "Дверь", "Стена", "Пол"], "correct": "Дверь"},
+        {"id": 48, "type": "quiz", "question": "📖 Как переводится 'école'?",
+         "options": ["Университет", "Школа", "Лицей", "Детский сад"], "correct": "Школа"},
+        {"id": 49, "type": "quiz", "question": "📖 Как переводится 'notre'?",
+         "options": ["Ваш", "Наш", "Их", "Твой"], "correct": "Наш"},
+        {"id": 50, "type": "quiz", "question": "📖 Как переводится 'apporter'?",
+         "options": ["Носить", "Приносить", "Брать", "Давать"], "correct": "Приносить"},
+
+        # ========== ПЕРЕВОД С РУССКОГО (слова) ==========
+        {"id": 51, "type": "text_input", "question": "🔄 Напишите по-французски 'столица'", "correct": "capitale"},
+        {"id": 52, "type": "text_input", "question": "🔄 Напишите по-французски 'ключ'", "correct": "clé"},
+        {"id": 53, "type": "text_input", "question": "🔄 Напишите по-французски 'четыре'", "correct": "quatre"},
+        {"id": 54, "type": "text_input", "question": "🔄 Напишите по-французски 'кто'", "correct": "qui"},
+        {"id": 55, "type": "text_input", "question": "🔄 Напишите по-французски 'война'", "correct": "guerre"},
+        {"id": 56, "type": "text_input", "question": "🔄 Напишите по-французски 'платье'", "correct": "robe"},
+        {"id": 57, "type": "text_input", "question": "🔄 Напишите по-французски 'октябрь'", "correct": "octobre"},
+        {"id": 58, "type": "text_input", "question": "🔄 Напишите по-французски 'телефон'", "correct": "téléphone"},
+        {"id": 59, "type": "text_input", "question": "🔄 Напишите по-французски 'давать'", "correct": "donner"},
+        {"id": 60, "type": "text_input", "question": "🔄 Напишите по-французски 'звонить'", "correct": "sonner"},
+
+        # ========== ДОПОЛНИТЕЛЬНЫЕ СЛОВА ИЗ УРОКА ==========
+        {"id": 61, "type": "text_input", "question": "🔄 Напишите по-французски 'кофе'", "correct": "café"},
+        {"id": 62, "type": "text_input", "question": "🔄 Напишите по-французски 'спокойный'", "correct": "calme"},
+        {"id": 63, "type": "text_input", "question": "🔄 Напишите по-французски 'писать'", "correct": "écrire"},
+        {"id": 64, "type": "text_input", "question": "🔄 Напишите по-французски 'карта'", "correct": "carte"},
+        {"id": 65, "type": "text_input", "question": "🔄 Напишите по-французски 'класс'", "correct": "classe"},
+        {"id": 66, "type": "text_input", "question": "🔄 Напишите по-французски 'вокзал'", "correct": "gare"},
+        {"id": 67, "type": "text_input", "question": "🔄 Напишите по-французски 'гид'", "correct": "guide"},
+        {"id": 68, "type": "text_input", "question": "🔄 Напишите по-французски 'яблоко'", "correct": "pomme"},
+        {"id": 69, "type": "text_input", "question": "🔄 Напишите по-французски 'мужчина'", "correct": "homme"},
+        {"id": 70, "type": "text_input", "question": "🔄 Напишите по-французски 'школа'", "correct": "école"}
+    ],
+    "question": "Пройдите все 70 карточек практики!",
     "correct_answer": "готово"
 }
 
+# ---------- ДЕНЬ 11: ЧТЕНИЕ (Глава I, Часть 3) ----------
 # ---------- ДЕНЬ 11: ЧТЕНИЕ (Глава I, Часть 3) ----------
 COURSE_DAYS[11] = {
     "title": "Чтение: Капитанская дочка",
@@ -1001,15 +1595,152 @@ COURSE_DAYS[11] = {
 }
 
 # ---------- ДЕНЬ 12: ТЕСТ 3 (Уроки 5-6) ----------
+# ---------- ДЕНЬ 12: ТЕСТ 3 (Уроки 5-6 / дни 9-10) ----------
 COURSE_DAYS[12] = {
-    "title": "Тест 3: Уроки 5-6",
+    "title": "Тест 3: Уроки 5-6 (Звуки [i], [j], [k], [g], [ɔ])",
     "type": "test",
     "is_test": True,
     "practice_tasks": [
-        {"id": 1, "type": "quiz", "question": "Вопрос теста 12: Введите 'готово' чтобы завершить тест",
-         "options": ["готово"], "correct": "готово"}
+        # ============================================================
+        # ЧАСТЬ 1: ДИКТАНТ СЛОВ ИЗ УРОКА 5 (звуки [i], [j])
+        # ============================================================
+        {"id": 1, "type": "text_input", "question": "📝 Напишите по-французски: 'он'", "correct": "il"},
+        {"id": 2, "type": "text_input", "question": "📝 Напишите по-французски: 'остров'", "correct": "île"},
+        {"id": 3, "type": "text_input", "question": "📝 Напишите по-французски: 'идея'", "correct": "idée"},
+        {"id": 4, "type": "text_input", "question": "📝 Напишите по-французски: 'здесь'", "correct": "ici"},
+        {"id": 5, "type": "text_input", "question": "📝 Напишите по-французски: 'сын'", "correct": "fils"},
+        {"id": 6, "type": "text_input", "question": "📝 Напишите по-французски: 'тип'", "correct": "type"},
+        {"id": 7, "type": "text_input", "question": "📝 Напишите по-французски: 'быстро'", "correct": "vite"},
+        {"id": 8, "type": "text_input", "question": "📝 Напишите по-французски: 'тысяча'", "correct": "mille"},
+        {"id": 9, "type": "text_input", "question": "📝 Напишите по-французски: 'город'", "correct": "ville"},
+        {"id": 10, "type": "text_input", "question": "📝 Напишите по-французски: 'семья'", "correct": "famille"},
+        {"id": 11, "type": "text_input", "question": "📝 Напишите по-французски: 'дочь'", "correct": "fille"},
+        {"id": 12, "type": "text_input", "question": "📝 Напишите по-французски: 'работа'", "correct": "travail"},
+        {"id": 13, "type": "text_input", "question": "📝 Напишите по-французски: 'он работает'", "correct": "il travaille"},
+        {"id": 14, "type": "text_input", "question": "📝 Напишите по-французски: 'подробность'", "correct": "détail"},
+        {"id": 15, "type": "text_input", "question": "📝 Напишите по-французски: 'комната'", "correct": "pièce"},
+        {"id": 16, "type": "text_input", "question": "📝 Напишите по-французски: 'небо'", "correct": "ciel"},
+        {"id": 17, "type": "text_input", "question": "📝 Напишите по-французски: 'камень'", "correct": "pierre"},
+        {"id": 18, "type": "text_input", "question": "📝 Напишите по-французски: 'вчера'", "correct": "hier"},
+        {"id": 19, "type": "text_input", "question": "📝 Напишите по-французски: 'река'", "correct": "rivière"},
+        {"id": 20, "type": "text_input", "question": "📝 Напишите по-французски: 'женатый'", "correct": "marié"},
+        {"id": 21, "type": "text_input", "question": "📝 Напишите по-французски: 'замужняя'", "correct": "mariée"},
+        {"id": 22, "type": "text_input", "question": "📝 Напишите по-французски: 'зима'", "correct": "hiver"},
+        {"id": 23, "type": "text_input", "question": "📝 Напишите по-французски: 'низкий'", "correct": "bas"},
+        {"id": 24, "type": "text_input", "question": "📝 Напишите по-французски: 'молоко'", "correct": "lait"},
+        {"id": 25, "type": "text_input", "question": "📝 Напишите по-французски: 'поздно'", "correct": "tard"},
+        {"id": 26, "type": "text_input", "question": "📝 Напишите по-французски: 'после'", "correct": "après"},
+        {"id": 27, "type": "text_input", "question": "📝 Напишите по-французски: 'очень'", "correct": "très"},
+        {"id": 28, "type": "text_input", "question": "📝 Напишите по-французски: 'но'", "correct": "mais"},
+        {"id": 29, "type": "text_input", "question": "📝 Напишите по-французски: 'они (м.р.)'", "correct": "ils"},
+        {"id": 30, "type": "text_input", "question": "📝 Напишите по-французски: 'они (ж.р.)'", "correct": "elles"},
+
+        # ============================================================
+        # ЧАСТЬ 2: ДИКТАНТ СЛОВ ИЗ УРОКА 6 (звуки [k], [g], [ɔ])
+        # ============================================================
+        {"id": 31, "type": "text_input", "question": "📝 Напишите по-французски: 'кофе'", "correct": "café"},
+        {"id": 32, "type": "text_input", "question": "📝 Напишите по-французски: 'спокойный'", "correct": "calme"},
+        {"id": 33, "type": "text_input", "question": "📝 Напишите по-французски: 'столица'", "correct": "capitale"},
+        {"id": 34, "type": "text_input", "question": "📝 Напишите по-французски: 'писать'", "correct": "écrire"},
+        {"id": 35, "type": "text_input", "question": "📝 Напишите по-французски: 'карта'", "correct": "carte"},
+        {"id": 36, "type": "text_input", "question": "📝 Напишите по-французски: 'класс'", "correct": "classe"},
+        {"id": 37, "type": "text_input", "question": "📝 Напишите по-французски: 'ключ'", "correct": "clé"},
+        {"id": 38, "type": "text_input", "question": "📝 Напишите по-французски: 'четыре'", "correct": "quatre"},
+        {"id": 39, "type": "text_input", "question": "📝 Напишите по-французски: 'кто'", "correct": "qui"},
+        {"id": 40, "type": "text_input", "question": "📝 Напишите по-французски: 'покидать'", "correct": "quitter"},
+        {"id": 41, "type": "text_input", "question": "📝 Напишите по-французски: 'вокзал'", "correct": "gare"},
+        {"id": 42, "type": "text_input", "question": "📝 Напишите по-французски: 'охранять'", "correct": "garder"},
+        {"id": 43, "type": "text_input", "question": "📝 Напишите по-французски: 'веселый'", "correct": "gai"},
+        {"id": 44, "type": "text_input", "question": "📝 Напишите по-французски: 'серьезный'", "correct": "grave"},
+        {"id": 45, "type": "text_input", "question": "📝 Напишите по-французски: 'гид'", "correct": "guide"},
+        {"id": 46, "type": "text_input", "question": "📝 Напишите по-французски: 'война'", "correct": "guerre"},
+        {"id": 47, "type": "text_input", "question": "📝 Напишите по-французски: 'выздоравливать'", "correct": "guérir"},
+        {"id": 48, "type": "text_input", "question": "📝 Напишите по-французски: 'грамматика'", "correct": "grammaire"},
+        {"id": 49, "type": "text_input", "question": "📝 Напишите по-французски: 'зеркало'", "correct": "glace"},
+        {"id": 50, "type": "text_input", "question": "📝 Напишите по-французски: 'усталый'", "correct": "fatigué"},
+        {"id": 51, "type": "text_input", "question": "📝 Напишите по-французски: 'точный'", "correct": "exact"},
+        {"id": 52, "type": "text_input", "question": "📝 Напишите по-французски: 'яблоко'", "correct": "pomme"},
+        {"id": 53, "type": "text_input", "question": "📝 Напишите по-французски: 'мужчина'", "correct": "homme"},
+        {"id": 54, "type": "text_input", "question": "📝 Напишите по-французски: 'платье'", "correct": "robe"},
+        {"id": 55, "type": "text_input", "question": "📝 Напишите по-французски: 'дверь'", "correct": "porte"},
+        {"id": 56, "type": "text_input", "question": "📝 Напишите по-французски: 'октябрь'", "correct": "octobre"},
+        {"id": 57, "type": "text_input", "question": "📝 Напишите по-французски: 'школа'", "correct": "école"},
+        {"id": 58, "type": "text_input", "question": "📝 Напишите по-французски: 'телефон'", "correct": "téléphone"},
+        {"id": 59, "type": "text_input", "question": "📝 Напишите по-французски: 'наш'", "correct": "notre"},
+        {"id": 60, "type": "text_input", "question": "📝 Напишите по-французски: 'ваш'", "correct": "votre"},
+        {"id": 61, "type": "text_input", "question": "📝 Напишите по-французски: 'давать'", "correct": "donner"},
+        {"id": 62, "type": "text_input", "question": "📝 Напишите по-французски: 'носить'", "correct": "porter"},
+        {"id": 63, "type": "text_input", "question": "📝 Напишите по-французски: 'звонить'", "correct": "sonner"},
+        {"id": 64, "type": "text_input", "question": "📝 Напишите по-французски: 'приносить'", "correct": "apporter"},
+
+        # ============================================================
+        # ЧАСТЬ 3: ФОНЕТИКА И ПРАВИЛА (quiz)
+        # ============================================================
+        {"id": 65, "type": "quiz", "question": "🔊 Как правильно произносится французский звук [i]?",
+         "options": ["Как русский [и], без изменений", "С оттянутыми уголками рта, 'улыбчиво'",
+                     "С округленными губами", "Как [ы]"], "correct": "С оттянутыми уголками рта, 'улыбчиво'"},
+        {"id": 66, "type": "quiz", "question": "🔊 Как читается слово 'fils' (сын)?",
+         "options": ["[fils]", "[fil]", "[fis]", "[fi]"], "correct": "[fis]"},
+        {"id": 67, "type": "quiz", "question": "🔊 Как читается буквосочетание 'ill' в слове 'famille'?",
+         "options": ["[il]", "[ij]", "[j]", "[ilj]"], "correct": "[j]"},
+        {"id": 68, "type": "quiz", "question": "🔇 Читается ли буква 'h' во французском?",
+         "options": ["Да, всегда", "Нет, никогда", "Только в начале слов", "Только в конце слов"],
+         "correct": "Нет, никогда"},
+        {"id": 69, "type": "quiz", "question": "🔇 Какие согласные на конце слов обычно НЕ читаются?",
+         "options": ["p, b, m", "s, t, d", "c, g, f", "l, r, n"], "correct": "s, t, d"},
+        {"id": 70, "type": "quiz", "question": "🔊 Как читается буква 'c' в слове 'café'?",
+         "options": ["[s]", "[k]", "[g]", "[ʃ]"], "correct": "[k]"},
+        {"id": 71, "type": "quiz", "question": "🔊 Как читается буква 'c' в слове 'pièce' (перед e)?",
+         "options": ["[k]", "[s]", "[g]", "[ʃ]"], "correct": "[s]"},
+        {"id": 72, "type": "quiz", "question": "🔊 Как читается буквосочетание 'qu' в слове 'quatre'?",
+         "options": ["[kw]", "[ku]", "[k]", "[g]"], "correct": "[k]"},
+        {"id": 73, "type": "quiz", "question": "🔊 Как читается буква 'g' в слове 'gare'?",
+         "options": ["[ʒ]", "[g]", "[k]", "[ʃ]"], "correct": "[g]"},
+        {"id": 74, "type": "quiz", "question": "🔊 Как читается буква 'o' в слове 'pomme'?",
+         "options": ["[o]", "[ɔ]", "[u]", "[ə]"], "correct": "[ɔ]"},
+
+        # ============================================================
+        # ЧАСТЬ 4: ТРАНСКРИПЦИЯ (text_input)
+        # ============================================================
+        {"id": 75, "type": "text_input", "question": "📝 Запишите транскрипцию слова 'merci'", "correct": "[mersi]"},
+        {"id": 76, "type": "text_input", "question": "📝 Запишите транскрипцию слова 'triste'", "correct": "[trist]"},
+        {"id": 77, "type": "text_input", "question": "📝 Запишите транскрипцию слова 'hiver'", "correct": "[ivɛr]"},
+        {"id": 78, "type": "text_input", "question": "📝 Запишите транскрипцию слова 'famille'", "correct": "[famij]"},
+        {"id": 79, "type": "text_input", "question": "📝 Запишите транскрипцию слова 'travail'", "correct": "[travaj]"},
+        {"id": 80, "type": "text_input", "question": "📝 Запишите транскрипцию слова 'café'", "correct": "[kafe]"},
+        {"id": 81, "type": "text_input", "question": "📝 Запишите транскрипцию слова 'quatre'", "correct": "[katr]"},
+        {"id": 82, "type": "text_input", "question": "📝 Запишите транскрипцию слова 'gare'", "correct": "[gar]"},
+        {"id": 83, "type": "text_input", "question": "📝 Запишите транскрипцию слова 'pomme'", "correct": "[pɔm]"},
+        {"id": 84, "type": "text_input", "question": "📝 Запишите транскрипцию слова 'école'", "correct": "[ekɔl]"},
+
+        # ============================================================
+        # ЧАСТЬ 5: ПЕРЕВОД ФРАЗ (text_input)
+        # ============================================================
+        {"id": 85, "type": "text_input", "question": "📖 Переведите на русский: 'cette idée'", "correct": "эта идея"},
+        {"id": 86, "type": "text_input", "question": "📖 Переведите на русский: 'il est libre'", "correct": "он свободен"},
+        {"id": 87, "type": "text_input", "question": "📖 Переведите на русский: 'mes amies'", "correct": "мои подруги"},
+        {"id": 88, "type": "text_input", "question": "📖 Переведите на русский: 'Paris est là'", "correct": "Париж находится там"},
+        {"id": 89, "type": "text_input", "question": "📖 Переведите на русский: 'faire vite'", "correct": "делать быстро"},
+        {"id": 90, "type": "text_input", "question": "📖 Переведите на русский: 'lire et rire'", "correct": "читать и смеяться"},
+        {"id": 91, "type": "text_input", "question": "📖 Переведите на русский: 'Elle travaille'", "correct": "Она работает"},
+        {"id": 92, "type": "text_input", "question": "📖 Переведите на русский: 'Ma famille est là'", "correct": "Моя семья там"},
+        {"id": 93, "type": "text_input", "question": "📖 Переведите на русский: 'Les articles'", "correct": "Артикли"},
+        {"id": 94, "type": "text_input", "question": "📖 Переведите на русский: 'Qui est ta fille?'", "correct": "Кто твоя дочь"},
+        {"id": 95, "type": "text_input", "question": "📖 Переведите на русский: 'La gare est là'", "correct": "Вокзал там"},
+        {"id": 96, "type": "text_input", "question": "📖 Переведите на русский: 'Notre école'", "correct": "Наша школа"},
+        {"id": 97, "type": "text_input", "question": "📖 Переведите на русский: 'La pomme est très bonne'", "correct": "Яблоко очень вкусное"},
+
+        # ============================================================
+        # ЧАСТЬ 6: ПЕРЕВОД С РУССКОГО (text_input)
+        # ============================================================
+        {"id": 98, "type": "text_input", "question": "🔄 Переведите на французский: 'его книги'", "correct": "ses livres"},
+        {"id": 99, "type": "text_input", "question": "🔄 Переведите на французский: 'Ив свободен'", "correct": "Yves est libre"},
+        {"id": 100, "type": "text_input", "question": "🔄 Переведите на французский: 'Он работает здесь'", "correct": "Il travaille ici"},
+        {"id": 101, "type": "text_input", "question": "🔄 Переведите на французский: 'Закройте дверь!'", "correct": "Fermez la porte"},
+        {"id": 102, "type": "text_input", "question": "🔄 Переведите на французский: 'Приносить письма'", "correct": "apporter les lettres"},
+        {"id": 103, "type": "text_input", "question": "🔄 Переведите на французский: 'Наша школа там'", "correct": "Notre école est là"}
     ],
-    "question": "Пройдите все вопросы теста!",
+    "question": "Пройдите все 103 вопроса теста!",
     "correct_answer": "готово"
 }
 
