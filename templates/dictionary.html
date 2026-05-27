@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="max-width: 900px; margin: 0 auto; padding: 20px 0;">
+    
+    <div style="text-align: center; margin-bottom: 40px;">
+        <h2 style="font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--primary-dark);">
+            📖 Mon dictionnaire
+        </h2>
+        <p style="color: var(--text-muted);">
+            Все слова, которые вы выучили ({{ total_words }} слов)
+        </p>
+    </div>
+
+    {% if words %}
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px;">
+            {% for word in words %}
+            <div style="background: var(--card-bg); border-radius: 16px; padding: 15px 20px; border: 1px solid #e1e8df; box-shadow: var(--shadow);">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-size: 1.2rem; font-weight: 600; color: var(--primary-dark);">{{ word.fr }}</span>
+                    {% if word.tr %}
+                    <span style="font-family: monospace; font-size: 0.8rem; color: var(--text-muted);">{{ word.tr }}</span>
+                    {% endif %}
+                </div>
+                <div style="margin-top: 8px; color: var(--text-main);">
+                    {{ word.ru }}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div style="text-align: center; padding: 60px; background: var(--card-bg); border-radius: var(--radius);">
+            <span style="font-size: 3rem;">📚</span>
+            <p style="margin-top: 20px; color: var(--text-muted);">
+                Вы ещё не прошли ни одного урока.<br>
+                Начните обучение, и слова будут появляться здесь!
+            </p>
+            <a href="{{ url_for('day', day_id=1) }}" style="display: inline-block; margin-top: 20px;">
+                <button>Начать первый урок →</button>
+            </a>
+        </div>
+    {% endif %}
+
+</div>
+{% endblock %}

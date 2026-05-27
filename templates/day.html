@@ -290,43 +290,55 @@
     }
 
     function checkTextAnswer(taskId, correctAnswer) {
-        const input = document.getElementById('text-input-' + taskId);
-        const resultDiv = document.getElementById('text-result-' + taskId);
-        const userAnswer = input.value.trim().toLowerCase();
-        const normalizedCorrect = correctAnswer.toLowerCase();
+    const input = document.getElementById('text-input-' + taskId);
+    const resultDiv = document.getElementById('text-result-' + taskId);
+    const userAnswer = input.value.trim().toLowerCase();
+    const normalizedCorrect = correctAnswer.toLowerCase();
 
-        const checkBtn = document.querySelector(`button[onclick="checkTextAnswer('${taskId}', '${correctAnswer}')"]`);
+    const checkBtn = document.querySelector(`button[onclick="checkTextAnswer('${taskId}', '${correctAnswer}')"]`);
 
-        if (userAnswer === normalizedCorrect) {
-            resultDiv.style.display = "block";
-            resultDiv.style.backgroundColor = "#d4edda";
-            resultDiv.style.color = "#155724";
-            resultDiv.innerHTML = "✅ Правильно! Отлично!";
-            input.disabled = true;
-            if (checkBtn) checkBtn.disabled = true;
-            completedCards++;
-
-            if (completedCards === totalCards) {
-                document.getElementById('final-submit-box').style.display = "block";
-                setTimeout(() => document.getElementById('final-submit-box').scrollIntoView({ behavior: 'smooth' }), 200);
-            }
-        } else {
-            resultDiv.style.display = "block";
-            resultDiv.style.backgroundColor = "#f8d7da";
-            resultDiv.style.color = "#721c24";
-            resultDiv.innerHTML = `❌ Неправильно. Правильный ответ: ${correctAnswer}`;
-
-            setTimeout(() => {
-                resultDiv.style.display = "none";
-                input.value = "";
-                input.focus();
-            }, 2000);
-        }
+    // Проверяем, не отвечен ли уже этот вопрос
+    if (input.disabled === true) {
+        return; // Вопрос уже отвечен, ничего не делаем
     }
+
+    if (userAnswer === normalizedCorrect) {
+        resultDiv.style.display = "block";
+        resultDiv.style.backgroundColor = "#d4edda";
+        resultDiv.style.color = "#155724";
+        resultDiv.innerHTML = "✅ Правильно! Отлично!";
+        input.disabled = true;
+        if (checkBtn) checkBtn.disabled = true;
+        completedCards++;
+
+        console.log("Прогресс: " + completedCards + " из " + totalCards);
+
+        if (completedCards === totalCards) {
+            console.log("ВСЕ КАРТОЧКИ РЕШЕНЫ! Показываем кнопку...");
+            const finalBox = document.getElementById('final-submit-box');
+            if (finalBox) {
+                finalBox.style.display = "block";
+                finalBox.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    } else {
+        resultDiv.style.display = "block";
+        resultDiv.style.backgroundColor = "#f8d7da";
+        resultDiv.style.color = "#721c24";
+        resultDiv.innerHTML = `❌ Неправильно. Правильный ответ: ${correctAnswer}`;
+
+        setTimeout(() => {
+            resultDiv.style.display = "none";
+            input.value = "";
+            input.focus();
+        }, 2000);
+    }
+}
 
     {% if feedback %}
     showPractice();
     {% endif %}
+    console.log("Всего карточек в этом дне: " + totalCards);
 </script>
 
 <style>

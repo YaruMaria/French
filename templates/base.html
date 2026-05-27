@@ -241,6 +241,7 @@
         <header>
             <nav>
                 <a href="{{ url_for('index') }}">🗺 Все 84 Дня</a>
+                <a href="{{ url_for('dictionary') }}">📖 Словарик</a>  <!-- ДОБАВИТЬ ЭТУ СТРОКУ -->
                 {% if session.get('user_id') %}
                     <a href="{{ url_for('progress') }}">📊 Прогресс ({{ session.get('username') }})</a>
                     <a href="{{ url_for('logout') }}" style="background-color: #fcebeb; color: #a94442;">Выйти</a>

@@ -4,6 +4,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from course_data import COURSE_DAYS
 from reading_data import READINGS  # ДОБАВЛЯЕМ ИМПОРТ
 
+
 app = Flask(__name__)
 app.secret_key = 'ultra_secure_and_secret_key_french_84_days'
 
@@ -109,7 +110,7 @@ def day(day_id):
 
     day_item = COURSE_DAYS[day_id]
 
-    # Определяем месяц для навигации
+    # Определяем месяц
     try:
         day_num = int(day_id)
         if 1 <= day_num <= 30:
@@ -138,6 +139,7 @@ def day(day_id):
             feedback = "✅ Правильно! Отличная работа!"
 
             if user_id:
+                # ВАЖНО: СОХРАНЯЕМ КАК СТРОКУ ДЛЯ ЕДИНООБРАЗИЯ
                 existing = Progress.query.filter_by(user_id=user_id, day_id=str(day_id)).first()
                 if not existing:
                     new_progress = Progress(user_id=user_id, day_id=str(day_id))
@@ -159,43 +161,6 @@ def day(day_id):
 
     total_days = 92
 
-    # ====================================================
-    # ЕСЛИ ЭТО ДЕНЬ ЧТЕНИЯ (type == 'reading')
-    # ====================================================
-    if day_item.get('type') == 'reading':
-        reading_id = day_item.get('reading_id', 'captains_daughter')
-        chapter_part = day_item.get('chapter_part', 1)
-
-        # Получаем данные из reading_data.py
-        reading_data = READINGS.get(reading_id, {})
-        part_data = reading_data.get('parts', {}).get(chapter_part, {})
-
-        reading_info = {
-            'title': reading_data.get('title', 'La Fille du capitaine'),
-            'subtitle': part_data.get('title', f'Partie {chapter_part}'),
-            'text': part_data.get('text', '<p>Текст не найден</p>'),
-            'questions': part_data.get('questions', [])
-        }
-
-        return render_template('reading.html',
-                               day_id=day_id,
-                               day=day_item,
-                               reading=reading_info,
-                               questions=reading_info['questions'],
-                               part_num=chapter_part,
-                               total_parts=reading_data.get('total_parts', 8),
-                               reading_id=reading_id,
-                               prev_part=chapter_part - 1 if chapter_part > 1 else None,
-                               next_part=chapter_part + 1 if chapter_part < reading_data.get('total_parts',
-                                                                                             8) else None,
-                               feedback=feedback,
-                               already_completed=already_completed,
-                               total_days=total_days,
-                               month_id=month_id)
-
-    # ====================================================
-    # ЕСЛИ ЭТО ТЕСТ ИЛИ ОБЫЧНЫЙ УРОК
-    # ====================================================
     return render_template('day.html',
                            day_id=day_id,
                            day=day_item,
@@ -204,8 +169,6 @@ def day(day_id):
                            already_completed=already_completed,
                            total_days=total_days,
                            month_id=month_id)
-
-
 # ========================================================
 # РЕГИСТРАЦИЯ
 # ========================================================
@@ -276,27 +239,27 @@ def progress():
 
     completed = Progress.query.filter_by(user_id=user_id).all()
 
-    # Разделяем числовые уроки и тесты
+    # ВАЖНО: ПРЕОБРАЗУЕМ ВСЕ В СТРОКИ ДЛЯ СРАВНЕНИЯ
+    completed_days_str = [p.day_id for p in completed]
+
+    # Теперь преобразуем в числа те, которые являются числами
     numeric_completed = []
-    test_completed = []
-    for p in completed:
-        day_id = p.day_id
-        if isinstance(day_id, int) or (isinstance(day_id, str) and day_id.isdigit()):
-            numeric_completed.append(int(day_id))
-        else:
-            test_completed.append(day_id)
+    for d in completed_days_str:
+        try:
+            numeric_completed.append(int(d))
+        except (ValueError, TypeError):
+            pass
 
     total_days = 92
     completed_count = len([d for d in numeric_completed if 1 <= d <= 92])
     percent = int((completed_count / total_days) * 100) if total_days > 0 else 0
 
-    # Прогресс по месяцам (только числовые уроки)
+    # Прогресс по месяцам
     month1_count = sum(1 for d in numeric_completed if 1 <= d <= 30)
     month2_count = sum(1 for d in numeric_completed if 31 <= d <= 61)
     month3_count = sum(1 for d in numeric_completed if 62 <= d <= 92)
 
-    # Количество пройденных тестов
-    tests_passed = len(test_completed)
+    tests_passed = len([d for d in completed_days_str if d.startswith('test_')])
 
     return render_template(
         'progress.html',
@@ -311,6 +274,38 @@ def progress():
         tests_passed=tests_passed
     )
 
+# ДОБАВЬТЕ ЭТОТ МАРШРУТ В app.py ПОСЛЕ ПРОГРЕССА
+
+# ========================================================
+# СЛОВАРИК (все выученные слова)
+# ========================================================
+@app.route('/dictionary')
+def dictionary():
+    user_id = session.get('user_id')
+    if not user_id:
+        flash('Войдите, чтобы увидеть свой словарик.', 'error')
+        return redirect(url_for('login'))
+
+    # Получаем все пройденные дни
+    completed = Progress.query.filter_by(user_id=user_id).all()
+    completed_days = [p.day_id for p in completed]
+
+    # Собираем все слова из пройденных уроков
+    learned_words = []
+    for day_id in completed_days:
+        try:
+            day_num = int(day_id)
+            if day_num in COURSE_DAYS and COURSE_DAYS[day_num].get('type') == 'lesson':
+                vocabulary = COURSE_DAYS[day_num].get('vocabulary', [])
+                for word in vocabulary:
+                    if word not in learned_words:
+                        learned_words.append(word)
+        except (ValueError, TypeError):
+            pass
+
+    return render_template('dictionary.html',
+                           words=learned_words,
+                           total_words=len(learned_words))
 
 if __name__ == '__main__':
     app.run(debug=True)

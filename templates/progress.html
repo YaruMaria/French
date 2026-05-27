@@ -1,120 +1,140 @@
 {% extends 'base.html' %}
-{% block content %}
-<div style="max-width: 800px; margin: 0 auto; padding: 20px 0;">
 
-    <!-- Заголовок Личного кабинета -->
+{% block content %}
+<div style="max-width: 900px; margin: 0 auto; padding: 20px 0;">
+
+    <!-- Заголовок -->
     <div style="text-align: center; margin-bottom: 40px;">
-        <h2 style="font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--text-main); margin-bottom: 10px;">
-            Ваш личный прогресс
+        <h2 style="font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--primary-dark); margin-bottom: 10px;">
+            📊 Ваш прогресс
         </h2>
-        <p style="color: var(--text-muted); font-size: 1.05rem;">
-            Chaque jour est un pas en avant — Каждый день — это шаг вперед, <strong>{{ session.get('username') }}</strong>!
+        <p style="color: var(--text-muted);">
+            {{ session.get('username') }}, продолжайте в том же духе! 💪
         </p>
     </div>
 
     <!-- Главная карточка статистики -->
-    <div style="background-color: var(--card-bg); border-radius: var(--radius); padding: 35px; box-shadow: var(--shadow); border: 1px solid #e1e8df; margin-bottom: 35px; text-align: center; position: relative; overflow: hidden;">
+    <div style="background: var(--card-bg); border-radius: 24px; padding: 35px; box-shadow: var(--shadow); border: 1px solid #e1e8df; margin-bottom: 35px; text-align: center;">
 
-        <!-- Декоративный фоновый элемент в пастельных тонах -->
-        <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background-color: var(--primary-light); border-radius: 50%; opacity: 0.5; z-index: 1;"></div>
+        <div style="font-size: 3rem; margin-bottom: 15px;">
+            {% if percent == 100 %}🏆🎉
+            {% elif percent >= 75 %}🔥
+            {% elif percent >= 50 %}🌟
+            {% elif percent >= 25 %}📚
+            {% else %}🌱{% endif %}
+        </div>
 
-        <div style="position: relative; z-index: 2;">
-            <span style="font-size: 2.5rem; display: inline-block; margin-bottom: 10px;">🏆</span>
+        <h3 style="font-size: 1.8rem; color: var(--primary-dark); margin-bottom: 5px;">
+            {{ count }} / {{ total }} дней
+        </h3>
 
-            <h3 style="font-family: 'Playfair Display', serif; font-size: 1.6rem; margin-bottom: 5px;">
-                Вы прошли {{ count }} из {{ total }} дней
-            </h3>
+        <p style="color: var(--text-muted); margin-bottom: 20px;">
+            {{ percent }}% курса пройдено
+        </p>
 
-            <!-- Динамический статус в зависимости от процентов -->
-            <p style="color: var(--primary-dark); font-weight: 600; font-size: 0.95rem; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 25px;">
-                Текущий статус:
-                {% if percent == 0 %}
-                    Только старт 🌿
-                {% elif percent < 33 %}
-                    Французский новичок 🥖
-                {% elif percent < 66 %}
-                    Уверенный путешественник ✈️
-                {% else %}
-                    Почти парижанин ☕️
-                {% endif %}
-            </p>
+        <!-- Прогресс-бар -->
+        <div style="background: #eef2ed; border-radius: 30px; height: 12px; overflow: hidden;">
+            <div style="background: #8fa882; width: {{ percent }}%; height: 100%; border-radius: 30px;"></div>
+        </div>
 
-            <!-- Эстетичная шкала прогресса -->
-            <div style="background: #eef2ed; border-radius: 100px; width: 100%; height: 20px; overflow: hidden; border: 1px solid #e1e8df;">
-                <div style="background-color: var(--primary); width: {{ percent }}%; height: 100%; border-radius: 100px; transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1); position: relative;">
-                    <!-- Легкий блик на полосе -->
-                    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(rgba(255,255,255,0.15), rgba(255,255,255,0));"></div>
-                </div>
+        <!-- Статус -->
+        <p style="margin-top: 15px; font-size: 0.9rem; color: var(--text-muted);">
+            {% if percent == 100 %}
+                🎉 Поздравляем! Вы завершили весь курс! 🎉
+            {% elif percent >= 75 %}
+                ⭐ Великолепно! Осталось совсем немного!
+            {% elif percent >= 50 %}
+                🌟 Отлично! Вы на полпути к цели!
+            {% elif percent >= 25 %}
+                📚 Хороший темп! Продолжайте в том же духе!
+            {% else %}
+                🌱 Первые шаги сделаны! Впереди много интересного!
+            {% endif %}
+        </p>
+    </div>
+
+    <!-- Прогресс по месяцам -->
+    <h3 style="font-family: 'Playfair Display', serif; margin-bottom: 20px;">🗓️ Прогресс по месяцам</h3>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 40px;">
+
+        <!-- Месяц 1 -->
+        <div style="background: var(--card-bg); border-radius: 20px; padding: 20px; border: 1px solid #e1e8df;">
+            <h4 style="color: var(--primary-dark); margin-bottom: 10px;">📘 Месяц 1</h4>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">Дни 1-30</p>
+            <div style="background: #eef2ed; border-radius: 20px; height: 8px; margin: 15px 0;">
+                <div style="background: #8fa882; width: {{ (month1_count / 30 * 100)|int }}%; height: 100%; border-radius: 20px;"></div>
             </div>
+            <p style="font-weight: 600;">{{ month1_count }} / 30 дней</p>
+        </div>
 
-            <div style="text-align: right; margin-top: 8px; font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">
-                {{ percent }}% выполнено
+        <!-- Месяц 2 -->
+        <div style="background: var(--card-bg); border-radius: 20px; padding: 20px; border: 1px solid #e1e8df;">
+            <h4 style="color: var(--primary-dark); margin-bottom: 10px;">📗 Месяц 2</h4>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">Дни 31-61</p>
+            <div style="background: #eef2ed; border-radius: 20px; height: 8px; margin: 15px 0;">
+                <div style="background: #8fa882; width: {{ (month2_count / 31 * 100)|int }}%; height: 100%; border-radius: 20px;"></div>
+            </div>
+            <p style="font-weight: 600;">{{ month2_count }} / 31 день</p>
+        </div>
+
+        <!-- Месяц 3 -->
+        <div style="background: var(--card-bg); border-radius: 20px; padding: 20px; border: 1px solid #e1e8df;">
+            <h4 style="color: var(--primary-dark); margin-bottom: 10px;">📕 Месяц 3</h4>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">Дни 62-92</p>
+            <div style="background: #eef2ed; border-radius: 20px; height: 8px; margin: 15px 0;">
+                <div style="background: #8fa882; width: {{ (month3_count / 31 * 100)|int }}%; height: 100%; border-radius: 20px;"></div>
+            </div>
+            <p style="font-weight: 600;">{{ month3_count }} / 31 день</p>
+        </div>
+    </div>
+
+    <!-- Пройденные тесты -->
+    <h3 style="font-family: 'Playfair Display', serif; margin-bottom: 20px;">📝 Пройденные тесты</h3>
+
+    <div style="background: var(--card-bg); border-radius: 20px; padding: 25px; border: 1px solid #e1e8df; margin-bottom: 40px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+            <div>
+                <span style="font-size: 2rem;">✍️</span>
+                <span style="font-weight: 600; margin-left: 10px;">Тестов пройдено: {{ tests_passed }}</span>
+            </div>
+            <div>
+                <span style="font-size: 2rem;">📖</span>
+                <span style="font-weight: 600; margin-left: 10px;">Всего тестов: {{ (total // 4) + 1 }}</span>
             </div>
         </div>
     </div>
 
-    <!-- Детальный разбор по месяцам обучения -->
-    <h3 style="font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 20px; color: var(--text-main);">
-        Успехи по этапам
-    </h3>
-
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-bottom: 40px;">
-
-        <!-- Карточка 1 Месяца -->
-        <div style="background-color: var(--card-bg); border-radius: var(--radius); padding: 20px; border: 1px solid #e1e8df; box-shadow: var(--shadow);">
-            <h4 style="font-weight: 600; margin-bottom: 10px; font-size: 1rem; color: var(--text-main);">Месяц 1: А1</h4>
-            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">Основы чтения, приветствия, кафе и город.</p>
-            <div style="font-size: 0.9rem; font-weight: 500;">
-                Пройдено дней: <span style="color: var(--primary-dark);">{{ month1_count }} / 28</span>
-            </div>
-        </div>
-
-        <!-- Карточка 2 Месяца -->
-        <div style="background-color: var(--card-bg); border-radius: var(--radius); padding: 20px; border: 1px solid #e1e8df; box-shadow: var(--shadow);">
-            <h4 style="font-weight: 600; margin-bottom: 10px; font-size: 1rem; color: var(--text-main);">Месяц 2: A2.1</h4>
-            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">Прошедшее время, рутина, отели, семья.</p>
-            <div style="font-size: 0.9rem; font-weight: 500;">
-                Пройдено дней: <span style="color: var(--primary-dark);">{{ month2_count }} / 28</span>
-            </div>
-        </div>
-
-        <!-- Карточка 3 Месяца -->
-        <div style="background-color: var(--card-bg); border-radius: var(--radius); padding: 20px; border: 1px solid #e1e8df; box-shadow: var(--shadow);">
-            <h4 style="font-weight: 600; margin-bottom: 10px; font-size: 1rem; color: var(--text-main);">Месяц 3: A2.2+</h4>
-            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">Свободные мнения, сленг, филлеры.</p>
-            <div style="font-size: 0.9rem; font-weight: 500;">
-                Пройдено дней: <span style="color: var(--primary-dark);">{{ month3_count }} / 28</span>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- Список всех изученных уроков лентой -->
-    <h3 style="font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 20px; color: var(--text-main);">
-        Журнал открытых достижений
-    </h3>
+    <!-- Список пройденных дней -->
+    <h3 style="font-family: 'Playfair Display', serif; margin-bottom: 20px;">✅ Пройденные дни</h3>
 
     {% if completed_days %}
-        <div style="background-color: var(--card-bg); border-radius: var(--radius); padding: 25px; border: 1px solid #e1e8df; box-shadow: var(--shadow);">
-            {% for day_id in completed_days %}
-                <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #f2f6f1; {% if loop.last %}border-bottom: none;{% endif %}">
-                    <div>
-                        <span style="font-weight: 600; color: var(--primary-dark); font-size: 0.9rem; margin-right: 15px;">День {{ day_id }}</span>
-                        <span style="color: var(--text-main); font-size: 0.95rem;">{{ days[day_id].title }}</span>
-                    </div>
-                    <span style="background-color: var(--primary-light); color: var(--primary-dark); font-size: 0.75rem; font-weight: 600; padding: 4px 10px; border-radius: 100px;">
-                        Освоено ✨
-                    </span>
+        <div style="display: flex; flex-wrap: wrap; gap: 10px; background: var(--card-bg); border-radius: 20px; padding: 20px; border: 1px solid #e1e8df;">
+            {% for day_num in completed_days %}
+                <div style="background: var(--primary-light); padding: 8px 16px; border-radius: 30px; font-size: 0.85rem; font-weight: 500;">
+                    День {{ day_num }}
                 </div>
             {% endfor %}
         </div>
     {% else %}
-        <div style="background-color: var(--card-bg); border-radius: var(--radius); padding: 40px; border: 1px solid #e1e8df; box-shadow: var(--shadow); text-align: center;">
-            <p style="color: var(--text-muted); margin-bottom: 20px; font-size: 1rem;">Вы еще не завершили ни одного интерактивного урока.</p>
-            <a href="{{ url_for('day', day_id=1) }}" style="text-decoration: none;">
-                <button>Начать самый первый урок 🚀</button>
+        <div style="background: var(--card-bg); border-radius: 20px; padding: 40px; text-align: center; border: 1px solid #e1e8df;">
+            <p style="color: var(--text-muted);">Вы ещё не прошли ни одного дня.</p>
+            <a href="{{ url_for('day', day_id=1) }}" style="display: inline-block; margin-top: 15px;">
+                <button>Начать первый урок →</button>
             </a>
         </div>
+    {% endif %}
+
+    <!-- Кнопка продолжить с последнего непройденного дня -->
+    {% if completed_days %}
+        {% set last_day = completed_days|max %}
+        {% if last_day < total %}
+        <div style="margin-top: 30px; text-align: center;">
+            <a href="{{ url_for('day', day_id=last_day + 1) }}">
+                <button style="padding: 15px 40px; font-size: 1rem;">▶️ Продолжить с дня {{ last_day + 1 }}</button>
+            </a>
+        </div>
+        {% endif %}
     {% endif %}
 
 </div>
