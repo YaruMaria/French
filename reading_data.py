@@ -304,6 +304,296 @@ READINGS = {
                                  "Comme un mauvais souvenir", "Comme une illusion"],
                      "correct": "Comme quelque chose de prophétique"}
                 ]
+            },
+# ДОБАВЬТЕ В READING_DATA ВНУТРЬ СЛОВАРЯ "captains_daughter" В "parts"
+
+            9: {
+                "title": "Chapitre III (Partie 1/4): La forteresse de Bélogorsk",
+                "text": """
+            <p><strong>III. LA FORTERESSE</strong></p>
+            
+            <p>La forteresse de Bélogorsk était située à quarante verstes d'Orenbourg. De cette ville, la route longeait les bords escarpés du Iaïk. La rivière n'était pas encore gelée, et ses flots couleur de plomb prenaient une teinte noire entre les rives blanchies par la neige. Devant moi s'étendaient les steppes kirghises. Je me perdais dans mes réflexions, tristes pour la plupart. La vie de garnison ne m'offrait pas beaucoup d'attraits; je tâchais de me représenter mon chef futur, le capitaine Mironoff. Je m'imaginais un vieillard sévère et morose, ne sachant rien en dehors du service et prêt à me mettre aux arrêts pour la moindre véritable. Le crépuscule arrivait; nous allions assez vite.</p>
+            
+            <p>"Y a-t-il loin d'ici à la forteresse? demandai-je au cocher.</p>
+            
+            <p>— Mais on la voit d'ici", répondit-il.</p>
+            
+            <p>Je me mis à regarder de tous côtés, m'attendant à voir de hauts bastions, une muraille et un fossé. Mais je ne vis rien qu'un petit village entouré d'une palissade en bois. D'un côté s'élevaient trois ou quatre tas de foin, à demi recouverts de neige; d'un autre, un moulin à vent penché sur le côté, et dont les ailes, faites de grosse écorce de tilleul, pendaient paresseusement.</p>
+            
+            <p>"Où donc est la forteresse? demandai-je étonné.</p>
+            
+            <p>— Mais la voilà", repartit le cocher en me montrant le village où nous venions de pénétrer.</p>
+            
+            <p>J'aperçus près de la porte un vieux canon en fer. Les rues étaient étroites et tortueuses; presque toutes les isbas étaient couvertes en chaume. J'ordonnai qu'on me menât chez le commandant, et presque aussitôt ma kibitka s'arrêta devant une maison en bois, bâtie sur une éminence, près de l'église, qui était en bois également.</p>
+            
+            <p>Personne ne vint à ma rencontre. Du perron j'entrai dans l'antichambre. Un vieil invalide, assis sur une table, était occupé à coudre une pièce bleue au coude d'un uniforme vert. Je lui dis de m'annoncer. "Entre, mon petit père, me dit l'invalide, les nôtres sont à la maison." Je pénétrai dans une chambre très propre, arrangée à la vieille mode. Dans un coin était dressée une armoire avec de la vaisselle. Contre la muraille un diplôme d'officier pendait encadré et sous verre. Autour du cadre étaient rangés des tableaux d'écorce, qui représentaient la Prise de Kustrin et d'Otchakov, le Choix de la fiancée et l'Enterrement du chat par les souris. Près de la fenêtre se tenait assise une vieille femme en mantelet, la tête enveloppée d'un mouchoir. Elle était occupée à dévider du fil que tenait, sur ses mains écartées, un petit vieillard borgne en habit d'officier. "Que désirez-vous, mon petit père?" me dit-elle sans interrompre son occupation. Je répondis que j'étais venu pour entrer au service, et que, d'après la règle, j'accourais me présenter à monsieur le capitaine. En disant cela, je me tournai vers le petit vieillard borgne, que j'avais pris pour le commandant. Mais la bonne dame interrompit le discours que j'avais préparé à l'avance.</p>
+            """,
+                "questions": [
+                    {"id": 1, "type": "quiz", "question": "Où était située la forteresse de Bélogorsk?",
+                     "options": ["Près de Moscou", "À quarante verstes d'Orenbourg", "Sur les bords de la Volga", "Dans les steppes kirghises"], "correct": "À quarante verstes d'Orenbourg"},
+                    {"id": 2, "type": "quiz", "question": "Que voyait Pierre de la route?", "options": ["De hauts bastions", "Une muraille et un fossé", "Un petit village entouré d'une palissade", "Un grand château"], "correct": "Un petit village entouré d'une palissade"},
+                    {"id": 3, "type": "quiz", "question": "Que faisait le vieil invalide dans l'antichambre?", "options": ["Il lisait un livre", "Il dormait", "Il cousait une pièce bleue à son uniforme", "Il mangeait"], "correct": "Il cousait une pièce bleue à son uniforme"},
+                    {"id": 4, "type": "quiz", "question": "À qui Pierre s'est-il adressé en entrant dans la chambre?", "options": ["Au capitaine", "À un petit vieillard borgne", "À la vieille femme", "À l'invalide"], "correct": "Au petit vieillard borgne"},
+                    {"id": 5, "type": "quiz", "question": "Qui était la vieille femme?", "options": ["La servante", "La femme du commandant", "La fille du commandant", "La mère du commandant"], "correct": "La femme du commandant"}
+                ]
+            },
+# ДОБАВЬТЕ В READING_DATA ВНУТРЬ СЛОВАРЯ "captains_daughter" В "parts" (продолжение)
+
+            10: {
+                "title": "Chapitre III (Partie 2/4): Vassilissa Iégorovna",
+                "text": """
+            <p>"Ivan Kouzmitch n'est pas à la maison, dit-elle. Il est allé en visite chez le père Garasim. Mais c'est la même chose, je suis sa femme. Veuillez nous aimer et nous avoir en grâce. Assieds-toi, mon petit père."</p>
+            
+            <p>Elle appela une servante et lui dit de faire venir l'ouriadnik. Le petit vieillard me regardait curieusement de son oeil unique. "Oserais-je vous demander, me dit-il, dans quel régiment vous avez daigné servir?" Je satisfis sa curiosité.</p>
+            
+            <p>"Et oserais-je vous demander, continua-t-il; pourquoi vous avez daigné passer de la garde dans notre garnison?"</p>
+            
+            <p>Je répondis que c'était par ordre de l'autorité.</p>
+            
+            <p>"Probablement pour des actions peu séantes à un officier de la garde? reprit l'infatigable questionneur.</p>
+            
+            <p>— Veux-tu bien cesser de dire des bêtises? lui dit la femme du capitaine. Tu vois bien que ce jeune homme est fatigué de la route. Il a autre chose à faire que de te répondre. Tiens mieux tes mains. Et toi, mon petit père, continua-t-elle en se tournant vers moi, ne t'afflige pas trop de ce qu'on t'ait fourré dans notre bicoque; tu n'es pas le premier, tu ne seras pas le dernier. On souffre, mais on s'habitue. Tenez, Chvabrine, Alexéi Ivanitch, il y a déjà quatre ans qu'on l'a transféré chez nous pour un meurtre. Dieu sait quel malheur lui était arrivé. Voilà qu'un jour il est sorti de la ville avec un lieutenant; et ils avaient pris des épées, et ils se mirent à se piquer l'un l'autre, et Alexéi Ivanitch a tué le lieutenant, et encore devant deux témoins. Que veux-tu! contre le malheur il n'y a pas de maître."</p>
+            
+            <p>En ce moment entre l'ouriadnik, jeune et beau Cosaque. "Maximitch, lui dit la femme du capitaine, donne un logement à monsieur l'officier, et propre.</p>
+            
+            <p>— J'obéis, Vassilissa Iégorovna, répondit l'ouriadnik. Ne faut-il pas mettre Sa Seigneurie chez Ivan Poléjaiéff?</p>
+            
+            <p>— Tu radotes, Maximitch, répliqua la commandante; Poléjaiéff est déjà logé très à l'étroit; et puis c'est mon compère; et puis il n'oublie pas que nous sommes ses chefs. Conduis monsieur l'officier... Comment est votre nom, mon petit père?</p>
+            
+            <p>— Piòtr Andréitch.</p>
+            
+            <p>— Conduis Piòtr Andréitch chez Siméon Kouzoff. Le coquin a laissé entrer son cheval dans mon potager. Est-ce que tout est en ordre, Maximitch?</p>
+            
+            <p>— Grâce à Dieu, tout est tranquille, répondit le Cosaque; il n'y a que le caporal Prokoroff qui s'est battu au bain avec la femme Oustinia Pégoulina pour un seau d'eau chaude.</p>
+            
+            <p>— Ivan Ignatiitch, dit la femme du capitaine au petit vieillard borgne, juge entre Prokoroff et Oustinia qui est fautif, et punis-les tous deux.</p>
+            
+            <p>— C'est bon, Maximitch, va-t'en avec Dieu.</p>
+            
+            <p>— Piòtr Andréitch, Maximitch vous conduira à votre logement."</p>
+            """,
+                "questions": [
+                    {"id": 1, "type": "quiz", "question": "Où était Ivan Kouzmitch?", "options": ["À la forteresse", "Chez le père Garasim", "À Orenbourg", "Dans la chambre"], "correct": "Chez le père Garasim"},
+                    {"id": 2, "type": "quiz", "question": "Qui est Vassilissa Iégorovna?", "options": ["La servante", "La fille du commandant", "La femme du commandant", "La mère du commandant"], "correct": "La femme du commandant"},
+                    {"id": 3, "type": "quiz", "question": "Pourquoi Chvabrine a-t-il été transféré dans la garnison?", "options": ["Pour un vol", "Pour un meurtre", "Pour une désertion", "Pour une insubordination"], "correct": "Pour un meurtre"},
+                    {"id": 4, "type": "quiz", "question": "Où Maximitch a-t-il conduit Pierre?", "options": ["Chez Ivan Poléjaiéff", "Chez le capitaine", "Chez Siméon Kouzoff", "Chez Chvabrine"], "correct": "Chez Siméon Kouzoff"},
+                    {"id": 5, "type": "quiz", "question": "Qu'est-ce que Vassilissa Iégorovna demande à Maximitch de faire?", "options": ["Préparer à manger", "Donner un logement à Pierre", "Appeler le capitaine", "Préparer les chevaux"], "correct": "Donner un logement à Pierre"}
+                ]
+            },
+
+            11: {
+                "title": "Chapitre III (Partie 3/4): L'installation et Chvabrine",
+                "text": """
+            <p>Je pris congé; l'ouriadnik me conduisit à une isba qui se trouvait sur le bord escarpé de la rivière, tout au bout de la forteresse. La moitié de l'isba était occupée par la famille de Siméon Kouzoff, l'autre me fut abandonnée. Cette moitié se composait d'une chambre assez propre, coupée en deux par une cloison. Savéliitch commença à s'y installer, et moi, je regardai par l'étroite fenêtre. Je voyais devant moi s'étendre une steppe nue et triste; sur le côté s'élevaient des cabanes. Quelques poules erraient dans la rue. Une vieille femme, debout sur le perron et tenant une auge à la main, appelait des cochons qui lui répondaient par un grognement amical. Et voilà dans quelle contrée j'étais condamné à passer ma jeunesse!... Une tristesse amère me saisit; je quittai la fenêtre et me couchai sans souper, malgré les exhortations de Savéliitch, qui ne cessait de répéter, avec angoisse: "Ô Seigneur Dieu! il ne daigne rien manger. Que dirait ma maîtresse si l'enfant allait tomber malade?"</p>
+            
+            <p>Le lendemain, à peine avais-je commencé de m'habiller, que la porte de ma chambre s'ouvrit. Il entra un jeune officier, de petite taille, de traits peu réguliers, mais dont la figure basanée avait une vivacité remarquable.</p>
+            
+            <p>"Pardonnez-moi, me dit-il en français, si je viens ainsi sans cérémonie faire votre connaissance. J'ai appris hier votre arrivée, et le désir de voir enfin une figure humaine s'est tellement emparé de moi que je n'ai pu y résister plus longtemps. Vous comprendrez cela quand vous aurez vécu ici quelque temps."</p>
+            
+            <p>Je devinai sans peine que c'était l'officier renvoyé de la garde pour l'affaire du duel. Nous fîmes connaissance. Chvabrine avait beaucoup d'esprit. Sa conversation était animée, intéressante. Il me dépeignit avec beaucoup de verve et de gaieté la famille du commandant, sa société et en général toute la contrée où le sort m'avait jeté. Je riais de bon coeur, lorsque ce même invalide, que j'avais vu rapiécer son uniforme dans l'antichambre du capitaine, entra et m'invita à dîner de la part de Vassilissa Iégorovna. Chvabrine déclara qu'il m'accompagnait.</p>
+            """,
+                "questions": [
+                    {"id": 1, "type": "quiz", "question": "Où se trouvait l'isba de Pierre?", "options": ["Au centre de la forteresse", "Sur le bord escarpé de la rivière", "Près de l'église", "À côté de la maison du commandant"], "correct": "Sur le bord escarpé de la rivière"},
+                    {"id": 2, "type": "quiz", "question": "Pourquoi Pierre s'est-il couché sans souper?", "options": ["Il n'avait pas faim", "Une tristesse amère l'avait saisi", "La nourriture était mauvaise", "Il était malade"], "correct": "Une tristesse amère l'avait saisi"},
+                    {"id": 3, "type": "quiz", "question": "Qui a rendu visite à Pierre le lendemain?", "options": ["Le capitaine", "Savéliitch", "Chvabrine", "Maximitch"], "correct": "Chvabrine"},
+                    {"id": 4, "type": "quiz", "question": "Pourquoi Chvabrine avait-il été renvoyé de la garde?", "options": ["Pour un vol", "Pour une désertion", "Pour un duel", "Pour une insubordination"], "correct": "Pour un duel"},
+                    {"id": 5, "type": "quiz", "question": "Qui a invité Pierre à dîner?", "options": ["Le capitaine", "Chvabrine", "Vassilissa Iégorovna", "Ivan Ignatiitch"], "correct": "Vassilissa Iégorovna"}
+                ]
+            },
+
+            12: {
+                "title": "Chapitre III (Partie 4/4): Marie Ivanovna et le dîner",
+                "text": """
+            <p>En nous approchant de la maison du commandant, nous vîmes sur la place une vingtaine de petits vieux invalides, avec de longues queues et des chapeaux à trois cornes. Ils étaient rangés en ligne de bataille. Devant eux se tenait le commandant, vieillard encore vert et de haute taille, en robe de chambre et en bonnet de coton. Dès qu'il nous aperçut, il s'approcha de nous, me dit quelques mots affables, et se remit à commander l'exercice. Nous allions nous arrêter pour voir les manoeuvres, mais il nous pria d'aller sur-le-champ chez Vassilissa Iégorovna, promettant qu'il nous rejoindrait aussitôt. "Ici, nous dit-il, vous n'avez vraiment rien à voir."</p>
+            
+            <p>Vassilissa Iégorovna nous reçut avec simplicité et bonhomie, et me traita comme si elle m'eût dès longtemps connu. L'invalide et Palachka mettaient la nappe.</p>
+            
+            <p>"Qu'est-ce qu'a donc aujourd'hui mon Ivan Kouzmitch à instruire si longtemps ses troupes? dit la femme du commandant. Palachka, va le chercher pour dîner. Mais où est donc Macha?"</p>
+            
+            <p>À peine avait-elle prononcé ce nom, qu'entra dans la chambre une jeune fille de seize ans, au visage rond, vermeil, ayant les cheveux lissés en bandeau et retenus derrière ses oreilles que rougissaient la pudeur et l'embarras. Elle ne me plut pas extrêmement au premier coup d'oeil; je la regardai avec prévention. Chvabrine m'avait dépeint Marie, la fille du capitaine, sous les traits d'une sotte. Marie Ivanovna alla s'asseoir dans un coin et se mit à coudre. Cependant on avait apporté le chchchi. Vassilissa Iégorovna, ne voyant pas revenir son mari, envoya pour la seconde fois Palachka l'appeler.</p>
+            
+            <p>"Dis au maître que les visites attendent; le chchchi se refroidit. Grâce à Dieu, l'exercice ne s'en ira pas, il aura tout le temps de s'égosiller à son aise."</p>
+            
+            <p>Le capitaine apparut bientôt, accompagné du petit vieillard borgne.</p>
+            
+            <p>"Qu'est-ce que cela, mon petit père? lui dit sa femme. La table est servie depuis longtemps, et l'on ne peut pas te faire venir.</p>
+            
+            <p>— Vois-tu bien, Vassilissa Iégorovna, répondit Ivan Kouzmitch, j'étais occupé de mon service, j'instruisais mes petits soldats.</p>
+            
+            <p>— Va, va, reprit-elle, ce n'est qu'une vanterie. Le service ne leur va pas, et toi tu n'y comprends rien. Tu aurais dû rester à la maison, à prier le bon Dieu; ça t'irait bien mieux. Mes chers convives, à table, je vous prie."</p>
+            """,
+                "questions": [
+                    {"id": 1, "type": "quiz", "question": "Que faisaient les invalides sur la place?", "options": ["Ils mangeaient", "Ils dormaient", "Ils étaient rangés en ligne de bataille", "Ils priaient"], "correct": "Ils étaient rangés en ligne de bataille"},
+                    {"id": 2, "type": "quiz", "question": "Comment s'appelle la fille du capitaine?", "options": ["Vassilissa", "Palachka", "Marie Ivanovna", "Oustinia"], "correct": "Marie Ivanovna"},
+                    {"id": 3, "type": "quiz", "question": "Quel âge a Marie Ivanovna?", "options": ["Quatorze ans", "Seize ans", "Dix-huit ans", "Vingt ans"], "correct": "Seize ans"},
+                    {"id": 4, "type": "quiz", "question": "Qu'est-ce que Chvabrine avait dit à Pierre au sujet de Marie?", "options": ["Qu'elle était très belle", "Qu'elle était une sotte", "Qu'elle était riche", "Qu'elle était savante"], "correct": "Qu'elle était une sotte"},
+                    {"id": 5, "type": "quiz", "question": "Pourquoi Vassilissa Iégorovna ne voulait-elle pas que son mari instruise trop les soldats?", "options": ["Parce qu'elle avait peur", "Parce que le dîner se refroidissait", "Parce qu'elle n'aimait pas les soldats", "Parce qu'il était fatigué"], "correct": "Parce que le dîner se refroidissait"}
+                ]
+            },
+            13: {
+                "title": "Chapitre IV (Partie 1/4): Le Duel — La vie à Bélogorsk",
+                "text": """
+<p><strong>IV. LE DUEL</strong></p>
+
+<p>Il se passa plusieurs semaines, pendant lesquelles ma vie dans la forteresse de Bélogorsk devint non seulement supportable, mais agréable même. J'étais reçu comme un membre de la famille dans la maison du commandant. Le mari et la femme étaient d'excellentes gens. Ivan Kouzmitch, qui d'enfant de troupe était parvenu au rang d'officier, était un homme tout simple et sans éducation, mais bon et loyal. Sa femme le menait, ce qui, du reste, convenait fort à sa paresse naturelle. Vassilissa Iégorovna dirigeait les affaires du service comme celles de son ménage, et commandait dans toute la forteresse comme dans sa maison. Marie Ivanovna cessa bientôt de se montrer sauvage. Nous fîmes plus ample connaissance. Je trouvai en elle une fille pleine de coeur et de raison. Peu à peu je m'attachai à cette bonne famille, même à Ivan Ignatiitch, le lieutenant borgne.</p>
+
+<p>Je devins officier. Mon service ne me pesait guère. Dans cette forteresse bénie de Dieu, il n'y avait ni exercice à faire, ni garde à monter, ni revue à passer. Le commandant instruisait quelquefois ses soldats pour son propre plaisir. Mais il n'était pas encore parvenu à leur apprendre quel était le côté droit, quel était le côté gauche. Chvabrine avait quelques livres français; je me mis à lire, et le goût de la littérature s'éveilla en moi. Le matin je lisais, et je m'essayais à des traductions, quelquefois même à des compositions en vers. Je dînais presque chaque jour chez le commandant, où je passais d'habitude le reste de la journée. Le soir, le père Garasim y venait accompagné de sa femme Akoulina, qui était la plus forte commère des environs.</p>
+""",
+                "questions": [
+                    {"id": 1, "type": "quiz", "question": "Comment était la vie de l'auteur dans la forteresse de Bélogorsk après plusieurs semaines?",
+                     "options": ["Difficile et insupportable", "Non seulement supportable, mais agréable même", "Triste et monotone", "Dangereuse"],
+                     "correct": "Non seulement supportable, mais agréable même"},
+                    {"id": 2, "type": "quiz", "question": "Qui commandait dans toute la forteresse selon le texte?",
+                     "options": ["Ivan Kouzmitch", "Ivan Ignatiitch", "Vassilissa Iégorovna", "Le père Garasim"],
+                     "correct": "Vassilissa Iégorovna"},
+                    {"id": 3, "type": "quiz", "question": "Quel défaut physique avait Ivan Ignatiitch?",
+                     "options": ["Il était boiteux", "Il était borgne", "Il était sourd", "Il était muet"],
+                     "correct": "Il était borgne"},
+                    {"id": 4, "type": "quiz", "question": "Que lisait l'auteur le matin?",
+                     "options": ["Des journaux", "Des livres français", "Des lettres", "Des poèmes russes"],
+                     "correct": "Des livres français"},
+                    {"id": 5, "type": "quiz", "question": "Qui venait le soir chez le commandant avec sa femme Akoulina?",
+                     "options": ["Chvabrine", "Ivan Ignatiitch", "Le père Garasim", "Le commandant"],
+                     "correct": "Le père Garasim"}
+                ]
+            },
+            14: {
+                "title": "Chapitre IV (Partie 2/4): La chanson et la querelle",
+                "text": """
+<p>Il va sans dire que chaque jour nous nous voyions, Chvabrine et moi. Cependant d'heure en heure sa conversation me devenait moins agréable. Ses perpétuelles plaisanteries sur la famille du commandant, et surtout ses remarques piquantes sur le compte de Marie Ivanovna, me déplaisaient fort. Je n'avais pas d'autre société que cette famille dans la forteresse, mais je n'en désirais pas d'autre.</p>
+
+<p>Malgré toutes les prophéties, les Bachkirs ne se révoltaient pas. La tranquillité régnait autour de notre forteresse. Mais cette paix fut troublée subitement par une guerre intestine.</p>
+
+<p>J'ai déjà dit que je m'occupais un peu de littérature. Mes essais étaient passables pour l'époque, et Soumarokoff lui-même leur rendit justice bien des années plus tard. Un jour, il m'arriva d'écrire une petite chanson dont je fus satisfait. On sait que, sous prétexte de demander des conseils, les auteurs cherchent volontiers un auditeur bénévole; je copiai ma petite chanson, et la portai à Chvabrine, qui seul, dans la forteresse, pouvait apprécier une oeuvre poétique.</p>
+
+<p>Après un court préambule, je tirai de ma poche mon feuillet, et lui lus les vers suivants:</p>
+
+<p><em>"Hélas! en fuyant Macha, j'espère recouvrer ma liberté!<br>
+Mais les yeux qui m'ont fait prisonnier sont toujours devant moi.<br>
+Toi qui sais mes malheurs, Macha, en me voyant dans cet état cruel, prends pitié de ton prisonnier."</em></p>
+
+<p>"Comment trouves-tu cela?" dis-je à Chvabrine, attendant une louange comme un tribut qui m'était dû.</p>
+
+<p>Mais, à mon grand mécontentement, Chvabrine, qui d'ordinaire montrait de la complaisance, me déclara net que ma chanson ne valait rien.</p>
+
+<p>"Pourquoi cela? lui demandai-je en m'efforçant de cacher mon humeur.</p>
+
+<p>— Parce que de pareils vers, me répondit-il, sont dignes de mon maître Trédiakofski."</p>
+
+<p>Il prit le feuillet de mes mains, et se mit à analyser impitoyablement chaque vers, chaque mot, en me déchirant de la façon la plus maligne. Cela dépassa mes forces; je lui arrachai le feuillet des mains, je lui déclarai que, de ma vie, je ne lui montrerais aucune de mes compositions. Chvabrine ne se moqua pas moins de cette menace.</p>
+
+<p>"Voyons, me dit-il, si tu seras en état de tenir ta parole; les poètes ont besoin d'un auditeur, comme Ivan Kouzmitch d'un carafon d'eau-de-vie avant dîner. Et qui est cette Macha? Ne serait-ce pas Marie Ivanovna?</p>
+
+<p>— Ce n'est pas ton affaire, répondis-je en fronçant le sourcil, de savoir quelle est cette Macha. Je ne veux ni de tes avis ni de tes suppositions."</p>
+""",
+                "questions": [
+                    {"id": 1, "type": "quiz", "question": "Qu'est-ce qui déplaisait à l'auteur dans la conversation de Chvabrine?",
+                     "options": ["Ses histoires de guerre", "Ses plaisanteries sur la famille du commandant", "Son silence", "Ses compliments"],
+                     "correct": "Ses plaisanteries sur la famille du commandant"},
+                    {"id": 2, "type": "quiz", "question": "À qui l'auteur a-t-il apporté sa chanson?",
+                     "options": ["Au commandant", "À Marie Ivanovna", "À Chvabrine", "À Ivan Ignatiitch"],
+                     "correct": "À Chvabrine"},
+                    {"id": 3, "type": "quiz", "question": "Comment Chvabrine a-t-il réagi à la chanson de l'auteur?",
+                     "options": ["Il l'a louée", "Il a dit qu'elle ne valait rien", "Il a pleuré", "Il n'a rien dit"],
+                     "correct": "Il a dit qu'elle ne valait rien"},
+                    {"id": 4, "type": "quiz", "question": "À quel poète Chvabrine a-t-il comparé les vers de l'auteur?",
+                     "options": ["Soumarokoff", "Trédiakofski", "Pouchkine", "Molière"],
+                     "correct": "Trédiakofski"},
+                    {"id": 5, "type": "quiz", "question": "Comment l'auteur a-t-il réagi aux critiques de Chvabrine?",
+                     "options": ["Il a accepté les critiques", "Il a arraché le feuillet des mains de Chvabrine", "Il a brûlé la chanson", "Il a pleuré"],
+                     "correct": "Il a arraché le feuillet des mains de Chvabrine"}
+                ]
+            },
+            15: {
+                "title": "Chapitre IV (Partie 3/4): Le défi et Ivan Ignatiitch",
+                "text": """
+<p>"— Oh! oh! poète vaniteux, continua Chvabrine en me piquant de plus en plus. Écoute un conseil d'ami: Macha n'est pas digne de devenir ta femme.</p>
+
+<p>— Tu mens, misérable! lui criai-je avec fureur, tu mens comme un effronté!"</p>
+
+<p>Chvabrine changea de visage. "Cela ne se passera pas ainsi, me dit-il en me serrant la main fortement; vous me donnerez satisfaction.</p>
+
+<p>— Bien, quand tu voudras!" répondis-je avec joie, car dans ce moment j'étais prêt à le déchirer.</p>
+
+<p>Je courus à l'instant chez Ivan Ignatiitch, que je trouvai une aiguille à la main. D'après l'ordre de la femme du commandant, il enfilait des champignons qui devaient sécher pour l'hiver.</p>
+
+<p>"Ah! Piôtr Andréitch, me dit-il en m'apercevant, soyez le bienvenu. Pour quelle affaire Dieu vous a-t-il conduit ici? oserais-je vous demander."</p>
+
+<p>Je lui déclarai en peu de mots que je m'étais pris de querelle avec Alexéi Ivanitch, et que je le priais, lui, Ivan Ignatiitch, d'être mon second. Ivan Ignatiitch m'écouta jusqu'au bout avec une grande attention, en écarquillant son oeil unique.</p>
+
+<p>"Vous daignez dire, me dit-il, que vous voulez tuer Alexéi Ivanitch, et que j'en suis témoin? c'est là ce que vous voulez dire? oserais-je vous demander.</p>
+
+<p>— Précisément.</p>
+
+<p>— Mais, mon Dieu! Piôtr Andréitch, quelle folie avez-vous en tête? Vous vous êtes dit des injures avec Alexéi Ivanitch; eh bien, la belle affaire! une injure ne se pend pas au cou. Il vous a dit des sottises, dites-lui des impertinences; il vous donnera une tape, rendez-lui un soufflet; lui un second, vous un troisième; et puis allez chacun de votre côté. Dans la suite, nous vous ferons faire la paix. Tandis que maintenant... Est-ce une bonne action de tuer son prochain? oserais-je vous demander. Encore si c'était vous qui dussiez le tuer! que Dieu soit avec lui, car je ne l'aime guère. Mais, si c'est lui qui vous perfore, vous aurez fait un beau coup. Qui est-ce qui payera les pots cassés? oserais-je vous demander."</p>
+
+<p>Les raisonnements du prudent officier ne m'ébranlèrent pas. Je restai ferme dans ma résolution. "Comme vous voudrez, dit Ivan Ignatiitch, faites ce qui vous plaira; mais à quoi bon serai-je témoin de votre duel? Des gens se battent; qu'y a-t-il là d'extraordinaire? oserais-je vous demander. Grâce à Dieu, j'ai approché de près les Suédois et les Turcs, et j'en ai vu de toutes les couleurs."</p>
+
+<p>Je tâchai de lui expliquer le mieux qu'il me fut possible quel était le devoir d'un second. Mais Ivan Ignatiitch était hors d'état de me comprendre. "Faites à votre guise, dit-il. Si j'avais à me mêler de cette affaire, ce serait pour aller annoncer à Ivan Kouzmitch, selon les règles du service, qu'il se trame dans la forteresse une action criminelle et contraire aux intérêts de la couronne..."</p>
+""",
+                "questions": [
+                    {"id": 1, "type": "quiz", "question": "Comment l'auteur a-t-il réagi quand Chvabrine a dit que Macha n'était pas digne de devenir sa femme?",
+                     "options": ["Il a pleuré", "Il a crié avec fureur 'Tu mens!'", "Il est parti en silence", "Il a accepté"],
+                     "correct": "Il a crié avec fureur 'Tu mens!'"},
+                    {"id": 2, "type": "quiz", "question": "À qui l'auteur s'est-il adressé pour lui demander d'être son second?",
+                     "options": ["Au commandant", "À Ivan Ignatiitch", "À Savéliitch", "À Marie Ivanovna"],
+                     "correct": "À Ivan Ignatiitch"},
+                    {"id": 3, "type": "quiz", "question": "Que faisait Ivan Ignatiitch quand l'auteur est entré chez lui?",
+                     "options": ["Il lisait", "Il enfilait des champignons", "Il dormait", "Il mangeait"],
+                     "correct": "Il enfilait des champignons"},
+                    {"id": 4, "type": "quiz", "question": "Quelle était la position d'Ivan Ignatiitch concernant le duel?",
+                     "options": ["Il voulait participer", "Il refusait d'être témoin", "Il voulait regarder", "Il voulait arrêter le duel"],
+                     "correct": "Il refusait d'être témoin"},
+                    {"id": 5, "type": "quiz", "question": "Que voulait faire Ivan Ignatiitch selon les règles du service?",
+                     "options": ["Annoncer le duel au commandant", "Rejoindre le duel", "Fuir la forteresse", "Rien"],
+                     "correct": "Annoncer le duel au commandant"}
+                ]
+            },
+            16: {
+                "title": "Chapitre IV (Partie 4/4): Le duel et la blessure",
+                "text": """
+<p>...et faire observer au commandant combien il serait désirable qu'il avisât aux moyens de prendre les mesures nécessaires..."</p>
+
+<p>J'eus peur, et suppliai Ivan Ignatiitch de ne rien dire au commandant. Je parvins à grand'peine à le calmer. Cependant il me donna sa parole de se taire, et je le laissai en repos.</p>
+
+<p>Comme d'habitude, je passai la soirée chez le commandant. Je m'efforçais de paraître calme et gai, pour n'éveiller aucun soupçon et éviter les questions importunes. Mais j'avoue que je n'avais pas le sang-froid dont se vantent les personnes qui se sont trouvées dans la même position. Toute cette soirée, je me sentis disposé à la tendresse, à la sensibilité. Marie Ivanovna me plaisait plus qu'à l'ordinaire. L'idée que je la voyais peut-être pour la dernière fois lui donnait à mes yeux une grâce touchante. Chvabrine entra. Je le pris à part, et l'informai de mon entretien avec Ivan Ignatiitch.</p>
+
+<p>"Pourquoi des seconds? me dit-il sèchement. Nous nous passerons d'eux."</p>
+
+<p>Nous convînmes de nous battre derrière les tas de foin, le lendemain matin, à six heures. À nous voir causer ainsi amicalement, Ivan Ignatiitch, plein de joie, manqua nous trahir.</p>
+
+<p>"Il y a longtemps que vous eussiez dû faire comme cela, me dit-il d'un air satisfait: mauvaise paix vaut mieux que bonne querelle."</p>
+
+<p>Mais la femme du commandant apprit tout. Le lendemain, à l'heure indiquée, alors que nous allions nous battre, Ivan Ignatiitch, suivi de cinq invalides, sortit de derrière un tas de foin. Il nous intima l'ordre de nous rendre chez le commandant. Vassilissa Iégorovna nous ordonna de donner nos épées. "Piotr Andréitch, je n'attendais pas cela de toi; comment n'as-tu pas honte? Alexéi Ivanitch, c'est autre chose; il a été transféré de la garde pour avoir fait périr une âme. Il ne croit pas en Notre-Seigneur. Mais toi, tu veux en faire autant?"</p>
+
+<p>Ivan Kouzmitch approuvait tout ce que disait sa femme: "Les duels sont formellement défendus par le code militaire."</p>
+
+<p>Cependant, nous ne fîmes pas la paix véritablement. Quelques jours plus tard, Chvabrine vint me trouver et me dit: "Pourquoi remettre plus longtemps? On ne nous observe plus. Allons au bord de la rivière; là personne ne nous empêchera."</p>
+
+<p>Nous partîmes en silence, et, après avoir descendu un sentier escarpé, nous nous arrêtâmes sur le bord de l'eau, et nos épées se croisèrent.</p>
+
+<p>Chvabrine était plus adroit que moi dans les armes; mais j'étais plus fort et plus hardi. Pendant longtemps nous ne pûmes nous faire aucun mal l'un à l'autre; mais enfin, remarquant que Chvabrine faiblissait, je l'attaquai vivement, et le fis presque entrer à reculons dans la rivière. Tout à coup j'entendis mon nom prononcé à haute voix; je tournai rapidement la tête, et j'aperçus Savéliitch qui courait à moi le long du sentier... Dans ce moment je sentis une forte piqûre dans la poitrine, sous l'épaule droite, et je tombai sans connaissance.</p>
+""",
+                "questions": [
+                    {"id": 1, "type": "quiz", "question": "Où les adversaires ont-ils décidé de se battre?",
+                     "options": ["Dans la forteresse", "Derrière les tas de foin", "Dans la maison du commandant", "Dans l'église"],
+                     "correct": "Derrière les tas de foin"},
+                    {"id": 2, "type": "quiz", "question": "À quelle heure le duel était-il prévu?",
+                     "options": ["À cinq heures", "À six heures", "À sept heures", "À huit heures"],
+                     "correct": "À six heures"},
+                    {"id": 3, "type": "quiz", "question": "Qui a surpris les duellistes la première fois?",
+                     "options": ["Le commandant", "Ivan Ignatiitch avec cinq invalides", "Marie Ivanovna", "Savéliitch"],
+                     "correct": "Ivan Ignatiitch avec cinq invalides"},
+                    {"id": 4, "type": "quiz", "question": "Qui est venu vers l'auteur pendant le duel et l'a distrait?",
+                     "options": ["Marie Ivanovna", "Le commandant", "Savéliitch", "Vassilissa Iégorovna"],
+                     "correct": "Savéliitch"},
+                    {"id": 5, "type": "quiz", "question": "Comment s'est terminé le duel?",
+                     "options": ["L'auteur a gagné", "Chvabrine a gagné", "L'auteur a été blessé et est tombé sans connaissance", "Le duel a été arrêté"],
+                     "correct": "L'auteur a été blessé et est tombé sans connaissance"},
+                    {"id": 6, "type": "quiz", "question": "Où l'auteur a-t-il été blessé?",
+                     "options": ["À la tête", "Au bras", "Dans la poitrine, sous l'épaule droite", "À la jambe"],
+                     "correct": "Dans la poitrine, sous l'épaule droite"}
+                ]
             }
         }
     }
