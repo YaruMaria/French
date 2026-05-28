@@ -767,6 +767,301 @@ Toi qui sais mes malheurs, Macha, en me voyant dans cet état cruel, prends piti
                     {"id": 4, "type": "quiz", "question": "À quoi pense Pierre en apprenant la nouvelle?", "options": ["À fuir", "Au sort de Marie Ivanovna", "À se battre", "À appeler des renforts"], "correct": "Au sort de Marie Ivanovna"}
                 ]
             }
+,
+21: {
+    "title": "Chapitre VII (Partie 1/2): La prise de la forteresse — La nuit avant l'assaut",
+    "text": """
+<p><strong>VII. LA PRISE DE LA FORTERESSE.</strong></p>
+
+<p>Je ne réfléchis pas longtemps; je me précipitai sur l'escalier qui aboutissait directement à la chambre de Marie Ivanovna. La porte était ouverte; la chambre était déserte; aucun domestique ne parut. Je m'avançai jusque dans la cuisine, et j'y trouvai Palachka dans une grande agitation.</p>
+
+<p>— Où est Marie Ivanovna? lui demandai-je avec un saisissement indicible.</p>
+
+<p>— Chez la femme du pope, monseigneur, répondit Palachka. Aksigna la Pélagie a reçu la nouvelle cette nuit, et a envoyé chercher Marie Ivanovna. Elle a eu peur, elle y court, et je suis restée pour faire les paquets.</p>
+
+<p>Je montai chez la femme du pope. Un bruit sourd s'élevait; la forteresse s'agitait comme une ruche. Les femmes couraient, pleuraient, criaient. De toute la nuit, je ne pus dormir, et ne quittai même pas mes habits. Le matin, je sortis et rencontrai Ivan Ignatiitch.</p>
+
+<p>— Où allez-vous? me dit-il. Ivan Kouzmitch est sur le rempart, et m'envoie vous chercher. Pougatcheff est arrivé.</p>
+
+<p>— Marie Ivanovna est-elle partie? demandai-je avec un tremblement intérieur.</p>
+
+<p>— Elle n'en a pas eu le temps, répondit-il. La route d'Orenbourg est coupée, la forteresse entourée. Cela va mal, Piôtr Andréitch.</p>
+
+<p>Nous nous rendîmes sur le rempart. Le commandant marchait devant sa petite troupe. Dans la steppe, on voyait une vingtaine de cavaliers. Le commandant ordonna de pointer le canon. Le boulet passa sans leur faire mal.</p>
+
+<p>En ce moment parut Vassilissa Iégorovna, suivie de Marie. « Eh bien, dit la commandante, où est l'ennemi?</p>
+
+<p>— L'ennemi n'est pas loin, répondit Ivan Kouzmitch. Et toi, Macha, as-tu peur?</p>
+
+<p>— Non, papa, répondit Marie; j'ai plus peur seule à la maison.»</p>
+""",
+    "questions": [
+        {"id": 1, "type": "quiz", "question": "Où Marie Ivanovna s'était-elle réfugiée?", "options": ["Chez le commandant", "Chez la femme du pope", "Dans l'église", "Chez Chvabrine"], "correct": "Chez la femme du pope"},
+        {"id": 2, "type": "quiz", "question": "Pourquoi Marie n'a-t-elle pas pu quitter la forteresse?", "options": ["Elle était malade", "La route d'Orenbourg était coupée", "Elle avait peur", "Son père l'a retenue"], "correct": "La route d'Orenbourg était coupée"}
+    ]
+},
+22: {
+    "title": "Chapitre VII (Partie 2/2): L'assaut et la mort du commandant",
+    "text": """
+<p>Tout à coup, débouchant d'une hauteur, parurent de nouveau des groupes d'hommes à cheval, et bientôt toute la steppe se couvrit de gens armés. Parmi eux, vêtu d'un cafetan rouge, se distinguait un homme monté sur un cheval blanc. C'était Pougatcheff lui-même.</p>
+
+<p>Les traîtres nous criaient: « Ne tirez pas; sortez pour recevoir le tsar; le tsar est ici.</p>
+
+<p>— Enfants, feu! s'écria le capitaine.</p>
+
+<p>Les soldats firent une décharge. Le Cosaque qui tenait la lettre tomba de cheval. « Vassilissa Iégorovna, dit le commandant, emmène Macha; tu vois bien que cette fille est plus morte que vive.</p>
+
+<p>— Ivan Kouzmitch, dit la commandante, Dieu donne la vie et la mort; bénis Macha.»</p>
+
+<p>Marie s'approcha d'Ivan Kouzmitch, se mit à genoux. Le vieux commandant fit sur elle trois fois le signe de la croix, puis la releva, l'embrassa. « Eh bien, Macha, sois heureuse; prie Dieu, il ne t'abandonnera pas.»</p>
+
+<p>Les rebelles accoururent sur la forteresse. Le commandant sortit du parapet. En ce moment les rebelles se ruèrent sur nous et forcèrent l'entrée. Je vis le commandant blessé à la tête. Des Cosaques me saisirent et me lièrent.</p>
+
+<p>Pougatcheff était assis dans un fauteuil, sur le perron de la maison du commandant. Quand nous approchâmes, on nous présenta à l'usurpateur. « Qui est le commandant? demanda-t-il.</p>
+
+<p>— Tu n'es pas mon empereur, répondit Ivan Kouzmitch d'une voix ferme; tu es un usurpateur et un brigand.»</p>
+
+<p>Pougatcheff fit un signe, et le pauvre capitaine fut pendu. Ivan Ignatiitch fut pendu après lui. C'était mon tour. Alors j'aperçus parmi les rebelles Chvabrine, qui avait eu le temps de se couper les cheveux en rond. Il s'approcha de Pougatcheff et lui dit quelques mots à l'oreille. « Qu'on le pende!» dit Pougatcheff. On me passa la corde au cou. Tout à coup un cri se fit entendre: « Arrêtez, maudits!»</p>
+""",
+    "questions": [
+        {"id": 1, "type": "quiz", "question": "Comment était vêtu Pougatcheff?", "options": ["En uniforme d'officier", "En cafetan rouge", "En habit de paysan", "En costume de prêtre"], "correct": "En cafetan rouge"},
+        {"id": 2, "type": "quiz", "question": "Qui a été pendu le premier?", "options": ["Ivan Ignatiitch", "Le commandant Ivan Kouzmitch", "Pierre Grineff", "Chvabrine"], "correct": "Le commandant Ivan Kouzmitch"}
+    ]
+},
+23: {
+    "title": "Chapitre VIII (Partie 1/2): La grâce inattendue",
+    "text": """
+<p>Les bourreaux s'arrêtèrent. Je regarde... Savéliitch était étendu aux pieds de Pougatcheff. « Ô mon propre père, lui disait mon pauvre menin, laisse-le libre, on t'en donnera une bonne rançon; mais pour l'exemple, ordonne qu'on me pende, moi, vieillard.»</p>
+
+<p>Pougatcheff fit un signe; on me délia aussitôt. « Notre père te pardonne», me disaient-ils. On m'amena de nouveau devant l'usurpateur. Pougatcheff me tendit sa main. « Baise la main, baise la main!» criait-on. Mais j'aurais préféré le plus atroce supplice. Je ne bougeai pas.</p>
+
+<p>En ce moment retentit un cri de femme. Des brigands traînaient Vassilissa Iégorovna. Soudain elle aperçut le gibet et reconnut son mari. « Scélérats, s'écria-t-elle, qu'en avez-vous fait? Ô ma lumière, Ivan Kouzmitch, ni les baïonnettes prussiennes ne t'ont touché, ni les balles turques; et tu as péri devant un vil condamné fuyard!</p>
+
+<p>— Faites taire la vieille sorcière!» dit Pougatcheff.</p>
+
+<p>Un jeune Cosaque la frappa de son sabre sur la tête, et elle tomba morte.</p>
+
+<p>La place se trouva vide. Je cherchai Marie des yeux. Qu'était-elle devenue? Une idée terrible me traversait l'esprit. En ce moment, un léger bruit se fit entendre, et Palachka sortit de derrière l'armoire.</p>
+
+<p>— Marie Ivanovna est en vie, dit-elle; elle est cachée chez Akoulina Pamphilovna.</p>
+
+<p>Je me précipitai vers la maison du pope. La femme du pope sortit dans l'antichambre. « Marie Ivanovna est couchée sur mon lit, derrière la cloison. Le scélérat est allé la voir. Il a tiré le rideau, l'a regardée, et rien de plus. Dieu nous a sauvés!»</p>
+""",
+    "questions": [
+        {"id": 1, "type": "quiz", "question": "Qui a sauvé Pierre de la pendaison?", "options": ["Chvabrine", "Savéliitch", "Marie", "Pougatcheff lui-même"], "correct": "Savéliitch"},
+        {"id": 2, "type": "quiz", "question": "Qui a tué Vassilissa Iégorovna?", "options": ["Pougatcheff", "Chvabrine", "Un jeune Cosaque", "Ivan Ignatiitch"], "correct": "Un jeune Cosaque"}
+    ]
+},
+24: {
+    "title": "Chapitre VIII (Partie 2/2): Le souper chez Pougatcheff",
+    "text": """
+<p>« Ah! ah! c'est Votre Seigneurie, dit Pougatcheff en me voyant. Soyez le bienvenu.»</p>
+
+<p>Les convives se serrèrent; je m'assis au bout de la table. Le voisin me versa une rasade d'eau-de-vie, à laquelle je ne touchai pas. Tous se traitaient comme des camarades, et ne montraient aucune déférence bien marquée pour leur chef. On prit la résolution de marcher sur Orenbourg.</p>
+
+<p>Les convives se levèrent, et prirent congé. Je voulus les suivre, mais Pougatcheff me dit: « Reste là, je veux te parler.» Nous demeurâmes en tête-à-tête.</p>
+
+<p>« Eh bien! Votre Seigneurie, me dit-il; avoue-le, tu as eu peur quand mes garçons t'ont jeté la corde au cou? J'ai reconnu à l'instant même le vieux hibou. Eh bien, aurais-tu pensé que l'homme qui t'a conduit au gîte dans la steppe était le grand tsar lui-même?»</p>
+
+<p>Je répondis: « Écoute, je te dirai toute la vérité. Puis-je reconnaître en toi un tsar? Tu es un homme d'esprit; tu verrais bien que je mens.</p>
+
+<p>— Qui donc suis-je d'après toi?</p>
+
+<p>— Dieu le sait; mais, qui que tu sois, tu joues un jeu périlleux.</p>
+
+<p>— Sers-moi fidèlement, et je ferai de toi un feld-maréchal et un prince.</p>
+
+<p>— Non, répondis-je; je suis gentilhomme; j'ai prêté serment à l'impératrice; je ne puis te servir.</p>
+
+<p>— Soit, dit-il; va-t'en des quatre côtés, et fais ce que bon te semble. Viens demain me dire adieu.»</p>
+
+<p>Je quittai Pougatcheff. La nuit était calme. Tout était tranquille dans la forteresse.</p>
+""",
+    "questions": [
+        {"id": 1, "type": "quiz", "question": "Quelle décision a été prise au souper?", "options": ["Attaquer Moscou", "Marcher sur Orenbourg", "Revenir en arrière", "Se disperser"], "correct": "Marcher sur Orenbourg"},
+        {"id": 2, "type": "quiz", "question": "Pierre a-t-il accepté de servir Pougatcheff?", "options": ["Oui", "Non", "Il a hésité", "Il a demandé à réfléchir"], "correct": "Non"}
+    ]
+},
+25: {
+    "title": "Chapitre IX (Partie 1/2): La séparation — Le nouveau commandant",
+    "text": """
+<p><strong>IX. LA SÉPARATION.</strong></p>
+
+<p>De très bonne heure le tambour me réveilla. Je me rendis sur la place. Les troupes de Pougatcheff commençaient à se ranger. Devant le perron de la maison du commandant, un Cosaque tenait par la bride un magnifique cheval blanc.</p>
+
+<p>Enfin Pougatcheff sortit. « Écoute, me dit-il, pars à l'instant même pour Orenbourg. Tu déclareras au gouverneur qu'ils aient à m'attendre dans une semaine. Bon voyage, Votre Seigneurie.»</p>
+
+<p>Puis, se tournant vers le peuple, il montra Chvabrine: « Voilà, enfants, dit-il, votre nouveau commandant. Obéissez-lui en toute chose.»</p>
+
+<p>J'entendis ces paroles avec terreur. Chvabrine devenu le maître de la place, Marie restait en son pouvoir. Grand Dieu! que deviendra-t-elle?</p>
+
+<p>En ce moment, je vis sortir de la foule mon Savéliitch; il s'approcha de Pougatcheff, et lui présenta une feuille de papier. C'était la note du bien de mon maître emporté par les brigands. Pougatcheff se mit en colère, mais finit par nous laisser partir.</p>
+
+<p>Je courus à la maison du pope pour y voir Marie Ivanovna. La femme du pope m'apprit que pendant la nuit, la fièvre chaude s'était déclarée chez la pauvre fille. Elle avait le délire. J'approchai doucement du lit. La malade ne me reconnut point.</p>
+
+<p>Je pris congé du pope, en lui recommandant Marie. « Adieu, Piôtr Andréitch, me dit la femme du pope; peut-être nous reverrons-nous. Vous excepté, la pauvre Marie n'a plus ni soutien ni consolateur.»</p>
+
+<p>Je sortis, et je pris la route d'Orenbourg, en compagnie de Savéliitch.</p>
+""",
+    "questions": [
+        {"id": 1, "type": "quiz", "question": "Qui est devenu le nouveau commandant de la forteresse?", "options": ["Pierre Grineff", "Chvabrine", "Savéliitch", "Le père Garasim"], "correct": "Chvabrine"},
+        {"id": 2, "type": "quiz", "question": "Pourquoi Pierre n'a-t-il pas pu voir Marie?", "options": ["Elle était partie", "Elle avait la fièvre", "Elle dormait", "Chvabrine l'interdisait"], "correct": "Elle avait la fièvre"}
+    ]
+},
+26: {
+    "title": "Chapitre IX (Partie 2/2): Le cadeau de Pougatcheff",
+    "text": """
+<p>J'allais ainsi, plongé dans mes réflexions, lorsque j'entendis tout d'un coup derrière moi un galop de chevaux. Je tournai la tête et vis un Cosaque qui accourait de la forteresse, tenant en main un cheval.</p>
+
+<p>« Votre Seigneurie, me dit-il, notre père vous fait don d'un cheval et d'une pelisse de son épaule. Et de plus, il vous donne un demi-rouble... Mais je l'ai perdu en route.»</p>
+
+<p>Savéliitch le regarda de travers: « Tu l'as perdu en route, dit-il; et qu'est-ce qui sonne dans ta poche, effronté que tu es?</p>
+
+<p>— Ce qui sonne dans ma poche! répliqua l'ouriadnik; c'est un mors de bride et non un demi-rouble.</p>
+
+<p>— Bien, bien! dis-je en terminant la dispute; remercie de ma part celui qui t'envoie.»</p>
+
+<p>À ces mots, il partit au galop.</p>
+
+<p>Je mis le touloup et montai à cheval, prenant Savéliitch en croupe. « Vois-tu bien, seigneur, me dit le vieillard, que ce n'est pas inutilement que j'ai présenté ma supplique au bandit? Le voleur a eu honte. D'un méchant chien, même une poignée de poils.»</p>
+
+<p>Nous continuâmes notre route vers Orenbourg.</p>
+""",
+    "questions": [
+        {"id": 1, "type": "quiz", "question": "Quels cadeaux Pougatcheff a-t-il envoyés à Pierre?", "options": ["Un cheval et une pelisse", "De l'argent et un sabre", "Une lettre et un cheval", "Un touloup et un chapeau"], "correct": "Un cheval et une pelisse"},
+        {"id": 2, "type": "quiz", "question": "Combien d'argent l'ouriadnik a-t-il prétendu avoir perdu?", "options": ["Un rouble", "Un demi-rouble", "Deux roubles", "Cinq roubles"], "correct": "Un demi-rouble"}
+    ]
+},
+27: {
+    "title": "Chapitre X (Partie 1/2): Le conseil de guerre à Orenbourg",
+    "text": """
+<p><strong>X. LE SIÈGE.</strong></p>
+
+<p>En approchant d'Orenbourg, nous aperçûmes des forçats qui travaillaient aux fortifications. Les sentinelles nous arrêtèrent aux portes. Quand le sergent sut que nous venions de la forteresse de Bélogorsk, il nous conduisit chez le général.</p>
+
+<p>Je le trouvai dans son jardin, occupé à envelopper des pommiers de paille. Il parut très content de me voir. Je lui racontai les terribles événements. « Pauvre Mironoff, dit-il, c'est dommage. Et qu'est devenue Macha, la fille du capitaine?</p>
+
+<p>— Elle est restée à la forteresse, chez la femme du pope.</p>
+
+<p>— Aïe! aïe! aïe! c'est mauvais. Nous verrons. Viens prendre le thé chez moi. Il y aura ce soir conseil de guerre.»</p>
+
+<p>Le soir, je me rendis chez le général. Tous les employés civils d'Orenbourg étaient réunis. Le général exposa longuement la question: comment agir contre les rebelles? Je dis que l'usurpateur n'était pas en état de résister à des forces disciplinées. Mon opinion fut accueillie avec mécontentement. On décida qu'il valait mieux rester derrière les murailles. Le général se rangea à l'avis de la majorité.</p>
+
+<p>Plusieurs jours après, Pougatcheff s'approcha d'Orenbourg. La vie dans la ville devint insupportable. La disette était affreuse. Je mourais d'ennui. Mon seul passe-temps consistait à faire des promenades militaires.</p>
+""",
+    "questions": [
+        {"id": 1, "type": "quiz", "question": "Qu'a proposé Pierre au conseil de guerre?", "options": ["Attendre derrière les murailles", "Attaquer Pougatcheff", "Négocier", "Se rendre"], "correct": "Attaquer Pougatcheff"},
+        {"id": 2, "type": "quiz", "question": "Qu'a décidé la majorité?", "options": ["Attaquer", "Rester dans la ville", "Fuir", "Appeler des renforts"], "correct": "Rester dans la ville"}
+    ]
+},
+28: {
+    "title": "Chapitre X (Partie 2/2): La lettre de Marie",
+    "text": """
+<p>Un jour, dans une escarmouche, j'atteignis un Cosaque resté en arrière. Il ôta son bonnet, et s'écria: « Bonjour, Piôtr Andréitch!» Je reconnus notre ouriadnik.</p>
+
+<p>« Y a-t-il longtemps que tu as quitté Bélogorsk?</p>
+<p>— Il n'y a pas longtemps. J'ai une lettre pour vous.»</p>
+
+<p>Il me présenta un papier plié. Je l'ouvris, et lus avec agitation:</p>
+
+<p>« Dieu m'a privé de mon père et de ma mère. Je n'ai plus sur la terre ni parents ni protecteurs. J'ai recours à vous. Alexéi Ivanitch me force à l'épouser. Il me traite avec cruauté. Si, après trois jours, je ne deviens pas sa femme, je n'aurai plus de ménagement à attendre. Ô mon père Piôtr Andréitch, vous êtes mon seul protecteur. MARIE MIRONOFF.»</p>
+
+<p>Je manquai de devenir fou. J'allai chez le général. « Votre Excellence, lui dis-je, permettez-moi de prendre un bataillon pour aller délivrer la forteresse de Bélogorsk.</p>
+<p>— Non, jeune homme, dit-il. Sur une si grande distance, l'ennemi vous couperait.»</p>
+
+<p>Je le quittai, le désespoir m'accablait. Tout à coup une idée me traversa l'esprit: j'allais retourner chez Pougatcheff.</p>
+""",
+    "questions": [
+        {"id": 1, "type": "quiz", "question": "Qui a apporté la lettre à Pierre?", "options": ["Savéliitch", "Chvabrine", "L'ouriadnik Maximitch", "Palachka"], "correct": "L'ouriadnik Maximitch"},
+        {"id": 2, "type": "quiz", "question": "Que demandait Marie dans sa lettre?", "options": ["De l'argent", "Qu'on vienne la délivrer", "Des médicaments", "Une lettre de ses parents"], "correct": "Qu'on vienne la délivrer"}
+    ]
+},
+29: {
+    "title": "Chapitre XI (Partie 1/2): Le retour chez Pougatcheff",
+    "text": """
+<p><strong>XI. LE CAMP DES REBELLES.</strong></p>
+
+<p>Je quittai le général. « Combien ai-je d'argent? demandai-je à Savéliitch.</p>
+<p>— Tu en as encore assez, me répondit-il. Les coquins ont eu beau fouiller partout, j'ai pu le leur souffler.»</p>
+
+<p>Je lui dis: « Donne-moi la moitié de ce que tu as là. Je pars pour la forteresse de Bélogorsk.</p>
+<p>— Ô mon père Piôtr Andréitch, dit mon bon menin, comment veux-tu te mettre en route? Prends du moins pitié de tes parents.</p>
+<p>— Ne te chagrine pas, Savéliitch, Dieu est plein de miséricorde.»</p>
+
+<p>Je lui permis de se préparer pour le départ. Bientôt nous sortîmes d'Orenbourg. Nous approchâmes de Berd, repaire de Pougatcheff. Une garde avancée nous arrêta. Je tirai mon sabre, frappai un paysan, et partis au galop. Mais Savéliitch resta en arrière. Je tournai mon cheval pour aller à son secours.</p>
+
+<p>On nous conduisit devant Pougatcheff. « Ah! c'est Votre Seigneurie, me dit-il. Pourquoi Dieu t'amène-t-il ici?</p>
+<p>— J'allais à la forteresse de Bélogorsk pour y délivrer une orpheline qu'on opprime.</p>
+<p>— Qui oserait offenser une orpheline? Parle, quel est le coupable?</p>
+<p>— Chvabrine, répondis-je; il veut la contraindre à devenir sa femme.</p>
+<p>— Je vais lui donner une leçon, à Chvabrine. Je le ferai pendre.»</p>
+
+<p>Khlopoucha, un des chefs, dit: « Tu t'es trop hâté de donner à Chvabrine le commandement de la forteresse.» Mais Pougatcheff ne changea pas d'avis.</p>
+""",
+    "questions": [
+        {"id": 1, "type": "quiz", "question": "Où Pierre est-il allé après avoir quitté le général?", "options": ["À la maison", "Au camp de Pougatcheff", "À Bélogorsk directement", "À Simbirsk"], "correct": "Au camp de Pougatcheff"},
+        {"id": 2, "type": "quiz", "question": "Qui Pierre a-t-il accusé d'opprimer Marie?", "options": ["Le général", "Savéliitch", "Chvabrine", "Pougatcheff lui-même"], "correct": "Chvabrine"}
+    ]
+},
+30: {
+    "title": "Chapitre XI (Partie 2/2): La délivrance",
+    "text": """
+<p>Le lendemain matin, on vint m'appeler. Devant la porte se tenait une kibitka. Pougatcheff me dit gaiement bonjour et m'ordonna de m'asseoir à ses côtés. « À la forteresse de Bélogorsk!» dit-il au cocher.</p>
+
+<p>Mon coeur battit violemment. Dans quelques heures je devais revoir Marie. J'étais agité par des pensées contradictoires. Pougatcheff ne savait pas qu'elle fût la fille du capitaine Mironoff. Si Chvabrine lui révélait tout, que deviendrait Marie?</p>
+
+<p>Nous arrivâmes. Chvabrine vint à la rencontre de l'usurpateur. À ma vue il se troubla. Nous entrâmes dans la chambre. Pougatcheff lui demanda: « Quelle est cette jeune fille que tu tiens sous ta garde? Montre-la-moi.»</p>
+
+<p>Chvabrine devint pâle comme la mort. « Tsar, dit-il, elle est au lit dans sa chambre.</p>
+<p>— Mène-moi chez elle.»</p>
+
+<p>Chvabrine se mit à fouiller dans ses poches. Pougatcheff poussa la porte du pied, elle s'ouvrit. Marie était assise sur le plancher, pâle, maigre, les cheveux épars. À ma vue elle poussa un cri. Pougatcheff la délivra.</p>
+
+<p>Chvabrine, en fureur, dit: « Cette jeune fille est la fille d'Ivan Mironoff.» Pougatcheff darda sur moi ses yeux flamboyants. Je lui répondis avec fermeté. Il finit par nous pardonner.</p>
+
+<p>« Prends ta fiancée, me dit-il; que Dieu vous donne bonheur et raison. Adieu, Votre Seigneurie.»</p>
+""",
+    "questions": [
+        {"id": 1, "type": "quiz", "question": "Où Pougatcheff a-t-il emmené Pierre?", "options": ["À Orenbourg", "À la forteresse de Bélogorsk", "À Moscou", "À Simbirsk"], "correct": "À la forteresse de Bélogorsk"},
+        {"id": 2, "type": "quiz", "question": "Comment Chvabrine a-t-il trahi Marie?", "options": ["Il a dit qu'elle était la fille du commandant", "Il a dit qu'elle était malade", "Il a dit qu'elle était partie", "Il a dit qu'elle était sa femme"], "correct": "Il a dit qu'elle était la fille du commandant"}
+    ]
+},
+31: {
+    "title": "Chapitre XII (Partie 1/2): L'arrestation",
+    "text": """
+<p><strong>XII. L'ARRESTATION.</strong></p>
+
+<p>Je proposai à Marie de se rendre à la maison de campagne de mes parents. Elle fut toute surprise; la mauvaise disposition de mon père lui faisait peur. Je la tranquillisai. Je savais que mon père tiendrait à honneur de recevoir chez lui la fille d'un vétéran mort pour sa patrie.</p>
+
+<p>Nous nous mîmes en route. Mais en chemin, nous fûmes arrêtés par des hussards. On me conduisit devant le major. Quelle fut ma surprise lorsque je reconnus en lui Ivan Ivanovitch Zourine, qui m'avait dévalisé à Simbirsk!</p>
+
+<p>« Est-ce possible! m'écriai-je; est-ce toi?» Il me raconta que la route était sûre. Je lui dis que j'accompagnais la fille du capitaine Mironoff. Il me conseilla de l'envoyer chez mes parents et de rester dans son détachement. Je suivis son conseil, et confiai Marie à Savéliitch.</p>
+
+<p>Bientôt, au moment où j'allais partir, Zourine entra dans ma chambre, un papier à la main. « Un petit désagrément, dit-il; on t'ordonne de te rendre devant la commission d'enquête créée contre Pougatcheff.» Le papier me tomba des mains. Je montai dans ma télègue, deux hussards s'assirent à mes côtés, et nous prîmes la route de Khasan.</p>
+""",
+    "questions": [
+        {"id": 1, "type": "quiz", "question": "Où Pierre a-t-il envoyé Marie?", "options": ["À Orenbourg", "À la maison de ses parents", "À Moscou", "À Saint-Pétersbourg"], "correct": "À la maison de ses parents"},
+        {"id": 2, "type": "quiz", "question": "Qui était le major qui a arrêté Pierre?", "options": ["Chvabrine", "Le général", "Zourine", "Pougatcheff"], "correct": "Zourine"}
+    ]
+},
+32: {
+    "title": "Chapitre XII (Partie 2/2): Le jugement et la grâce",
+    "text": """
+<p><strong>XIV. LE JUGEMENT.</strong></p>
+
+<p>À Khasan, on me mit les fers aux pieds. Le lendemain, on me conduisit devant la commission. On m'accusa d'avoir servi Pougatcheff. Je racontai toute la vérité, mais je ne prononçai pas le nom de Marie. Chvabrine parut comme témoin et confirma ses accusations. Je gardai le silence.</p>
+
+<p>Pendant ce temps, Marie arriva à Pétersbourg. Au jardin impérial, elle rencontra une dame qui lui proposa son aide. Marie lui raconta toute l'histoire. La dame se leva et s'éloigna. Le lendemain, une voiture armoriée s'arrêta devant la maison. On annonça que l'impératrice la demandait. Marie reconnut en elle la dame du jardin.</p>
+
+<p>« Je suis enchantée de pouvoir exaucer votre prière, dit l'impératrice. Voilà une lettre que vous remettrez à votre futur beau-père.»</p>
+
+<p>Bientôt après, Pierre fut délivré. Il assista au supplice de Pougatcheff. Celui-ci, l'ayant reconnu dans la foule, lui fit un dernier signe avec la tête. Pierre épousa Marie Ivanovna. Ils vécurent heureux dans leur domaine de Simbirsk.</p>
+""",
+    "questions": [
+        {"id": 1, "type": "quiz", "question": "Qui Marie a-t-elle rencontrée au jardin impérial?", "options": ["Une dame de la cour", "L'impératrice elle-même", "La femme du pope", "Palachka"], "correct": "L'impératrice elle-même"},
+        {"id": 2, "type": "quiz", "question": "Comment se termine l'histoire?", "options": ["Pierre est exécuté", "Pierre épouse Marie", "Marie meurt", "Pierre reste en exil"], "correct": "Pierre épouse Marie"}
+    ]
+}
         }
     }
 }

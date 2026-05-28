@@ -2785,6 +2785,99 @@
     function resetFriendsChat() { location.reload(); }
 </script>
 
+    {# ==================== ЧТЕНИЕ (ПРОДВИНУТЫЙ КУРС) ==================== #}
+    {% elif day.type == 'advanced_reading' %}
+
+    <div style="background: linear-gradient(135deg, #f9f4e8 0%, #f0ebe0 100%); border-radius: 16px; padding: 30px; margin-bottom: 25px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <h3 style="margin: 0;">📖 {{ day.title }}</h3>
+            {% if day.reading_data %}
+            <div style="font-size: 0.9rem; color: var(--text-muted);">
+                Часть {{ day.chapter_part }} из 32
+            </div>
+            {% endif %}
+        </div>
+
+        {% if day.reading_data %}
+        <div style="background: white; border-radius: 16px; padding: 25px; margin-bottom: 25px;">
+            <div style="font-family: 'Georgia', serif; line-height: 1.8; font-size: 1rem;">
+                {{ day.reading_data.text | safe }}
+            </div>
+        </div>
+
+        {% if day.reading_data.questions %}
+        <div style="background: white; border-radius: 16px; padding: 25px; margin-bottom: 25px;">
+            <h4>📝 Вопросы для проверки понимания</h4>
+            <div style="margin-top: 15px;">
+                {% for question in day.reading_data.questions %}
+                <div style="margin-bottom: 20px; padding: 15px; background: #f7f9f6; border-radius: 12px;">
+                    <p><strong>{{ question.id }}. {{ question.question }}</strong></p>
+                    <div style="margin-left: 20px;">
+                        {% if question.type == 'quiz' %}
+                            {% for option in question.options %}
+                            <label style="display: block; margin: 5px 0;">
+                                <input type="radio" name="q{{ question.id }}" value="{{ option }}">
+                                {{ option }}
+                            </label>
+                            {% endfor %}
+                        {% else %}
+                            <textarea rows="3" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #d4dcd0;" placeholder="Votre réponse..."></textarea>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+                <button onclick="checkReadingAnswers()" style="background: #8fa882; color: white; border: none; padding: 10px 20px; border-radius: 25px; cursor: pointer;">✅ Проверить ответы</button>
+                <div id="reading-feedback" style="margin-top: 15px;"></div>
+            </div>
+        </div>
+        {% endif %}
+
+        <div style="text-align: center;">
+            <form method="POST">
+                <input type="hidden" name="answer" value="готово">
+                <button type="submit" style="background: #8fa882; color: white; border: none; padding: 12px 30px; border-radius: 30px; cursor: pointer;">✅ Отметить урок как пройденный</button>
+            </form>
+        </div>
+
+        <script>
+            function checkReadingAnswers() {
+                const questions = {{ day.reading_data.questions | tojson }};
+                let correctCount = 0;
+                let totalCount = questions.length;
+                let feedback = "";
+
+                for (let i = 0; i < questions.length; i++) {
+                    const q = questions[i];
+                    if (q.type === 'quiz') {
+                        const selected = document.querySelector(`input[name="q${q.id}"]:checked`);
+                        if (selected && selected.value === q.correct) {
+                            correctCount++;
+                        }
+                    }
+                }
+
+                if (correctCount === totalCount) {
+                    feedback = "✅ Отлично! Все ответы правильные. Вы можете отметить урок как пройденный.";
+                } else {
+                    feedback = `📚 Вы ответили правильно на ${correctCount} из ${totalCount} вопросов. Попробуйте ещё раз, перечитайте текст внимательнее.`;
+                }
+
+                document.getElementById('reading-feedback').innerHTML = `<div style="padding: 15px; background: #e8f0e4; border-radius: 12px; margin-top: 10px;">${feedback}</div>`;
+            }
+        </script>
+
+                {% else %}
+        <div style="background: #f0f4ec; border-radius: 16px; padding: 40px; text-align: center;">
+            <p>📚 Текст для чтения скоро появится!</p>
+            <form method="POST">
+                <input type="hidden" name="answer" value="готово">
+                <button type="submit" style="margin-top: 20px;">Отметить как пройденный</button>
+            </form>
+        </div>
+        {% endif %}   <-- ЭТО ВАЖНО!
+
+    {# ==================== ОБЫЧНЫЙ УРОК С ДИАЛОГОМ ==================== #}
+    {% elif day.dialogue %}
 
 
     {# ==================== ОБЫЧНЫЙ УРОК С ДИАЛОГОМ ==================== #}
