@@ -15458,7 +15458,7 @@ COURSE_DAYS[65] = {
     "title": "Чтение: Капитанская дочка",
     "type": "reading",
     "reading_id": "captains_daughter",
-    "chapter_part": 16,
+    "chapter_part": 17,
     "question": "Пройдите все вопросы по тексту!",
     "correct_answer": "готово"
 }

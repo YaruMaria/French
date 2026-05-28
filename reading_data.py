@@ -594,6 +594,178 @@ Toi qui sais mes malheurs, Macha, en me voyant dans cet état cruel, prends piti
                      "options": ["À la tête", "Au bras", "Dans la poitrine, sous l'épaule droite", "À la jambe"],
                      "correct": "Dans la poitrine, sous l'épaule droite"}
                 ]
+            },
+            17: {
+                "title": "Chapitre V (Partie 1/2): La convalescence et la demande en mariage",
+                "text": """
+<p><strong>V. LA CONVALESCENCE</strong></p>
+
+<p>Quand je revins à moi, je restai quelque temps sans comprendre ni ce qui m'était arrivé, ni où je me trouvais. J'étais couché sur un lit dans une chambre inconnue, et sentais une grande faiblesse. Savéliitch se tenait devant moi, une lumière à la main. Quelqu'un déroulait avec précaution les bandages qui entouraient mon épaule et ma poitrine. Peu à peu mes idées s'éclaircirent. Je me rappelai mon duel, et devinai sans peine que j'étais blessé. En cet instant, la porte gémit faiblement sur ses gonds:</p>
+
+<p>"Eh bien, comment va-t-il? murmura une voix qui me fit tressaillir.</p>
+
+<p>— Toujours dans le même état, répondit Savéliitch avec un soupir; toujours sans connaissance. Voilà déjà plus de quatre jours."</p>
+
+<p>Je voulus me retourner, mais je n'en eus pas la force.</p>
+
+<p>"Où suis-je? Qui est ici?" dis-je avec effort.</p>
+
+<p>Marie Ivanovna s'approcha de mon lit, et se pencha doucement sur moi.</p>
+
+<p>"Comment vous sentez-vous? me dit-elle.</p>
+
+<p>— Bien, grâce à Dieu, répondis-je d'une voix faible. C'est vous, Marie Ivanovna; dites-moi...</p>
+
+<p>Je ne pus achever. Savéliitch poussa un cri, la joie se peignit sur son visage.</p>
+
+<p>"Il revient à lui, il revient à lui, répétait-il; grâces te soient rendues, Seigneur! Mon père Piotr Andréitch, m'as-tu fait assez peur? quatre jours! c'est facile à dire..."</p>
+
+<p>Marie Ivanovna l'interrompit.</p>
+
+<p>"Ne lui parle pas trop, Savéliitch, dit-elle: il est encore bien faible."</p>
+
+<p>Elle sortit et ferma la porte avec précaution. Je me sentais agité de pensées confuses. J'étais donc dans la maison du commandant, puisque Marie Ivanovna pouvait entrer dans ma chambre! Je voulus interroger Savéliitch; mais le vieillard hocha la tête et se boucha les oreilles. Je fermai les yeux avec mécontentement, et m'endormis bientôt.</p>
+
+<p>En m'éveillant, j'appelai Savéliitch; mais, au lieu de lui, je vis devant moi Marie Ivanovna. Elle me salua de sa douce voix. Je ne puis exprimer la sensation délicieuse qui me pénétra dans ce moment. Je saisis sa main et la serrai avec transport, en l'arrosant de mes larmes. Marie ne la retirait pas..., et tout à coup je sentis sur ma joue l'impression humide et brûlante de ses lèvres. Un feu rapide parcourut tout mon être.</p>
+
+<p>"Chère bonne Marie Ivanovna, lui dis-je, soyez ma femme, consentez à mon bonheur."</p>
+
+<p>Elle reprit sa raison:</p>
+
+<p>"Au nom du ciel, calmez-vous, me dit-elle en ôtant sa main, vous êtes encore en danger; votre blessure peut se rouvrir; ayez soin de vous,... ne fût-ce que pour moi."</p>
+
+<p>Après ces mots, elle sortit en me laissant au comble du bonheur. Je me sentais revenir à la vie.</p>
+
+<p>Dès cet instant je me sentis mieux d'heure en heure. C'était le barbier du régiment qui me pansait, car il n'y avait pas d'autre médecin dans la forteresse; et grâce à Dieu, il ne faisait pas le docteur. Ma jeunesse et la nature hâtèrent ma guérison. Toute la famille du commandant m'entourait de soins. Marie Ivanovna ne me quittait presque jamais. Il va sans dire que je saisis la première occasion favorable pour continuer ma déclaration interrompue, et, cette fois, Marie m'écouta avec plus de patience. Elle me fit naïvement l'aveu de son affection, et ajouta que ses parents seraient sans doute heureux de son bonheur. "Mais pensez-y bien, me disait-elle; n'y aura-t-il pas d'obstacles de la part des vôtres?"</p>
+
+<p>Ce mot me fit réfléchir. Je ne doutais pas de la tendresse de ma mère; mais, connaissant le caractère et la façon de penser de mon père, je pressentais que mon amitié ne le toucherait pas extrêmement, et qu'il la traiterait de folie de jeunesse. Je l'avouai franchement à Marie Ivanovna; mais néanmoins je résolus d'écrire à mon père aussi éloquemment que possible pour lui demander sa bénédiction. Je montrai ma lettre à Marie Ivanovna, qui la trouva si convaincante et si touchante qu'elle ne douta plus du succès, et s'abandonna aux sentiments de son coeur avec toute la confiance de la jeunesse.</p>
+
+<p>Je fis la paix avec Chvabrine dans les premiers jours de ma convalescence. Ivan Kouzmitch me dit en me reprochant mon duel: "Vois-tu bien, Piotr Andréitch, je devrais à la rigueur te mettre aux arrêts; mais te voilà déjà puni sans cela. Pour Alexéi Ivanitch, il est enfermé par mon ordre, et sous bonne garde, dans le magasin à blé, et son épée est sous clef chez Vassilissa Iégorovna. Il aura le temps de réfléchir à son aise et de se repentir."</p>
+
+<p>J'étais trop content pour garder dans mon coeur le moindre sentiment de rancune. Je me mis à prier pour Chvabrine, et le bon commandant, avec la permission de sa femme, consentit à lui rendre la liberté. Chvabrine vint me voir. Il témoigna un profond regret de tout ce qui était arrivé, avoua que toute la faute était à lui, et me pria d'oublier le passé. Étant de ma nature peu rancunier, je lui pardonnai de bon coeur et notre querelle et ma blessure. Je voyais dans sa calomnie l'irritation de la vanité blessée; je pardonnai donc généreusement à mon rival malheureux.</p>
+""",
+                "questions": [
+                    {"id": 1, "type": "quiz", "question": "Combien de jours Pierre est-il resté sans connaissance?", "options": ["Deux jours", "Quatre jours", "Six jours", "Huit jours"], "correct": "Quatre jours"},
+                    {"id": 2, "type": "quiz", "question": "Qui a soigné Pierre?", "options": ["Un médecin", "Le barbier du régiment", "Marie Ivanovna", "Savéliitch"], "correct": "Le barbier du régiment"},
+                    {"id": 3, "type": "quiz", "question": "Que demande Pierre à Marie Ivanovna?", "options": ["Son pardon", "De l'épouser", "De l'aider à s'enfuir", "De lui écrire une lettre"], "correct": "De l'épouser"},
+                    {"id": 4, "type": "quiz", "question": "Comment Pierre a-t-il traité Chvabrine après sa guérison?", "options": ["Il l'a défié en duel", "Il lui a pardonné", "Il l'a dénoncé au commandant", "Il l'a évité"], "correct": "Il lui a pardonné"}
+                ]
+            },
+            18: {
+                "title": "Chapitre V (Partie 2/2): La lettre du père et la séparation",
+                "text": """
+<p>Je fus bientôt guéri complètement, et pus retourner à mon logis. J'attendais avec impatience la réponse à ma lettre, n'osant pas espérer, mais tâchant d'étouffer en moi de tristes pressentiments. Je ne m'étais pas encore expliqué avec Vassilissa Iégorovna et son mari. Mais ma recherche ne pouvait pas les étonner: ni moi ni Marie ne cachions nos sentiments devant eux, et nous étions assurés d'avance de leur consentement.</p>
+
+<p>Enfin, un beau jour, Savéliitch entra chez moi, une lettre à la main. Je la pris en tremblant. L'adresse était écrite de la main de mon père. Cette vue me prépara à quelque chose de grave, car, d'habitude, c'était ma mère qui m'écrivait, et lui ne faisait qu'ajouter quelques lignes à la fin. Longtemps je ne pus me décider à rompre le cachet; je relisais la suscription solennelle: "À mon fils Piötr Andréitch Grineff, gouvernement d'Orenbourg, forteresse de Bélogorsk". Je tâchais de découvrir, à l'écriture de mon père, dans quelle disposition d'esprit il avait écrit la lettre. Enfin je me décidai à décacheter, et dès les premières lignes je vis que toute l'affaire était au diable. Voici le contenu de cette lettre:</p>
+
+<p>"Mon fils Piötr, nous avons reçu le 15 de ce mois la lettre dans laquelle tu nous demandes notre bénédiction paternelle et notre consentement à ton mariage avec Marie Ivanovna, fille Mironoff. Et non seulement je n'ai pas l'intention de te donner ni ma bénédiction ni mon consentement, mais encore j'ai l'intention d'arriver jusqu'à toi et de te bien punir pour tes sottises comme un petit garçon, malgré ton rang d'officier, parce que tu as prouvé que tu n'es pas digne de porter l'épée qui t'a été remise pour la défense de la patrie, et non pour te battre en duel avec des fous de ton espèce. Je vais écrire à l'instant même à André Carlovitch pour le prier de te transférer de la forteresse de Bélogorsk dans quelque endroit encore plus éloigné afin de faire passer ta folie. En apprenant ton duel et ta blessure, ta mère est tombée malade de douleur, et maintenant encore elle est alitée. Qu'advindra-t-il de toi? Je prie Dieu qu'il te corrige, quoique je n'ose pas avoir confiance en sa bonté.</p>
+
+<p>"Ton père, A. G."</p>
+
+<p>La lecture de cette lettre éveilla en moi des sentiments divers. Les dures expressions que mon père ne m'avait pas ménagées me blessaient profondément; le dédain avec lequel il traitait Marie Ivanovna me semblait aussi injuste que malséant; enfin l'idée d'être renvoyé hors de la forteresse de Bélogorsk m'épouvantait. Mais j'étais surtout chagriné de la maladie de ma mère. J'étais indigné contre Savéliitch, ne doutant pas que ce ne fût lui qui avait fait connaître mon duel à mes parents. Après avoir marché quelque temps en long et en large dans ma petite chambre, je m'arrêtai brusquement devant lui, et lui dis avec colère: "Il paraît qu'il ne t'a pas suffi que, grâce à toi, j'aie été blessé et tout au moins au bord de la tombe; tu veux aussi tuer ma mère".</p>
+
+<p>Savéliitch resta immobile comme si la foudre l'avait frappé.</p>
+
+<p>"Aie pitié de moi, seigneur, s'écria-t-il presque en sanglotant; qu'est-ce que tu daignes me dire? C'est moi qui suis la cause que tu as été blessé? Mais Dieu voit que je courais mettre ma poitrine devant toi pour recevoir l'épée d'Alexié Ivanitch. La vieillesse maudite m'en a seule empêché. Qu'ai-je donc fait à ta mère?"</p>
+
+<p>Mais qui donc s'était donné la peine de dénoncer ma conduite à mon père? Le général? il ne semblait pas s'occuper beaucoup de moi; et puis, Ivan Kouzmitch n'avait pas cru nécessaire de lui faire un rapport sur mon duel. Je me perdais en suppositions. Mes soupçons s'arrêtaient sur Chvabrine; lui seul trouvait un avantage dans cette dénonciation, dont la suite pouvait être mon éloignement de la forteresse et ma séparation d'avec la famille du commandant. J'allai tout raconter à Marie Ivanovna.</p>
+
+<p>"Que vous est-il arrivé? me dit-elle; comme vous êtes pâle!</p>
+
+<p>— Tout est fini", lui répondis-je, en lui remettant la lettre de mon père.</p>
+
+<p>Ce fut à son tour de pâlir. Après avoir lu, elle me rendit la lettre, et me dit d'une voix émue: "Ce n'a pas été mon destin. Vos parents ne veulent pas de moi dans leur famille; que la volonté de Dieu soit faite! Dieu sait mieux que nous ce qui nous convient. Il n'y a rien à faire, Piôtr Andréitch; soyez heureux, vous au moins."</p>
+
+<p>"Cela ne sera pas, m'écriai-je, en la saisissant par la main. Tu m'aimes, je suis prêt à tout. Allons nous jeter aux pieds de tes parents. Ce sont des gens simples; ils ne sont ni fiers ni cruels; ils nous donneront, eux, leur bénédiction, nous nous marierons; et puis, avec le temps, j'en suis sûr, nous parviendrons à fléchir mon père. Ma mère intercédera pour nous, il me pardonnera."</p>
+
+<p>"Non, Piôtr Andréitch, répondit Marie: je ne t'épouserai pas sans la bénédiction de tes parents. Sans leur bénédiction tu ne seras pas heureux. Soumettons-nous à la volonté de Dieu. Si tu rencontres une autre fiancée, si tu l'aimes, que Dieu soit avec toi. Piôtr Andréitch, moi, je prierai pour vous deux."</p>
+
+<p>Elle se mit à pleurer et se retira. De ce jour ma situation changea; Marie Ivanovna ne me parlait presque plus et tâchait même de m'éviter. La maison du commandant me devint insupportable; je m'habituai peu à peu à rester seul chez moi. La vie me devint à charge. Je m'abandonnai à une noire mélancolie, qu'alimentaient encore la solitude et l'inaction. Je me laissais complètement abattre et je craignais de devenir fou, lorsque des événements soudains, qui eurent une grande influence sur ma vie, vinrent donner à mon âme un ébranlement profond et salutaire.</p>
+""",
+                "questions": [
+                    {"id": 1, "type": "quiz", "question": "Que contient la lettre du père de Pierre?", "options": ["Sa bénédiction pour le mariage", "Son refus et la menace de transférer Pierre", "Une invitation à revenir à la maison", "Des nouvelles de la santé de sa mère"], "correct": "Son refus et la menace de transférer Pierre"},
+                    {"id": 2, "type": "quiz", "question": "De qui Pierre soupçonne-t-il la dénonciation?", "options": ["Savéliitch", "Chvabrine", "Le général", "Ivan Kouzmitch"], "correct": "Chvabrine"},
+                    {"id": 3, "type": "quiz", "question": "Que répond Marie Ivanovna à la proposition de Pierre de se marier quand même?", "options": ["Elle accepte", "Elle refuse sans la bénédiction des parents", "Elle veut s'enfuir avec lui", "Elle demande à ses parents"], "correct": "Elle refuse sans la bénédiction des parents"},
+                    {"id": 4, "type": "quiz", "question": "Quel état d'esprit envahit Pierre après cette séparation?", "options": ["La joie", "La colère", "La mélancolie", "L'espoir"], "correct": "La mélancolie"}
+                ]
+            },
+            19: {
+                "title": "Chapitre VI (Partie 1/2): L'arrivée de Pougatcheff",
+                "text": """
+<p><strong>VI. POUGATCHEFF</strong></p>
+
+<p>Avant d'entamer le récit des événements étranges dont je fus le témoin, je dois dire quelques mots sur la situation où se trouvait le gouvernement d'Orenbourg vers la fin de l'année 1773. Cette riche et vaste province était habitée par une foule de peuplades à demi sauvages, qui venaient récemment de reconnaître la souveraineté des tsars russes. Leurs révoltes continuelles, leur impatience de toute loi et de la vie civilisée, leur inconstance et leur cruauté demandaient, de la part du gouvernement, une surveillance constante pour les réduire à l'obéissance. On avait élevé des forteresses dans les lieux favorables, et dans la plupart on avait établi à demeure fixe des Cosaques, anciens possesseurs des rives du Iaïk. Mais ces Cosaques eux-mêmes, qui auraient dû garantir le calme et la sécurité de ces contrées, étaient devenus depuis quelque temps des sujets inquiets et dangereux pour le gouvernement impérial. En 1772, une émeute survint dans leur principale bourgade. Cette émeute fut causée par les mesures sévères qu'avait prises le général Traubenberg pour ramener l'armée à l'obéissance. Elles n'eurent d'autre résultat que le meurtre barbare de Traubenberg, l'élévation de nouveaux chefs, et finalement la répression de l'émeute à force de mitraille et de cruels châtiments.</p>
+
+<p>Cela s'était passé peu de temps avant mon arrivée dans la forteresse de Bélogorsk. Alors tout était ou paraissait tranquille. Mais l'autorité avait trop facilement prêté foi au feint repentir des révoltés, qui couvaient leur haine en silence, et n'attendaient qu'une occasion propice pour recommencer la lutte.</p>
+
+<p>Je reviens à mon récit.</p>
+
+<p>Un soir (c'était au commencement d'octobre 1773), j'étais seul à la maison, à écouter le sifflement du vent d'automne et à regarder les nuages qui glissaient rapidement devant la lune. On vint m'appeler de la part du commandant, chez lequel je me rendis à l'instant même. J'y trouvai Chvabrine, Ivan Ignatiitch et l'ouriadnik des Cosaques. Il n'y avait dans la chambre ni la femme ni la fille du commandant. Celui-ci me dit bonjour d'un air préoccupé. Il ferma la porte, fit asseoir tout le monde, hors l'ouriadnik, qui se tenait debout, tira un papier de sa poche et nous dit:</p>
+
+<p>"Messieurs les officiers, une nouvelle importante écoutez ce qu'écrit le général."</p>
+
+<p>Il mit ses lunettes et lut ce qui suit:</p>
+
+<p>"Je vous informe par la présente que le fuyard et schismatique Cosaque du Don Iéméliane Pougatcheff, après s'être rendu coupable de l'impardonnable insolence d'usurper le nom du défunt empereur Pierre III, a réuni une troupe de brigands, suscité des troubles dans les villages du Iaïk, et pris et même détruit plusieurs forteresses, en commettant partout des brigandages et des assassinats. En conséquence, dès la réception de la présente, vous aurez, monsieur le capitaine, à aviser aux mesures qu'il faut prendre pour repousser le susdit scélérat et usurpateur, et, s'il est possible, pour l'exterminer entièrement dans le cas où il tournerait ses armes contre la forteresse confiée à vos soins."</p>
+
+<p>"Prendre les mesures nécessaires, dit le commandant en ôtant ses lunettes et en pliant le papier; vois-tu bien! c'est facile à dire. Le scélérat semble fort, et nous n'avons que cent trente hommes, même en ajoutant les Cosaques, sur lesquels il n'y a pas trop à compter, soit dit sans te faire un reproche, Maximitch." L'ouriadnik sourit. "Cependant prenons notre parti, messieurs les officiers; soyez ponctuels; placez des sentinelles, établissez des rondes de nuit; dans le cas d'une attaque, fermez les portes et faites sortir les soldats. Toi, Maximitch, veille bien sur tes Cosaques. Il faut aussi examiner le canon et le bien nettoyer, et surtout garder le secret; que personne dans la forteresse ne sache rien avant le temps."</p>
+
+<p>Après avoir ainsi distribué ses ordres, Ivan Kouzmitch nous congédia. Je sortis avec Chvabrine, tout en devisant sur ce que nous venions d'entendre.</p>
+
+<p>"Qu'en crois-tu? comment finira tout cela? lui demandai-je.</p>
+
+<p>— Dieu le sait, répondit-il, nous verrons; jusqu'à présent je ne vois rien de grave. Si cependant..." Alors il se mit à rêver en sifflant avec distraction un air français.</p>
+
+<p>Malgré toutes nos précautions, la nouvelle de l'apparition de Pougatcheff se répandit dans la forteresse. Quel que fût le respect d'Ivan Kouzmitch pour son épouse, il ne lui aurait révélé pour rien au monde un secret confié comme affaire de service. Après avoir reçu la lettre du général, il s'était assez adroitement débarrassé de Vassilissa Iégorovna, en lui disant que le père Garasim avait reçu d'Orenbourg des nouvelles extraordinaires qu'il gardait dans le mystère le plus profond. Vassilissa Iégorovna prit à l'instant même le désir d'aller rendre visite à la femme du pope, et, d'après le conseil d'Ivan Kouzmitch, elle emmena Macha, de peur qu'elle ne la laissât s'ennuyer toute seule.</p>
+
+<p>Resté maître du terrain, Ivan Kouzmitch nous envoya chercher sur-le-champ, et prit soin d'enfermer Palachka dans la cuisine, pour qu'elle ne pût nous entendre.</p>
+""",
+                "questions": [
+                    {"id": 1, "type": "quiz", "question": "Qui est Iéméliane Pougatcheff?", "options": ["Un général russe", "Un Cosaque qui usurpe le nom de Pierre III", "Un ambassadeur étranger", "Un marchand riche"], "correct": "Un Cosaque qui usurpe le nom de Pierre III"},
+                    {"id": 2, "type": "quiz", "question": "Combien d'hommes y avait-il dans la forteresse de Bélogorsk?", "options": ["50", "100", "130", "200"], "correct": "130"},
+                    {"id": 3, "type": "quiz", "question": "Pourquoi Ivan Kouzmitch a-t-il envoyé sa femme et sa fille chez la femme du pope?", "options": ["Pour les protéger", "Pour pouvoir tenir un conseil de guerre en secret", "Pour les éloigner de la forteresse", "Pour leur faire peur"], "correct": "Pour pouvoir tenir un conseil de guerre en secret"},
+                    {"id": 4, "type": "quiz", "question": "Quel est l'ordre principal du commandant?", "options": ["Attaquer Pougatcheff", "Garder le secret", "Envoyer des lettres", "Fuir la forteresse"], "correct": "Garder le secret"}
+                ]
+            },
+            20: {
+                "title": "Chapitre VI (Partie 2/2): Les préparatifs et la torture du Bachkir",
+                "text": """
+<p>Vassilissa Iégorovna revint à la maison sans avoir rien pu tirer de la femme du pope; elle apprit en rentrant que, pendant son absence, un conseil de guerre s'était assemblé chez Ivan Kouzmitch, et que Palachka avait été enfermée sous clef. Elle se douta que son mari l'avait trompée, et se mit à l'accabler de questions. Mais Ivan Kouzmitch était préparé à cette attaque; il ne se troubla pas le moins du monde, et répondit bravement à sa curieuse moitié:</p>
+
+<p>"Vois-tu bien, ma petite mère, les femmes du pays se sont mis en tête d'allumer du feu avec de la paille; et comme cela peut être cause d'un malheur, j'ai rassemblé mes officiers et je leur ai donné l'ordre de veiller à ce que les femmes ne fassent pas de feu avec de la paille, mais bien avec des fagots et des broussailles."</p>
+
+<p>Le lendemain, au retour de la messe, elle aperçut Ivan Ignatiitch occupé à ôter du canon des guenilles, de petites pierres, des morceaux de bois, des osselets et toutes sortes d'ordures que les petits garçons y avaient fourrées. "Que peuvent signifier ces préparatifs guerriers? pensa la femme du commandant. Est-ce qu'on craindrait une attaque de la part des Kirghises? mais serait-il possible qu'Ivan Kouzmitch me cachât une pareille misère?"</p>
+
+<p>Elle appela Ivan Ignatiitch avec la ferme résolution de savoir de lui le secret qui tourmentait sa curiosité de femme. Vassilissa Iégorovna débuta par lui faire quelques remarques sur des objets de ménage, comme un juge qui commence un interrogatoire par des questions étrangères à l'affaire pour rassurer et endormir la prudence de l'accusé. Puis, après un silence de quelques instants, elle poussa un profond soupir, et dit en hochant la tête:</p>
+
+<p>"Oh! mon Dieu, Seigneur! voyez quelle nouvelle! Qu'adviendra-t-il de tout cela?</p>
+
+<p>— Eh! ma petite mère, répondit Ivan Ignatiitch, le Seigneur est miséricordieux; nous avons assez de soldats, beaucoup de poudre; j'ai nettoyé le canon. Peut-être bien repousserons-nous ce Pougatcheff. Si Dieu ne nous abandonne, le loup ne mangera personne ici.</p>
+
+<p>— Et quel homme est-ce que ce Pougatcheff?" demanda la femme du commandant.</p>
+
+<p>Ivan Ignatiitch vit bien qu'il avait trop parlé, et se mordit la langue. Mais il était trop tard, Vassilissa Iégorovna le contraignit à lui tout raconter, après avoir engagé sa parole qu'elle ne dirait rien à personne. Bientôt tout le monde parla de Pougatcheff.</p>
+
+<p>Le commandant envoya l'ouriadnik avec mission de bien s'enquérir de tout dans les villages voisins. L'ouriadnik revint après une absence de deux jours, et déclara qu'il avait vu dans la steppe, à soixante verstes de la forteresse, une grande quantité de feux, et qu'il avait ouï dire aux Bachkirs qu'une force innombrable s'avançait. Il ne pouvait rien dire de plus précis, ayant craint de s'aventurer davantage.</p>
+
+<p>On commença bientôt à remarquer une grande agitation parmi les Cosaques de la garnison. Dans toutes les rues, ils s'assemblaient par petits groupes, parlaient entre eux à voix basse, et se dispersaient dès qu'ils apercevaient un dragon ou tout autre soldat russe. On les fit espionner: Ioulai, Kalmouk baptisé, fit au commandant une révélation très grave. Selon lui, l'ouriadnik aurait fait de faux rapports; à son retour, le perfide Cosaque aurait dit à ses camarades qu'il s'était avancé jusque chez les révoltés, qu'il avait été présenté à leur chef, et que ce chef, lui ayant donné sa main à baiser, s'était longuement entretenu avec lui. Le commandant fit aussitôt mettre l'ouriadnik aux arrêts, et désigna Ioulai pour le remplacer. Ce changement fut accueilli par les Cosaques avec un mécontentement visible. Ils murmuraient à haute voix, et Ivan Ignatiitch, l'exécuteur de l'ordre du commandant, les entendit, de ses propres oreilles, dire assez clairement: "Attends, attends, rat de garnison!"</p>
+
+<p>On saisit un Bachkir porteur de lettres séditieuses. Le commandant assembla derechef ses officiers, et pour cela il voulut encore éloigner sa femme sous un prétexte spécieux. Mais Vassilissa Iégorovna découvrit la ruse et insista pour rester. On amena le Bachkir. Je le regardai et tressaillis involontairement. Jamais je n'oublierai cet homme: il paraissait âgé de soixante et dix ans au moins, et n'avait ni nez ni oreilles. Sa tête était rasée; quelques rares poils gris lui tenaient lieu de barbe. Il était de petite taille, maigre, courbé; mais ses yeux à la tatare brillaient encore.</p>
+
+<p>Le commandant ordonna de lui demander qui l'avait envoyé, mais le Bachkir se taisait. On ordonna de le fouetter. Mais quand on leva la main pour frapper, le Bachkir poussa un gémissement faible et puissant, et, relevant la tête, ouvrit la bouche, où, au lieu de langue, s'agitait un court tronçon. Nous fûmes tous frappés d'horreur. "Eh bien, dit le commandant, je vois que nous ne pourrons rien tirer de lui."</p>
+
+<p>Nous continuions à débattre notre position, lorsque Vassilissa Iégorovna se précipita dans la chambre, toute haletante, et avec un air effaré.</p>
+
+<p>"Malheur! malheur! répondit Vassilissa Iégorovna: le fort de Jinnéosern a été pris ce matin; le garçon du père Garasim vient de revenir. Il a vu comment on l'a pris. Le commandant et tous les officiers sont pendus, tous les soldats faits prisonniers; les scélérats vont venir ici."</p>
+
+<p>Le sort de Marie Ivanovna se présenta vivement à mon imagination, et le coeur me manquait en y pensant.</p>
+""",
+                "questions": [
+                    {"id": 1, "type": "quiz", "question": "Qu'est-ce qui manquait au Bachkir?", "options": ["Les oreilles et le nez", "La langue", "Les yeux", "Les mains"], "correct": "La langue"},
+                    {"id": 2, "type": "quiz", "question": "Quelle forteresse a été prise par Pougatcheff?", "options": ["Bélogorsk", "Orenbourg", "Jinnéosern", "Simbirsk"], "correct": "Jinnéosern"},
+                    {"id": 3, "type": "quiz", "question": "Comment le commandant de Jinnéosern a-t-il été traité?", "options": ["Il a été tué", "Il a été pendu avec ses officiers", "Il a été fait prisonnier", "Il s'est enfui"], "correct": "Il a été pendu avec ses officiers"},
+                    {"id": 4, "type": "quiz", "question": "À quoi pense Pierre en apprenant la nouvelle?", "options": ["À fuir", "Au sort de Marie Ivanovna", "À se battre", "À appeler des renforts"], "correct": "Au sort de Marie Ivanovna"}
+                ]
             }
         }
     }
