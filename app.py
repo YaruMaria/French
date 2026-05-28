@@ -62,35 +62,14 @@ ADVANCED_DAYS = {
         "title": "Чтение: Капитанская дочка (Глава VII, часть 1/2)",
         "type": "advanced_reading",
         "reading_id": "captains_daughter",
-        "chapter_part": 21,
+        "chapter_part": 18,
         "correct_answer": "готово"
     },
 
     # ========== ДЕНЬ 3: ТРАНСПОРТ / МЕТРО ==========
     3: {
-        "title": "Практика: Транспорт и метро",
-        "type": "advanced_lesson",
-        "dialogue": {
-            "fr": """— Excusez-moi, où est la station de métro la plus proche ?
-— Tournez à gauche, puis continuez tout droit pendant deux minutes. Vous la verrez.
-— Merci. Et pour prendre un billet ?
-— Vous pouvez prendre un ticket à la borne automatique. C'est 2 euros le ticket.
-— D'accord. Est-ce que ce métro va à la Tour Eiffel ?
-— Oui, prenez la ligne 6, direction Nation, et descendez à Bir-Hakeim.""",
-            "ru": """— Извините, где ближайшая станция метро?
-— Поверните налево, затем идите прямо две минуты. Вы её увидите.
-— Спасибо. А как купить билет?
-— Вы можете взять билет в автомате. Один билет стоит 2 евро.
-— Хорошо. Это метро идёт к Эйфелевой башне?
-— Да, садитесь на линию 6, направление Nation, и выходите на Bir-Hakeim."""
-        },
-        "phrases": [
-            {"fr": "Où est la station de métro ?", "ru": "Где находится станция метро?"},
-            {"fr": "Tournez à gauche / à droite", "ru": "Поверните налево / направо"},
-            {"fr": "Continuez tout droit", "ru": "Идите прямо"},
-            {"fr": "Un ticket, s'il vous plaît", "ru": "Один билет, пожалуйста"},
-            {"fr": "Cette ligne va à... ?", "ru": "Эта линия идёт до...?"}
-        ],
+        "title": "🚇 В транспорте — практика",
+        "type": "transport_practice",
         "correct_answer": "готово"
     },
 
@@ -484,7 +463,7 @@ ADVANCED_DAYS = {
     }
 }
 # Заполним заглушками на 24 дня
-for i in range(3, 25):
+for i in range(6, 25):
     ADVANCED_DAYS[i] = {"title": f"Практика: День {i}", "type": "advanced_lesson",
                         "content": "Скоро здесь появится новый полезный диалог!", "correct_answer": "готово"}
 
@@ -669,6 +648,19 @@ def advanced_day(day_id):
     feedback = None
     already_completed = False
 
+    # Если это чтение — загружаем текст и вопросы
+    # Если это чтение — загружаем текст и вопросы
+    if day_item.get('type') == 'advanced_reading':
+        reading_id = day_item.get('reading_id', 'captains_daughter')
+        chapter_part = day_item.get('chapter_part', 1)
+        reading_data = READINGS.get(reading_id, {})
+        part_data = reading_data.get('parts', {}).get(chapter_part, {})
+        day_item['reading_data'] = {
+            'title': part_data.get('title', f'Часть {chapter_part}'),
+            'text': part_data.get('text', '<p>Текст не найден</p>'),
+            'questions': part_data.get('questions', [])
+        }
+
     if request.method == 'POST':
         user_answer = request.form.get('answer', '').strip().lower()
         correct = day_item.get('correct_answer', '').strip().lower()
@@ -680,7 +672,7 @@ def advanced_day(day_id):
                     new_progress = AdvancedProgress(user_id=user_id, day_id=str(day_id), lesson_name=day_item['title'])
                     db.session.add(new_progress)
                     db.session.commit()
-                    feedback = "✅ Успех! Вы освоили этот разговорный урок! 🎉"
+                    feedback = "✅ Успех! Вы освоили этот урок! 🎉"
                 else:
                     already_completed = True
                     feedback = "✅ Вы уже проходили этот урок."
@@ -694,7 +686,6 @@ def advanced_day(day_id):
 
     return render_template('advanced_day.html', day=day_item, day_id=day_id, feedback=feedback,
                            already_completed=already_completed)
-
 
 # ========================================================
 # СТРАНИЦА ПРОГРЕССА ЧТЕНИЯ

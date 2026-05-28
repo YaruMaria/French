@@ -16,6 +16,7 @@
         <h2 style="font-family: 'Playfair Display', serif; font-size: 2rem;">{{ day.title }}</h2>
     </div>
 
+    {# ==================== ТИП 1: МАГАЗИН ==================== #}
     {% if day.type == 'shopping_practice' %}
 
     <!-- ЗАДАНИЕ -->
@@ -23,14 +24,13 @@
         <h3 style="margin-bottom: 15px;">🧾 ЗАДАНИЕ</h3>
         <p>Вы в магазине. Попросите у продавца:</p>
         <ul style="margin: 15px 0 0 25px; line-height: 1.8;">
-            <li><strong>3 помидора 🍅</strong> </li>
-            <li><strong>100 грамм сыра</strong>🧀</li>
-            <li><strong>бутылку красного вина</strong>🍷</li>
-            <li><strong>3 круассана</strong>🥐</li>
+            <li><strong>3 помидора 🍅</strong></li>
+            <li><strong>100 грамм сыра</strong> 🧀</li>
+            <li><strong>бутылку красного вина</strong> 🍷</li>
+            <li><strong>3 круассана</strong> 🥐</li>
         </ul>
         <p style="margin-top: 15px; background: #e8f0e4; padding: 8px 12px; border-radius: 12px;">
-            💡 Продавец принесёт ТО, ЧТО ВЫ СКАЗАЛИ. Если ошибётесь — он принесёт не то. Исправляйте ошибки сами!<br>
-            🍎🥕🧀🍷🥐🍅 Программа понимает названия овощей, фруктов, сыров, мяса, напитков и выпечки.
+            💡 Продавец принесёт ТО, ЧТО ВЫ СКАЗАЛИ. Если ошибётесь — он принесёт не то. Исправляйте ошибки сами!
         </p>
     </div>
 
@@ -57,9 +57,7 @@
     </div>
 
     <script>
-        // ========== ВСЕ ВОЗМОЖНЫЕ ПРОДУКТЫ ==========
         const allFoods = [
-            // ОВОЩИ
             {keyword: "tomate", emoji: "🍅", fr: "tomate", ru: "помидор"},
             {keyword: "carotte", emoji: "🥕", fr: "carotte", ru: "морковь"},
             {keyword: "concombre", emoji: "🥒", fr: "concombre", ru: "огурец"},
@@ -70,7 +68,6 @@
             {keyword: "oignon", emoji: "🧅", fr: "oignon", ru: "лук"},
             {keyword: "salade", emoji: "🥬", fr: "salade", ru: "салат"},
             {keyword: "pomme de terre", emoji: "🥔", fr: "pomme de terre", ru: "картофель"},
-            // ФРУКТЫ
             {keyword: "pomme", emoji: "🍎", fr: "pomme", ru: "яблоко"},
             {keyword: "poire", emoji: "🍐", fr: "poire", ru: "груша"},
             {keyword: "banane", emoji: "🍌", fr: "banane", ru: "банан"},
@@ -83,40 +80,33 @@
             {keyword: "citron", emoji: "🍋", fr: "citron", ru: "лимон"},
             {keyword: "kiwi", emoji: "🥝", fr: "kiwi", ru: "киви"},
             {keyword: "mangue", emoji: "🥭", fr: "mangue", ru: "манго"},
-            // СЫРЫ
             {keyword: "fromage", emoji: "🧀", fr: "fromage", ru: "сыр"},
             {keyword: "camembert", emoji: "🧀", fr: "camembert", ru: "камамбер"},
             {keyword: "brie", emoji: "🧀", fr: "brie", ru: "бри"},
             {keyword: "parmesan", emoji: "🧀", fr: "parmesan", ru: "пармезан"},
-            // МЯСО
             {keyword: "jambon", emoji: "🍖", fr: "jambon", ru: "ветчина"},
             {keyword: "poulet", emoji: "🍗", fr: "poulet", ru: "курица"},
             {keyword: "bœuf", emoji: "🥩", fr: "bœuf", ru: "говядина"},
             {keyword: "poisson", emoji: "🐟", fr: "poisson", ru: "рыба"},
             {keyword: "saumon", emoji: "🐟", fr: "saumon", ru: "лосось"},
-            // НАПИТКИ
             {keyword: "vin rouge", emoji: "🍷", fr: "vin rouge", ru: "красное вино"},
             {keyword: "vin blanc", emoji: "🍷", fr: "vin blanc", ru: "белое вино"},
             {keyword: "bière", emoji: "🍺", fr: "bière", ru: "пиво"},
             {keyword: "eau", emoji: "💧", fr: "eau", ru: "вода"},
             {keyword: "jus", emoji: "🧃", fr: "jus", ru: "сок"},
             {keyword: "café", emoji: "☕", fr: "café", ru: "кофе"},
-            // ВЫПЕЧКА
             {keyword: "croissant", emoji: "🥐", fr: "croissant", ru: "круассан"},
             {keyword: "baguette", emoji: "🥖", fr: "baguette", ru: "багет"},
             {keyword: "pain", emoji: "🍞", fr: "pain", ru: "хлеб"},
-            // МОЛОЧНЫЕ ПРОДУКТЫ
             {keyword: "beurre", emoji: "🧈", fr: "beurre", ru: "масло"},
             {keyword: "lait", emoji: "🥛", fr: "lait", ru: "молоко"},
             {keyword: "yaourt", emoji: "🥛", fr: "yaourt", ru: "йогурт"},
             {keyword: "œuf", emoji: "🥚", fr: "œuf", ru: "яйцо"},
-            // ДРУГОЕ
             {keyword: "chocolat", emoji: "🍫", fr: "chocolat", ru: "шоколад"},
             {keyword: "glace", emoji: "🍦", fr: "glace", ru: "мороженое"},
             {keyword: "sucre", emoji: "🍬", fr: "sucre", ru: "сахар"}
         ];
 
-        // ЦЕЛЕВЫЕ ПРОДУКТЫ ДЛЯ ЗАДАНИЯ
         const targetProducts = [
             {keyword: "tomate", ru: "3 помидора", fr: "3 tomates", emoji: "🍅"},
             {keyword: "fromage", ru: "100 грамм сыра", fr: "100 grammes de fromage", emoji: "🧀"},
@@ -134,23 +124,11 @@
             messageDiv.style.marginBottom = '15px';
             messageDiv.style.display = 'flex';
             messageDiv.style.alignItems = 'flex-start';
-
             if (sender === 'vendor') {
-                messageDiv.innerHTML = `
-                    <span style="font-size: 1.5rem;">🧑‍💼</span>
-                    <div style="background: #e8f0e4; padding: 10px 15px; border-radius: 18px; margin-left: 10px; max-width: 80%;">
-                        ${text}
-                    </div>
-                `;
+                messageDiv.innerHTML = `<span style="font-size: 1.5rem;">🧑‍💼</span><div style="background: #e8f0e4; padding: 10px 15px; border-radius: 18px; margin-left: 10px; max-width: 80%;">${text}</div>`;
             } else {
-                messageDiv.innerHTML = `
-                    <div style="background: #8fa882; color: white; padding: 10px 15px; border-radius: 18px; margin-right: 10px; max-width: 80%; margin-left: auto;">
-                        ${text}
-                    </div>
-                    <span style="font-size: 1.5rem;">🧑</span>
-                `;
+                messageDiv.innerHTML = `<div style="background: #8fa882; color: white; padding: 10px 15px; border-radius: 18px; margin-right: 10px; max-width: 80%; margin-left: auto;">${text}</div><span style="font-size: 1.5rem;">🧑</span>`;
             }
-
             messagesDiv.appendChild(messageDiv);
             messagesDiv.scrollTop = messagesDiv.scrollHeight;
         }
@@ -158,12 +136,9 @@
         function extractProductsFromMessage(message) {
             const lowerMessage = message.toLowerCase();
             const foundProducts = [];
-
             for (const food of allFoods) {
                 if (lowerMessage.includes(food.keyword.toLowerCase())) {
-                    if (!foundProducts.some(p => p.keyword === food.keyword)) {
-                        foundProducts.push(food);
-                    }
+                    if (!foundProducts.some(p => p.keyword === food.keyword)) foundProducts.push(food);
                 }
             }
             return foundProducts;
@@ -171,56 +146,40 @@
 
         function formatProductList(products) {
             if (products.length === 0) return "rien";
-            const uniqueProducts = [];
-            for (const p of products) {
-                if (!uniqueProducts.some(u => u.keyword === p.keyword)) {
-                    uniqueProducts.push(p);
-                }
-            }
-            return uniqueProducts.map(p => p.fr).join(', ');
+            const unique = [];
+            for (const p of products) if (!unique.some(u => u.keyword === p.keyword)) unique.push(p);
+            return unique.map(p => p.fr).join(', ');
         }
 
         function getEmojisForProducts(products) {
-            const uniqueProducts = [];
-            for (const p of products) {
-                if (!uniqueProducts.some(u => u.keyword === p.keyword)) {
-                    uniqueProducts.push(p);
-                }
-            }
-            return uniqueProducts.map(p => p.emoji).join(' ');
+            const unique = [];
+            for (const p of products) if (!unique.some(u => u.keyword === p.keyword)) unique.push(p);
+            return unique.map(p => p.emoji).join(' ');
         }
 
         function isCorrection(answer) {
             const lowerAnswer = answer.toLowerCase();
-            const correctionWords = ['non', 'erreur', 'désolé', 'désolée', 'извините', 'нет', 'ошибка', 'je voulais', 'ce n\'est pas', 'ce sont des', 'corrigez', 'исправьте'];
-            return correctionWords.some(word => lowerAnswer.includes(word));
+            const words = ['non', 'erreur', 'désolé', 'désolée', 'извините', 'нет', 'ошибка', 'je voulais', 'ce n\'est pas', 'ce sont des', 'corrigez', 'исправьте'];
+            return words.some(w => lowerAnswer.includes(w));
         }
 
         function sendMessage() {
             if (isFinished) return;
-
             const input = document.getElementById('user-input');
             const userMessage = input.value.trim();
-
             if (!userMessage) return;
-
             addMessage('user', userMessage);
             input.value = '';
-
             if (step === 1) {
                 currentOrder = extractProductsFromMessage(userMessage);
-
                 if (currentOrder.length > 0) {
-                    const emojis = getEmojisForProducts(currentOrder);
-                    const itemsList = formatProductList(currentOrder);
-                    addMessage('vendor', `D'accord! ${emojis} J'ai noté: ${itemsList}. Vérifiez votre commande, s'il vous plaît!`);
+                    addMessage('vendor', `D'accord! ${getEmojisForProducts(currentOrder)} J'ai noté: ${formatProductList(currentOrder)}. Vérifiez votre commande, s'il vous plaît!`);
                     step = 2;
                 } else {
                     addMessage('vendor', "Je ne comprends pas... Pouvez-vous répéter? Ce que vous voulez acheter?");
                 }
                 return;
             }
-
             if (step === 2) {
                 if (userMessage.toLowerCase().includes('merci')) {
                     addMessage('vendor', `Merci à vous! Bonne journée! 👋`);
@@ -228,93 +187,260 @@
                     showFinalReport(currentOrder);
                     return;
                 }
-
                 if (isCorrection(userMessage)) {
                     const newOrder = extractProductsFromMessage(userMessage);
                     if (newOrder.length > 0) {
                         currentOrder = newOrder;
-                        const emojis = getEmojisForProducts(currentOrder);
-                        const itemsList = formatProductList(currentOrder);
-                        addMessage('vendor', `Ah, d'accord! ${emojis} Je corrige: ${itemsList}. C'est bon maintenant?`);
+                        addMessage('vendor', `Ah, d'accord! ${getEmojisForProducts(currentOrder)} Je corrige: ${formatProductList(currentOrder)}. C'est bon maintenant?`);
                     } else {
                         addMessage('vendor', "Je n'ai pas compris ce que vous voulez corriger. Pouvez-vous répéter votre commande?");
                     }
                     return;
                 }
-
                 addMessage('vendor', "Je ne comprends pas... Dites 'merci' si tout est bon, ou répétez votre commande pour corriger.");
             }
         }
 
         function showFinalReport(finalOrder) {
             setTimeout(() => {
+                let correctList = '', errorList = '';
+                for (const target of targetProducts) {
+                    const isCorrect = finalOrder.some(order => order.keyword === target.keyword);
+                    if (isCorrect) correctList += `<li>✅ ${target.ru} (${target.fr}) ${target.emoji}</li>`;
+                    else errorList += `<li>❌ ${target.ru} (${target.fr}) — вы не упомянули или перепутали</li>`;
+                }
+                const extraProducts = finalOrder.filter(order => !targetProducts.some(target => target.keyword === order.keyword));
+                let extraList = '';
+                if (extraProducts.length > 0) {
+                    extraList = '<div style="margin-top: 10px;"><strong>⚠️ Лишние продукты:</strong><ul>';
+                    for (const extra of extraProducts) extraList += `<li>❓ ${extra.ru} (${extra.fr}) ${extra.emoji}</li>`;
+                    extraList += '</ul></div>';
+                }
                 const reportDiv = document.createElement('div');
                 reportDiv.style.marginTop = '20px';
                 reportDiv.style.padding = '20px';
                 reportDiv.style.backgroundColor = '#f0f4ec';
                 reportDiv.style.borderRadius = '16px';
                 reportDiv.style.borderLeft = '4px solid #8fa882';
-
-                let correctList = '';
-                let errorList = '';
-
-                for (const target of targetProducts) {
-                    const isCorrect = finalOrder.some(order => order.keyword === target.keyword);
-                    if (isCorrect) {
-                        correctList += `<li>✅ ${target.ru} (${target.fr}) ${target.emoji}</li>`;
-                    } else {
-                        errorList += `<li>❌ ${target.ru} (${target.fr}) — вы не упомянули или перепутали</li>`;
-                    }
-                }
-
-                const extraProducts = finalOrder.filter(order =>
-                    !targetProducts.some(target => target.keyword === order.keyword)
-                );
-
-                let extraList = '';
-                if (extraProducts.length > 0) {
-                    extraList = '<div style="margin-top: 10px;"><strong>⚠️ Лишние продукты (вы заказали, но не по заданию):</strong><ul>';
-                    for (const extra of extraProducts) {
-                        extraList += `<li>❓ ${extra.ru} (${extra.fr}) ${extra.emoji}</li>`;
-                    }
-                    extraList += '</ul></div>';
-                }
-
                 reportDiv.innerHTML = `
                     <h4>📊 ИТОГИ ДИАЛОГА</h4>
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 15px 0;">
-                        <div>
-                            <strong>✅ Что вы заказали правильно:</strong>
-                            <ul style="margin-top: 10px;">${correctList || '<li>Ничего</li>'}</ul>
-                        </div>
-                        <div>
-                            <strong>❌ Что вы забыли или перепутали:</strong>
-                            <ul style="margin-top: 10px;">${errorList || '<li>Нет ошибок! 🎉</li>'}</ul>
-                        </div>
+                        <div><strong>✅ Что правильно:</strong><ul>${correctList || '<li>Ничего</li>'}</ul></div>
+                        <div><strong>❌ Ошибки:</strong><ul>${errorList || '<li>Нет ошибок! 🎉</li>'}</ul></div>
                     </div>
                     ${extraList}
                     <div style="margin-top: 15px; padding: 15px; background: white; border-radius: 12px;">
-                        <strong>📝 Как правильно было сделать заказ:</strong><br>
+                        <strong>📝 Как правильно:</strong><br>
                         "Bonjour! Je voudrais 3 tomates, 100 grammes de fromage, une bouteille de vin rouge et 3 croissants. Merci!"
                     </div>
                     <form method="POST" style="margin-top: 15px;">
                         <input type="hidden" name="answer" value="готово">
                         <button type="submit" style="background: #8fa882; color: white; border: none; padding: 10px 20px; border-radius: 25px; cursor: pointer;">✅ Завершить урок</button>
                     </form>
-                    <button onclick="resetChat()" style="margin-top: 10px; background: #f0f2ef; border: none; padding: 10px 20px; border-radius: 25px; cursor: pointer;">🔄 Попробовать снова</button>
+                    <button onclick="resetChat()" style="margin-top: 10px;">🔄 Попробовать снова</button>
                 `;
-
                 document.getElementById('chat-container').appendChild(reportDiv);
                 document.getElementById('user-input').disabled = true;
                 document.getElementById('send-btn').disabled = true;
             }, 500);
         }
 
-        function resetChat() {
-            location.reload();
-        }
+        function resetChat() { location.reload(); }
     </script>
 
+        {# ==================== ТИП 2: ТРАНСПОРТ (ИСПРАВЛЕННЫЙ) ==================== #}
+    {% elif day.type == 'transport_practice' %}
+
+    <!-- ЗАДАНИЕ -->
+    <div style="background: white; border-radius: 16px; padding: 20px; margin-bottom: 25px; border-left: 5px solid #8fa882; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+        <h3 style="margin-bottom: 15px;">🧾 ЗАДАНИЕ</h3>
+        <p>Вы турист в Париже. Вам нужно:</p>
+        <ul style="margin: 15px 0 0 25px; line-height: 1.8;">
+            <li><strong>Спросить, где ближайшая станция метро</strong> 🚇</li>
+            <li><strong>Спросить, сколько стоит билет</strong> 🎫</li>
+            <li><strong>Узнать, идёт ли метро до Эйфелевой башни</strong> 🗼</li>
+            <li><strong>В конце поблагодарить прохожего</strong> 🙏</li>
+        </ul>
+        <p style="margin-top: 15px; background: #e8f0e4; padding: 8px 12px; border-radius: 12px;">
+            💡 Задавайте вопросы по одному. Прохожий отвечает только на вопросы о транспорте.
+        </p>
+    </div>
+
+    <!-- ОКНО ДИАЛОГА -->
+    <div id="transport-chat-container" style="background: white; border-radius: 16px; overflow: hidden; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+        <div id="transport-chat-messages" style="height: 400px; overflow-y: auto; padding: 20px; background: #fafbfa;">
+            <div style="margin-bottom: 15px; display: flex; align-items: flex-start;">
+                <span style="font-size: 1.5rem;">🚶‍♂️</span>
+                <div style="background: #e8f0e4; padding: 10px 15px; border-radius: 18px; margin-left: 10px;">
+                    Bonjour! Je peux vous aider?
+                </div>
+            </div>
+        </div>
+        <div style="display: flex; padding: 15px; background: white; border-top: 1px solid #e1e8df;">
+            <input type="text" id="transport-user-input" placeholder="Écrivez votre réponse..."
+                   style="flex: 1; padding: 12px; border: 2px solid #d4dcd0; border-radius: 25px; margin-right: 10px; font-size: 1rem;">
+            <button id="transport-send-btn" onclick="sendTransportMessage()" style="padding: 10px 25px; border-radius: 25px; background: #8fa882; color: white; border: none; cursor: pointer;">📤 Envoyer</button>
+        </div>
+    </div>
+
+    <div style="text-align: center;">
+        <button onclick="resetTransportChat()" style="background: #f0f2ef; color: var(--text-main); border: none; padding: 10px 20px; border-radius: 25px; cursor: pointer;">🔄 Начать разговор заново</button>
+    </div>
+
+    <script>
+        let transportFinished = false;
+        let askedMetro = false;
+        let askedTicket = false;
+        let askedEiffel = false;
+        let saidMerci = false;
+
+        function addTransportMessage(sender, text) {
+            const messagesDiv = document.getElementById('transport-chat-messages');
+            const div = document.createElement('div');
+            div.style.marginBottom = '15px';
+            div.style.display = 'flex';
+            div.style.alignItems = 'flex-start';
+            if (sender === 'passerby') {
+                div.innerHTML = `<span style="font-size: 1.5rem;">🚶‍♂️</span><div style="background: #e8f0e4; padding: 10px 15px; border-radius: 18px; margin-left: 10px; max-width: 80%;">${text}</div>`;
+            } else {
+                div.innerHTML = `<div style="background: #8fa882; color: white; padding: 10px 15px; border-radius: 18px; margin-right: 10px; max-width: 80%; margin-left: auto;">${text}</div><span style="font-size: 1.5rem;">🧑</span>`;
+            }
+            messagesDiv.appendChild(div);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        function detectQuestionType(text) {
+            const lower = text.toLowerCase();
+
+            const isMetro = lower.includes('métro') || lower.includes('metro') || lower.includes('station');
+            const isTicket = lower.includes('ticket') || lower.includes('combien') || lower.includes('coûte') || lower.includes('prix') || lower.includes('billet') || lower.includes('tarif');
+            const isEiffel = lower.includes('tour eiffel') || lower.includes('eiffel');
+            const isThanks = lower.includes('merci');
+
+            if (isThanks) return 'thanks';
+            if (!isMetro && !isTicket && !isEiffel) return 'unrelated';
+            if (isMetro) return 'metro';
+            if (isTicket) return 'ticket';
+            if (isEiffel) return 'eiffel';
+            return 'unknown';
+        }
+
+        function sendTransportMessage() {
+            if (transportFinished) return;
+            const input = document.getElementById('transport-user-input');
+            const msg = input.value.trim();
+            if (!msg) return;
+            addTransportMessage('user', msg);
+            input.value = '';
+
+            const questionType = detectQuestionType(msg);
+
+            // Посторонний вопрос
+            if (questionType === 'unrelated') {
+                addTransportMessage('passerby', "Désolé, je ne peux pas vous renseigner sur ça. Je peux vous aider pour le métro, les tickets ou la Tour Eiffel.");
+                return;
+            }
+
+            // БЛАГОДАРНОСТЬ — проверяем, все ли вопросы заданы
+            if (questionType === 'thanks') {
+                if (askedMetro && askedTicket && askedEiffel) {
+                    // Всё правильно! Завершаем диалог
+                    saidMerci = true;
+                    addTransportMessage('passerby', "Merci à vous! Bonne journée! 👋");
+                    transportFinished = true;
+                    showTransportReport();
+                } else {
+                    // Не все вопросы заданы — говорим, что забыли, и НЕ завершаем диалог
+                    const missing = [];
+                    if (!askedMetro) missing.push("📍 où est le métro");
+                    if (!askedTicket) missing.push("🎫 le prix du ticket");
+                    if (!askedEiffel) missing.push("🗼 le chemin pour la Tour Eiffel");
+                    addTransportMessage('passerby', `Je vous en prie! Mais vous avez oublié de demander: ${missing.join(', ')}. Posez-moi d'abord ces questions, puis dites merci.`);
+                }
+                return;
+            }
+
+            // Вопрос про метро
+            if (questionType === 'metro' && !askedMetro) {
+                askedMetro = true;
+                addTransportMessage('passerby', "La station de métro la plus proche est à 200 mètres. Puis-je vous aider pour autre chose?");
+                return;
+            }
+
+            // Вопрос про билеты
+            if (questionType === 'ticket' && !askedTicket) {
+                askedTicket = true;
+                addTransportMessage('passerby', "Un ticket coûte 2 euros. Vous pouvez l'acheter à la borne automatique. Autre question?");
+                return;
+            }
+
+            // Вопрос про Эйфелеву башню
+            if (questionType === 'eiffel' && !askedEiffel) {
+                askedEiffel = true;
+                addTransportMessage('passerby', "Oui, prenez la ligne 6 direction Nation, descendez à Bir-Hakeim. Besoin d'autre chose?");
+                return;
+            }
+
+            // Если уже ответили на этот тип вопроса
+            if (questionType === 'metro' && askedMetro) {
+                addTransportMessage('passerby', "Je vous ai déjà dit: la station est à 200 mètres. Autre question?");
+                return;
+            }
+            if (questionType === 'ticket' && askedTicket) {
+                addTransportMessage('passerby', "Je vous ai déjà dit: le ticket coûte 2 euros. Autre chose?");
+                return;
+            }
+            if (questionType === 'eiffel' && askedEiffel) {
+                addTransportMessage('passerby', "Je vous ai déjà dit: ligne 6 direction Nation, descendez à Bir-Hakeim. Besoin d'autre chose?");
+                return;
+            }
+
+            addTransportMessage('passerby', "Je ne comprends pas. Vous cherchez le métro? Les tickets? La Tour Eiffel?");
+        }
+
+        function showTransportReport() {
+            setTimeout(() => {
+                let correct = '', errors = '';
+                if (askedMetro) correct += '<li>✅ Спросили где метро</li>'; else errors += '<li>❌ Не спросили где метро</li>';
+                if (askedTicket) correct += '<li>✅ Спросили про билеты</li>'; else errors += '<li>❌ Не спросили про билеты</li>';
+                if (askedEiffel) correct += '<li>✅ Спросили про Эйфелеву башню</li>'; else errors += '<li>❌ Не спросили про Эйфелеву башню</li>';
+                if (saidMerci) correct += '<li>✅ Поблагодарили</li>'; else errors += '<li>❌ Не поблагодарили</li>';
+
+                const reportDiv = document.createElement('div');
+                reportDiv.style.marginTop = '20px';
+                reportDiv.style.padding = '20px';
+                reportDiv.style.backgroundColor = '#f0f4ec';
+                reportDiv.style.borderRadius = '16px';
+                reportDiv.style.borderLeft = '4px solid #8fa882';
+                reportDiv.innerHTML = `
+                    <h4>📊 ИТОГИ ДИАЛОГА</h4>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 15px 0;">
+                        <div><strong>✅ Что вы сделали правильно:</strong><ul>${correct}</ul></div>
+                        <div><strong>❌ Что вы забыли:</strong><ul>${errors || '<li>Нет ошибок! 🎉</li>'}</ul></div>
+                    </div>
+                    <div style="margin-top: 15px; padding: 15px; background: white; border-radius: 12px;">
+                        <strong>📝 Пример правильного диалога:</strong><br>
+                        "Où est la station de métro la plus proche?"<br>
+                        "Un ticket, s'il vous plaît. C'est combien?"<br>
+                        "Cette ligne va à la Tour Eiffel?"<br>
+                        "Merci beaucoup!"
+                    </div>
+                    <form method="POST" style="margin-top: 15px;">
+                        <input type="hidden" name="answer" value="готово">
+                        <button type="submit" style="background: #8fa882; color: white; border: none; padding: 10px 20px; border-radius: 25px; cursor: pointer;">✅ Завершить урок</button>
+                    </form>
+                    <button onclick="resetTransportChat()" style="margin-top: 10px;">🔄 Попробовать снова</button>
+                `;
+                document.getElementById('transport-chat-container').appendChild(reportDiv);
+                document.getElementById('transport-user-input').disabled = true;
+                document.getElementById('transport-send-btn').disabled = true;
+            }, 500);
+        }
+
+        function resetTransportChat() { location.reload(); }
+    </script>
+
+    {# ==================== ТИП 3: ОБЫЧНЫЙ УРОК С ДИАЛОГОМ ==================== #}
     {% elif day.dialogue %}
 
     <div style="background: linear-gradient(135deg, #f9f4e8 0%, #f0ebe0 100%); border-radius: 16px; padding: 30px; margin-bottom: 25px;">
@@ -352,6 +478,7 @@
         </form>
     </div>
 
+    {# ==================== ТИП 4: ЗАГЛУШКА ==================== #}
     {% else %}
 
     <div style="background: #f0f4ec; border-radius: 16px; padding: 40px; text-align: center;">
