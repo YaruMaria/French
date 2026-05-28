@@ -132,29 +132,8 @@ ADVANCED_DAYS = {
 
     # ========== ДЕНЬ 11: В ОТЕЛЕ / ГОСТИНИЦЕ ==========
     11: {
-        "title": "Практика: В отеле / гостинице",
-        "type": "advanced_lesson",
-        "dialogue": {
-            "fr": """— Bonsoir, j'ai une réservation au nom de Dupont.
-— Oui, Monsieur Dupont. Une chambre double pour deux nuits, c'est bien ça ?
-— Exactement. Est-ce que le petit déjeuner est inclus ?
-— Oui, il est servi de 7h à 10h au premier étage.
-— Parfait. À quelle heure dois-je libérer la chambre ?
-— À midi. Voici votre clé, chambre 45.""",
-            "ru": """— Добрый вечер, у меня забронирован номер на имя Дюпон.
-— Да, мсье Дюпон. Двухместный номер на две ночи, верно?
-— Точно. Завтрак включён?
-— Да, он подаётся с 7 до 10 на втором этаже.
-— Прекрасно. Во сколько я должен освободить номер?
-— В 12. Вот ваш ключ, номер 45."""
-        },
-        "phrases": [
-            {"fr": "J'ai une réservation", "ru": "У меня есть бронь"},
-            {"fr": "Une chambre pour une nuit", "ru": "Номер на одну ночь"},
-            {"fr": "Le petit déjeuner est inclus ?", "ru": "Завтрак включён?"},
-            {"fr": "À quelle heure est le check-out ?", "ru": "Во сколько выезд?"},
-            {"fr": "Puis-je avoir un autre oreiller ?", "ru": "Можно мне другую подушку?"}
-        ],
+        "title": "🏨 В отеле / гостинице — практика",
+        "type": "hotel_practice",
         "correct_answer": "готово"
     },
 
@@ -169,29 +148,8 @@ ADVANCED_DAYS = {
 
     # ========== ДЕНЬ 13: НА ВОКЗАЛЕ / В АЭРОПОРТУ ==========
     13: {
-        "title": "Практика: На вокзале / в аэропорту",
-        "type": "advanced_lesson",
-        "dialogue": {
-            "fr": """— Bonjour, je voudrais un billet pour Lyon, s'il vous plaît.
-— Aller simple ou aller-retour ?
-— Aller simple. C'est combien ?
-— 45 euros. Train de 14h30, quai numéro 3.
-— Est-ce qu'il y a un wagon-restaurant ?
-— Oui, au milieu du train. Bon voyage !""",
-            "ru": """— Здравствуйте, я хотел бы билет до Лиона, пожалуйста.
-— В один конец или туда и обратно?
-— В один конец. Сколько стоит?
-— 45 евро. Поезд в 14:30, платформа номер 3.
-— Есть ли вагон-ресторан?
-— Да, в середине поезда. Счастливого пути!"""
-        },
-        "phrases": [
-            {"fr": "Un billet pour...", "ru": "Билет до..."},
-            {"fr": "Aller simple ou aller-retour ?", "ru": "В один конец или туда и обратно?"},
-            {"fr": "À quelle heure part le train ?", "ru": "Во сколько отправляется поезд?"},
-            {"fr": "Quel est le quai ?", "ru": "Какая платформа?"},
-            {"fr": "Où est le guichet ?", "ru": "Где касса?"}
-        ],
+        "title": "🚉 На вокзале / в аэропорту — практика",
+        "type": "station_practice",
         "correct_answer": "готово"
     },
 
@@ -206,29 +164,8 @@ ADVANCED_DAYS = {
 
     # ========== ДЕНЬ 15: У ВРАЧА / В АПТЕКЕ ==========
     15: {
-        "title": "Практика: У врача / в аптеке",
-        "type": "advanced_lesson",
-        "dialogue": {
-            "fr": """— Bonjour, docteur, je ne me sens pas bien.
-— Qu'est-ce que vous avez ?
-— J'ai de la fièvre et je tousse depuis trois jours.
-— Je vais vous prescrire des antibiotiques. Prenez une boîte par jour pendant une semaine.
-— Merci, docteur. Où est la pharmacie la plus proche ?
-— À deux rues d'ici, à gauche.""",
-            "ru": """— Здравствуйте, доктор, я плохо себя чувствую.
-— Что с вами?
-— У меня температура, и я кашляю уже три дня.
-— Я выпишу вам антибиотики. Принимайте по одной упаковке в день в течение недели.
-— Спасибо, доктор. Где ближайшая аптека?
-— Через две улицы отсюда, налево."""
-        },
-        "phrases": [
-            {"fr": "J'ai de la fièvre", "ru": "У меня температура"},
-            {"fr": "Je tousse", "ru": "Я кашляю"},
-            {"fr": "J'ai mal à la tête / au ventre", "ru": "У меня болит голова / живот"},
-            {"fr": "Une ordonnance, s'il vous plaît", "ru": "Рецепт, пожалуйста"},
-            {"fr": "Avez-vous quelque chose contre la douleur ?", "ru": "У вас есть что-нибудь от боли?"}
-        ],
+        "title": "👨‍⚕️ У врача / в аптеке — практика",
+        "type": "doctor_practice",
         "correct_answer": "готово"
     },
 
@@ -243,31 +180,8 @@ ADVANCED_DAYS = {
 
     # ========== ДЕНЬ 17: НА ПОЧТЕ ==========
     17: {
-        "title": "Практика: На почте",
-        "type": "advanced_lesson",
-        "dialogue": {
-            "fr": """— Bonjour, je voudrais envoyer ce colis en Russie.
-— Quel poids ?
-— Environ deux kilos.
-— Ça va coûter 25 euros par voie maritime, ou 40 euros par avion.
-— Je préfère par avion. Combien de temps ça va mettre ?
-— Environ 10 jours. Vous voulez une assurance ?
-— Oui, s'il vous plaît. Voilà.""",
-            "ru": """— Здравствуйте, я хотел бы отправить эту посылку в Россию.
-— Какой вес?
-— Около двух килограммов.
-— Это будет стоить 25 евро морем или 40 евро самолётом.
-— Я предпочитаю самолётом. Сколько времени это займёт?
-— Около 10 дней. Хотите страховку?
-— Да, пожалуйста. Вот."""
-        },
-        "phrases": [
-            {"fr": "Je voudrais envoyer cette lettre", "ru": "Я хотел(а) бы отправить это письмо"},
-            {"fr": "Combien coûte l'envoi ?", "ru": "Сколько стоит отправка?"},
-            {"fr": "Par avion ou par voie maritime ?", "ru": "Самолётом или морем?"},
-            {"fr": "Combien de temps ça va prendre ?", "ru": "Сколько времени это займёт?"},
-            {"fr": "Je voudrais un timbre pour la France", "ru": "Мне нужна марка во Францию"}
-        ],
+        "title": "📮 На почте — практика",
+        "type": "post_practice",
         "correct_answer": "готово"
     },
 
@@ -282,29 +196,8 @@ ADVANCED_DAYS = {
 
     # ========== ДЕНЬ 19: НА ЭКСКУРСИИ ==========
     19: {
-        "title": "Практика: На экскурсии",
-        "type": "advanced_lesson",
-        "dialogue": {
-            "fr": """— Bonjour, est-ce que vous faites des visites guidées en russe ?
-— Oui, la prochaine visite commence à 14 heures.
-— Combien de temps dure la visite ?
-— Environ deux heures. Nous allons voir le château et les jardins.
-— Est-ce qu'on peut prendre des photos à l'intérieur ?
-— Oui, mais sans flash, s'il vous plaît.""",
-            "ru": """— Здравствуйте, у вас есть экскурсии на русском языке?
-— Да, следующая экскурсия начинается в 14 часов.
-— Сколько длится экскурсия?
-— Около двух часов. Мы посмотрим замок и сады.
-— Можно фотографировать внутри?
-— Да, но без вспышки, пожалуйста."""
-        },
-        "phrases": [
-            {"fr": "Une visite guidée en français", "ru": "Экскурсия на французском"},
-            {"fr": "À quelle heure commence la visite ?", "ru": "Во сколько начинается экскурсия?"},
-            {"fr": "Combien de temps dure la visite ?", "ru": "Сколько длится экскурсия?"},
-            {"fr": "Est-ce qu'on peut prendre des photos ?", "ru": "Можно фотографировать?"},
-            {"fr": "Quel est le prix de l'entrée ?", "ru": "Сколько стоит вход?"}
-        ],
+        "title": "🗺️ На экскурсии — практика",
+        "type": "excursion_practice",
         "correct_answer": "готово"
     },
 
@@ -319,33 +212,8 @@ ADVANCED_DAYS = {
 
     # ========== ДЕНЬ 21: РАЗГОВОР С ДРУЗЬЯМИ ==========
     21: {
-        "title": "Практика: Разговор с друзьями",
-        "type": "advanced_lesson",
-        "dialogue": {
-            "fr": """— Salut Marie, ça va ?
-— Très bien, et toi ?
-— Ça va, merci. Qu'est-ce que tu fais ce week-end ?
-— Je vais au cinéma avec des amis. Tu veux venir ?
-— Avec plaisir ! Quel film ?
-— Le nouveau film de Dupontel. Il paraît qu'il est super !
-— Super, à quelle heure ?
-— À 20h, devant le cinéma. On se retrouve là-bas ?""",
-            "ru": """— Привет, Мари, как дела?
-— Отлично, а ты?
-— Хорошо, спасибо. Что ты делаешь в эти выходные?
-— Я иду в кино с друзьями. Хочешь пойти?
-— С удовольствием! Какой фильм?
-— Новый фильм Дюпонтеля. Говорят, он супер!
-— Отлично, во сколько?
-— В 8 вечера, перед кинотеатром. Встречаемся там?"""
-        },
-        "phrases": [
-            {"fr": "Ça va ?", "ru": "Как дела?"},
-            {"fr": "Qu'est-ce que tu fais ce week-end ?", "ru": "Что ты делаешь в эти выходные?"},
-            {"fr": "Tu veux venir ?", "ru": "Хочешь пойти?"},
-            {"fr": "On se retrouve où ?", "ru": "Где встречаемся?"},
-            {"fr": "À quelle heure ?", "ru": "Во сколько?"}
-        ],
+        "title": "🧭 Потерялся / спросить дорогу — практика",
+        "type": "lost_practice",
         "correct_answer": "готово"
     },
 
@@ -360,29 +228,8 @@ ADVANCED_DAYS = {
 
     # ========== ДЕНЬ 23: ПОТЕРЯЛСЯ / СПРОСИТЬ ДОРОГУ ==========
     23: {
-        "title": "Практика: Потерялся / спросить дорогу",
-        "type": "advanced_lesson",
-        "dialogue": {
-            "fr": """— Excusez-moi, je suis perdu. Où se trouve la rue de Rivoli ?
-— Vous allez tout droit, puis vous prenez la première rue à gauche.
-— C'est loin ?
-— Non, environ cinq minutes à pied.
-— Merci beaucoup ! C'est à quel numéro ?
-— Le numéro 50, après le carrefour.""",
-            "ru": """— Извините, я потерялся. Где находится улица Риволи?
-— Идите прямо, затем поверните на первую улицу налево.
-— Это далеко?
-— Нет, примерно пять минут пешком.
-— Большое спасибо! Какой там номер?
-— 50-й, после перекрёстка."""
-        },
-        "phrases": [
-            {"fr": "Je suis perdu(e)", "ru": "Я потерялся / потерялась"},
-            {"fr": "Où se trouve... ?", "ru": "Где находится...?"},
-            {"fr": "C'est loin d'ici ?", "ru": "Это далеко отсюда?"},
-            {"fr": "À quelle distance ?", "ru": "На каком расстоянии?"},
-            {"fr": "Pouvez-vous me montrer sur la carte ?", "ru": "Можете показать на карте?"}
-        ],
+        "title": "👥 Разговор с друзьями — практика",
+        "type": "friends_practice",
         "correct_answer": "готово"
     },
 
@@ -396,9 +243,7 @@ ADVANCED_DAYS = {
     }
 }
 # Заполним заглушками на 24 дня
-for i in range(10, 25):
-    ADVANCED_DAYS[i] = {"title": f"Практика: День {i}", "type": "advanced_lesson",
-                        "content": "Скоро здесь появится новый полезный диалог!", "correct_answer": "готово"}
+
 
 
 # ========================================================

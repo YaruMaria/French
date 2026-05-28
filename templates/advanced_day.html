@@ -1146,6 +1146,1647 @@
 </script>
 
 
+    {# ==================== ТИП 11: ОТЕЛЬ / ГОСТИНИЦА ==================== #}
+{# ==================== ТИП 11: ОТЕЛЬ / ГОСТИНИЦА ==================== #}
+{% elif day.type == 'hotel_practice' %}
+
+<div style="background: white; border-radius: 16px; padding: 20px; margin-bottom: 25px; border-left: 5px solid #8fa882; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+    <h3 style="margin-bottom: 15px;">🧾 ЗАДАНИЕ</h3>
+    <p>Вы в отеле в Париже. Вам нужно:</p>
+    <ul style="margin: 15px 0 0 25px; line-height: 1.8;">
+        <li><strong>Сказать, что у вас есть бронь на имя Dupont</strong> 📋</li>
+        <li><strong>Спросить, включён ли завтрак</strong> 🥐</li>
+        <li><strong>Спросить, во сколько выезд (check-out)</strong> ⏰</li>
+        <li><strong>Попросить дополнительную подушку</strong> 🛏️</li>
+        <li><strong>Поблагодарить администратора</strong> 🙏</li>
+    </ul>
+    <p style="margin-top: 15px; background: #e8f0e4; padding: 8px 12px; border-radius: 12px;">
+        💡 Задавайте вопросы по одному. Администратор ответит и спросит, чем ещё помочь.
+    </p>
+</div>
+
+<div id="hotel-chat-container" style="background: white; border-radius: 16px; overflow: hidden; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+    <div id="hotel-chat-messages" style="height: 400px; overflow-y: auto; padding: 20px; background: #fafbfa;">
+        <div style="margin-bottom: 15px; display: flex; align-items: flex-start;">
+            <span style="font-size: 1.5rem;">🏨</span>
+            <div style="background: #e8f0e4; padding: 10px 15px; border-radius: 18px; margin-left: 10px;">
+                Bonsoir! Vous avez une réservation?
+            </div>
+        </div>
+    </div>
+    <div style="display: flex; padding: 15px; background: white; border-top: 1px solid #e1e8df;">
+        <input type="text" id="hotel-user-input" placeholder="Écrivez votre réponse..."
+               style="flex: 1; padding: 12px; border: 2px solid #d4dcd0; border-radius: 25px; margin-right: 10px; font-size: 1rem;">
+        <button id="hotel-send-btn" onclick="sendHotelMessage()" style="padding: 10px 25px; border-radius: 25px; background: #8fa882; color: white; border: none; cursor: pointer;">📤 Envoyer</button>
+    </div>
+</div>
+
+<div style="text-align: center;">
+    <button onclick="resetHotelChat()" style="background: #f0f2ef; color: var(--text-main); border: none; padding: 10px 20px; border-radius: 25px; cursor: pointer;">🔄 Начать разговор заново</button>
+</div>
+
+<script>
+    let hotelFinished = false;
+    let saidReservation = false;
+    let askedBreakfast = false;
+    let askedCheckout = false;
+    let askedPillow = false;
+    let saidMerci = false;
+
+    function cleanText(text) {
+        return text.replace(/[😊🙏🎫🖼️🎓💶✅❌❓🔄📤👋🥐🛏️📋⏰]/g, '').trim().toLowerCase();
+    }
+
+    function addHotelMessage(sender, text) {
+        const messagesDiv = document.getElementById('hotel-chat-messages');
+        const div = document.createElement('div');
+        div.style.marginBottom = '15px';
+        div.style.display = 'flex';
+        div.style.alignItems = 'flex-start';
+        if (sender === 'receptionist') {
+            div.innerHTML = `<span style="font-size: 1.5rem;">🏨</span><div style="background: #e8f0e4; padding: 10px 15px; border-radius: 18px; margin-left: 10px; max-width: 80%;">${text}</div>`;
+        } else {
+            div.innerHTML = `<div style="background: #8fa882; color: white; padding: 10px 15px; border-radius: 18px; margin-right: 10px; max-width: 80%; margin-left: auto;">${text}</div><span style="font-size: 1.5rem;">🧑</span>`;
+        }
+        messagesDiv.appendChild(div);
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
+
+    function detectHotelQuestionType(originalText) {
+        const text = cleanText(originalText);
+
+        // Бронь на имя Dupont
+        const isReservation = (text.includes('réservation') || text.includes('reservation')) &&
+                              (text.includes('dupont') || text.includes('nom'));
+
+        // Завтрак — расширенный поиск
+        const isBreakfast = text.includes('petit déjeuner') || text.includes('petit-dejeuner') ||
+                            text.includes('petit dejeuner') || text.includes('breakfast') ||
+                            text.includes('petit-déjeuner') || text.includes('dejeuner');
+
+        // Выезд
+        const isCheckout = text.includes('check-out') || text.includes('checkout') ||
+                           (text.includes('heure') && text.includes('libérer')) ||
+                           (text.includes('dois-je') && text.includes('chambre')) ||
+                           text.includes('check out');
+
+        // Подушка
+        const isPillow = text.includes('oreiller') || text.includes('coussin') || text.includes('oreiller supplémentaire');
+
+        // Благодарность
+        const isThanks = text.includes('merci');
+
+        if (isThanks) return 'thanks';
+        if (isReservation) return 'reservation';
+        if (isBreakfast) return 'breakfast';
+        if (isCheckout) return 'checkout';
+        if (isPillow) return 'pillow';
+        return 'unrelated';
+    }
+
+    function sendHotelMessage() {
+        if (hotelFinished) return;
+        const input = document.getElementById('hotel-user-input');
+        const originalMsg = input.value.trim();
+        if (!originalMsg) return;
+        addHotelMessage('user', originalMsg);
+        input.value = '';
+
+        const q = detectHotelQuestionType(originalMsg);
+
+        // Посторонний вопрос
+        if (q === 'unrelated') {
+            addHotelMessage('receptionist', "Désolé, je suis réceptionniste. Je peux vous aider pour votre réservation, le petit déjeuner, l'heure de check-out, ou les demandes spéciales.");
+            return;
+        }
+
+        // 1. Бронь на имя Dupont
+        if (q === 'reservation' && !saidReservation) {
+            saidReservation = true;
+            addHotelMessage('receptionist', "Oui, Monsieur Dupont. Une chambre double pour deux nuits. Autre chose?");
+            return;
+        }
+        if (q === 'reservation' && saidReservation) {
+            addHotelMessage('receptionist', "Je vous ai déjà confirmé votre réservation. Autre question?");
+            return;
+        }
+
+        // 2. Завтрак включён?
+        if (q === 'breakfast' && !askedBreakfast) {
+            askedBreakfast = true;
+            addHotelMessage('receptionist', "Oui, le petit déjeuner est inclus et servi de 7h à 10h au premier étage. Autre chose?");
+            return;
+        }
+        if (q === 'breakfast' && askedBreakfast) {
+            addHotelMessage('receptionist', "Je vous ai déjà dit: petit déjeuner de 7h à 10h. Autre chose?");
+            return;
+        }
+
+        // 3. Во сколько выезд?
+        if (q === 'checkout' && !askedCheckout) {
+            askedCheckout = true;
+            addHotelMessage('receptionist', "Le check-out est à midi. Vous pouvez laisser vos bagages à la consigne. Autre chose?");
+            return;
+        }
+        if (q === 'checkout' && askedCheckout) {
+            addHotelMessage('receptionist', "Je vous ai déjà dit: check-out à midi. Autre chose?");
+            return;
+        }
+
+        // 4. Дополнительная подушка
+        if (q === 'pillow' && !askedPillow) {
+            askedPillow = true;
+            addHotelMessage('receptionist', "Bien sûr, je vous envoie un oreiller supplémentaire dans votre chambre. Autre chose?");
+            return;
+        }
+        if (q === 'pillow' && askedPillow) {
+            addHotelMessage('receptionist', "L'oreiller est déjà commandé. Autre chose?");
+            return;
+        }
+
+        // 5. Благодарность
+        if (q === 'thanks') {
+            if (saidReservation && askedBreakfast && askedCheckout && askedPillow) {
+                saidMerci = true;
+                addHotelMessage('receptionist', "Merci à vous! Bon séjour à l'hôtel! 👋");
+                hotelFinished = true;
+                showHotelReport();
+            } else {
+                const missing = [];
+                if (!saidReservation) missing.push("📋 сказать про бронь на имя Dupont");
+                if (!askedBreakfast) missing.push("🥐 спросить про завтрак");
+                if (!askedCheckout) missing.push("⏰ спросить про время выезда");
+                if (!askedPillow) missing.push("🛏️ попросить дополнительную подушку");
+                addHotelMessage('receptionist', `Merci! Mais vous avez oublié: ${missing.join(', ')}. Répondez à tout, puis dites merci.`);
+            }
+            return;
+        }
+
+        addHotelMessage('receptionist', "Je ne comprends pas. Parlez de votre réservation, du petit déjeuner, du check-out ou d'une demande spéciale.");
+    }
+
+    function showHotelReport() {
+        setTimeout(() => {
+            let correct = '', errors = '';
+            if (saidReservation) correct += '<li>✅ Сказали про бронь (Dupont)</li>'; else errors += '<li>❌ Не сказали про бронь</li>';
+            if (askedBreakfast) correct += '<li>✅ Спросили про завтрак</li>'; else errors += '<li>❌ Не спросили про завтрак</li>';
+            if (askedCheckout) correct += '<li>✅ Спросили про время выезда</li>'; else errors += '<li>❌ Не спросили про выезд</li>';
+            if (askedPillow) correct += '<li>✅ Попросили дополнительную подушку</li>'; else errors += '<li>❌ Не попросили подушку</li>';
+            if (saidMerci) correct += '<li>✅ Поблагодарили</li>'; else errors += '<li>❌ Не поблагодарили</li>';
+
+            const reportDiv = document.createElement('div');
+            reportDiv.style.marginTop = '20px';
+            reportDiv.style.padding = '20px';
+            reportDiv.style.backgroundColor = '#f0f4ec';
+            reportDiv.style.borderRadius = '16px';
+            reportDiv.style.borderLeft = '4px solid #8fa882';
+            reportDiv.innerHTML = `
+                <h4>📊 ИТОГИ ДИАЛОГА</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 15px 0;">
+                    <div><strong>✅ Что сделали правильно:</strong><ul>${correct}</ul></div>
+                    <div><strong>❌ Что забыли:</strong><ul>${errors || '<li>Нет ошибок! 🎉</li>'}</ul></div>
+                </div>
+                <div style="margin-top: 15px; padding: 15px; background: white; border-radius: 12px;">
+                    <strong>📝 Пример правильного диалога:</strong><br>
+                    "Bonsoir, j'ai une réservation au nom de Dupont."<br>
+                    "Est-ce que le petit déjeuner est inclus?"<br>
+                    "À quelle heure dois-je libérer la chambre?"<br>
+                    "Puis-je avoir un oreiller supplémentaire?"<br>
+                    "Merci beaucoup!"
+                </div>
+                <form method="POST" style="margin-top: 15px;">
+                    <input type="hidden" name="answer" value="готово">
+                    <button type="submit" style="background: #8fa882; color: white; border: none; padding: 10px 20px; border-radius: 25px; cursor: pointer;">✅ Завершить урок</button>
+                </form>
+                <button onclick="resetHotelChat()" style="margin-top: 10px;">🔄 Попробовать снова</button>
+            `;
+            document.getElementById('hotel-chat-container').appendChild(reportDiv);
+            document.getElementById('hotel-user-input').disabled = true;
+            document.getElementById('hotel-send-btn').disabled = true;
+        }, 500);
+    }
+
+    function resetHotelChat() { location.reload(); }
+</script>
+
+{# ==================== ТИП 13: ВОКЗАЛ / АЭРОПОРТ ==================== #}
+{# ==================== ТИП 13: ВОКЗАЛ / АЭРОПОРТ ==================== #}
+{% elif day.type == 'station_practice' %}
+
+<div style="background: white; border-radius: 16px; padding: 20px; margin-bottom: 25px; border-left: 5px solid #8fa882; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+    <h3 style="margin-bottom: 15px;">🧾 ЗАДАНИЕ</h3>
+    <p>Вы на вокзале в Париже. Вам нужно:</p>
+    <ul style="margin: 15px 0 0 25px; line-height: 1.8;">
+        <li><strong>Купить билет до Лиона (один билет в один конец)</strong> 🎫</li>
+        <li><strong>Спросить, сколько стоит билет</strong> 💶</li>
+        <li><strong>Спросить, во сколько отправляется поезд</strong> ⏰</li>
+        <li><strong>Спросить, на какой платформе посадка</strong> 🚉</li>
+        <li><strong>Поблагодарить кассира</strong> 🙏</li>
+    </ul>
+    <p style="margin-top: 15px; background: #e8f0e4; padding: 8px 12px; border-radius: 12px;">
+        💡 Задавайте вопросы по одному. Кассир ответит и спросит, чем ещё помочь.
+    </p>
+</div>
+
+<div id="station-chat-container" style="background: white; border-radius: 16px; overflow: hidden; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+    <div id="station-chat-messages" style="height: 400px; overflow-y: auto; padding: 20px; background: #fafbfa;">
+        <div style="margin-bottom: 15px; display: flex; align-items: flex-start;">
+            <span style="font-size: 1.5rem;">🎫</span>
+            <div style="background: #e8f0e4; padding: 10px 15px; border-radius: 18px; margin-left: 10px;">
+                Bonjour! Vous voulez un billet?
+            </div>
+        </div>
+    </div>
+    <div style="display: flex; padding: 15px; background: white; border-top: 1px solid #e1e8df;">
+        <input type="text" id="station-user-input" placeholder="Écrivez votre réponse..."
+               style="flex: 1; padding: 12px; border: 2px solid #d4dcd0; border-radius: 25px; margin-right: 10px; font-size: 1rem;">
+        <button id="station-send-btn" onclick="sendStationMessage()" style="padding: 10px 25px; border-radius: 25px; background: #8fa882; color: white; border: none; cursor: pointer;">📤 Envoyer</button>
+    </div>
+</div>
+
+<div style="text-align: center;">
+    <button onclick="resetStationChat()" style="background: #f0f2ef; color: var(--text-main); border: none; padding: 10px 20px; border-radius: 25px; cursor: pointer;">🔄 Начать разговор заново</button>
+</div>
+
+<script>
+    let stationFinished = false;
+    let boughtTicket = false;
+    let askedPrice = false;
+    let askedTime = false;
+    let askedPlatform = false;
+    let saidMerci = false;
+
+    function cleanText(text) {
+        return text.replace(/[😊🙏🎫🖼️🎓💶✅❌❓🔄📤👋⏰🚉]/g, '').trim().toLowerCase();
+    }
+
+    function addStationMessage(sender, text) {
+        const messagesDiv = document.getElementById('station-chat-messages');
+        const div = document.createElement('div');
+        div.style.marginBottom = '15px';
+        div.style.display = 'flex';
+        div.style.alignItems = 'flex-start';
+        if (sender === 'cashier') {
+            div.innerHTML = `<span style="font-size: 1.5rem;">🎫</span><div style="background: #e8f0e4; padding: 10px 15px; border-radius: 18px; margin-left: 10px; max-width: 80%;">${text}</div>`;
+        } else {
+            div.innerHTML = `<div style="background: #8fa882; color: white; padding: 10px 15px; border-radius: 18px; margin-right: 10px; max-width: 80%; margin-left: auto;">${text}</div><span style="font-size: 1.5rem;">🧑</span>`;
+        }
+        messagesDiv.appendChild(div);
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
+
+    function detectStationQuestionType(originalText) {
+        const text = cleanText(originalText);
+
+        // Благодарность — только если нет "non" перед merci
+        const isThanks = text.includes('merci') &&
+                         !text.includes('non merci') &&
+                         !text.includes('non, merci') &&
+                         !text.includes('non,merci');
+
+        // Покупка билета
+        const isTicket = (text.includes('billet') || text.includes('lyon')) &&
+                         (text.includes('voudrais') || text.includes('acheter') ||
+                          text.includes('un billet') || text.includes('ai besoin') ||
+                          text.includes('je veux'));
+
+        // Цена
+        const isPrice = text.includes('combien') || text.includes('prix') ||
+                        text.includes('coûte') || text.includes('tarif');
+
+        // Время отправления
+        const isTime = text.includes('heure') || text.includes('part') ||
+                       text.includes('départ') || text.includes('quand') ||
+                       text.includes('quelle heure');
+
+        // Платформа
+        const isPlatform = text.includes('quai') || text.includes('plateforme') ||
+                           text.includes('quel quai') || text.includes('numéro');
+
+        if (isThanks) return 'thanks';
+        if (isTicket) return 'ticket';
+        if (isPrice) return 'price';
+        if (isTime) return 'time';
+        if (isPlatform) return 'platform';
+        return 'unrelated';
+    }
+
+    function sendStationMessage() {
+        if (stationFinished) return;
+        const input = document.getElementById('station-user-input');
+        const originalMsg = input.value.trim();
+        if (!originalMsg) return;
+        addStationMessage('user', originalMsg);
+        input.value = '';
+
+        const q = detectStationQuestionType(originalMsg);
+        const cleanMsg = cleanText(originalMsg);
+
+        // Посторонний вопрос
+        if (q === 'unrelated') {
+            addStationMessage('cashier', "Désolé, je suis caissier de la gare. Je peux vous vendre des billets pour Lyon, vous donner les horaires et les quais.");
+            return;
+        }
+
+        // 1. Вопрос о цене (работает всегда)
+        if (q === 'price') {
+            if (!askedPrice) {
+                askedPrice = true;
+            }
+            addStationMessage('cashier', "Le billet coûte 45 euros. Autre chose?");
+            return;
+        }
+
+        // 2. Вопрос о времени отправления
+        if (q === 'time') {
+            if (!askedTime) {
+                askedTime = true;
+            }
+            addStationMessage('cashier', "Le train pour Lyon part à 14h30. Autre chose?");
+            return;
+        }
+
+        // 3. Вопрос о платформе
+        if (q === 'platform') {
+            if (!askedPlatform) {
+                askedPlatform = true;
+            }
+            addStationMessage('cashier', "Le train part du quai numéro 3. Autre chose?");
+            return;
+        }
+
+        // 4. Покупка билета
+        if (q === 'ticket' && !boughtTicket) {
+            if (cleanMsg.includes('lyon')) {
+                boughtTicket = true;
+                addStationMessage('cashier', "D'accord, un billet pour Lyon en aller simple. Autre chose?");
+            } else {
+                addStationMessage('cashier', "Vous voulez un billet pour quelle ville? Lyon?");
+            }
+            return;
+        }
+        if (q === 'ticket' && boughtTicket) {
+            addStationMessage('cashier', "Vous avez déjà votre billet. Autre question?");
+            return;
+        }
+
+        // 5. Благодарность
+        if (q === 'thanks') {
+            // Если пользователь сказал "non merci" — это отказ
+            if (cleanMsg.includes('non merci') || cleanMsg.includes('non, merci') || cleanMsg.includes('non,merci')) {
+                const missing = [];
+                if (!boughtTicket) missing.push("🎫 купить билет до Лиона");
+                if (!askedPrice) missing.push("💶 спросить цену");
+                if (!askedTime) missing.push("⏰ спросить время отправления");
+                if (!askedPlatform) missing.push("🚉 спросить про платформу");
+
+                if (missing.length > 0) {
+                    addStationMessage('cashier', `Je vous en prie! Mais vous devez d'abord: ${missing.join(', ')}. Puis dites simplement "merci".`);
+                } else {
+                    addStationMessage('cashier', "Je vous en prie! Dites juste 'merci' pour confirmer.");
+                }
+                return;
+            }
+
+            // Проверяем, все ли шаги выполнены
+            if (boughtTicket && askedPrice && askedTime && askedPlatform) {
+                saidMerci = true;
+                addStationMessage('cashier', "Merci à vous! Bon voyage! 👋");
+                stationFinished = true;
+                showStationReport();
+            } else {
+                const missing = [];
+                if (!boughtTicket) missing.push("🎫 купить билет до Лиона");
+                if (!askedPrice) missing.push("💶 спросить цену");
+                if (!askedTime) missing.push("⏰ спросить время отправления");
+                if (!askedPlatform) missing.push("🚉 спросить про платформу");
+                addStationMessage('cashier', `Merci! Mais vous avez oublié: ${missing.join(', ')}. Répondez à tout, puis dites merci.`);
+            }
+            return;
+        }
+
+        addStationMessage('cashier', "Je ne comprends pas. Parlez des billets pour Lyon, des prix, des horaires ou des quais.");
+    }
+
+    function showStationReport() {
+    setTimeout(() => {
+        let correct = '', errors = '';
+        if (boughtTicket) correct += '<li>✅ Купили билет до Лиона</li>'; else errors += '<li>❌ Не купили билет</li>';
+        if (askedPrice) correct += '<li>✅ Спросили цену билета</li>'; else errors += '<li>❌ Не спросили цену</li>';
+        if (askedTime) correct += '<li>✅ Спросили время отправления</li>'; else errors += '<li>❌ Не спросили время</li>';
+        if (askedPlatform) correct += '<li>✅ Спросили про платформу</li>'; else errors += '<li>❌ Не спросили про платформу</li>';
+        if (saidMerci) correct += '<li>✅ Поблагодарили</li>'; else errors += '<li>❌ Не поблагодарили</li>';
+
+        const reportDiv = document.createElement('div');
+        reportDiv.style.marginTop = '20px';
+        reportDiv.style.padding = '20px';
+        reportDiv.style.backgroundColor = '#f0f4ec';
+        reportDiv.style.borderRadius = '16px';
+        reportDiv.style.borderLeft = '4px solid #8fa882';
+        reportDiv.innerHTML = `
+            <h4>📊 ИТОГИ ДИАЛОГА</h4>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 15px 0;">
+                <div><strong>✅ Что сделали правильно:</strong><ul>${correct}</ul></div>
+                <div><strong>❌ Что забыли:</strong><ul>${errors || '<li>Нет ошибок! 🎉</li>'}</ul></div>
+            </div>
+            <div style="margin-top: 15px; padding: 15px; background: white; border-radius: 12px;">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                    <strong>📝 Пример правильного диалога:</strong>
+                    <audio controls style="height: 30px;">
+                        <source src="{{ url_for('static', filename='audio/station_dialog.mp3') }}" type="audio/mpeg">
+                        Ваш браузер не поддерживает аудио.
+                    </audio>
+                </div>
+                "Bonjour, je voudrais un billet pour Lyon, aller simple."<br>
+                "C'est combien?"<br>
+                "À quelle heure part le train?"<br>
+                "Quel est le quai?"<br>
+                "Merci beaucoup!"
+            </div>
+            <form method="POST" style="margin-top: 15px;">
+                <input type="hidden" name="answer" value="готово">
+                <button type="submit" style="background: #8fa882; color: white; border: none; padding: 10px 20px; border-radius: 25px; cursor: pointer;">✅ Завершить урок</button>
+            </form>
+            <button onclick="resetStationChat()" style="margin-top: 10px;">🔄 Попробовать снова</button>
+        `;
+        document.getElementById('station-chat-container').appendChild(reportDiv);
+        document.getElementById('station-user-input').disabled = true;
+        document.getElementById('station-send-btn').disabled = true;
+    }, 500);
+}
+
+    function resetStationChat() { location.reload(); }
+</script>
+
+
+{# ==================== ТИП 15: У ВРАЧА / В АПТЕКЕ ==================== #}
+{% elif day.type == 'doctor_practice' %}
+
+<div style="background: white; border-radius: 16px; padding: 20px; margin-bottom: 25px; border-left: 5px solid #8fa882; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+    <h3 style="margin-bottom: 15px;">🧾 ЗАДАНИЕ</h3>
+    <p>Вы на приёме у врача в Париже. Вам нужно:</p>
+    <ul style="margin: 15px 0 0 25px; line-height: 1.8;">
+        <li><strong>Сказать, что вы плохо себя чувствуете</strong> 🤒</li>
+        <li><strong>Сказать, что у вас температура и кашель</strong> 🌡️</li>
+        <li><strong>Спросить, что вам нужно делать</strong> 📋</li>
+        <li><strong>Спросить, где ближайшая аптека</strong> 💊</li>
+        <li><strong>Поблагодарить врача</strong> 🙏</li>
+    </ul>
+    <p style="margin-top: 15px; background: #e8f0e4; padding: 8px 12px; border-radius: 12px;">
+        💡 Задавайте вопросы по одному. Врач ответит и спросит, чем ещё помочь.
+    </p>
+</div>
+
+<div id="doctor-chat-container" style="background: white; border-radius: 16px; overflow: hidden; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+    <div id="doctor-chat-messages" style="height: 400px; overflow-y: auto; padding: 20px; background: #fafbfa;">
+        <div style="margin-bottom: 15px; display: flex; align-items: flex-start;">
+            <span style="font-size: 1.5rem;">👨‍⚕️</span>
+            <div style="background: #e8f0e4; padding: 10px 15px; border-radius: 18px; margin-left: 10px;">
+                Bonjour! Asseyez-vous. Qu'est-ce qui vous amène?
+            </div>
+        </div>
+    </div>
+    <div style="display: flex; padding: 15px; background: white; border-top: 1px solid #e1e8df;">
+        <input type="text" id="doctor-user-input" placeholder="Écrivez votre réponse..."
+               style="flex: 1; padding: 12px; border: 2px solid #d4dcd0; border-radius: 25px; margin-right: 10px; font-size: 1rem;">
+        <button id="doctor-send-btn" onclick="sendDoctorMessage()" style="padding: 10px 25px; border-radius: 25px; background: #8fa882; color: white; border: none; cursor: pointer;">📤 Envoyer</button>
+    </div>
+</div>
+
+<div style="text-align: center;">
+    <button onclick="resetDoctorChat()" style="background: #f0f2ef; color: var(--text-main); border: none; padding: 10px 20px; border-radius: 25px; cursor: pointer;">🔄 Начать разговор заново</button>
+</div>
+
+<script>
+    let doctorFinished = false;
+    let saidNotWell = false;
+    let saidSymptoms = false;
+    let askedAdvice = false;
+    let askedPharmacy = false;
+    let saidMerci = false;
+
+    function cleanText(text) {
+        return text.replace(/[😊🙏🎫🖼️🎓💶✅❌❓🔄📤👋🤒🌡️💊👨‍⚕️]/g, '').trim().toLowerCase();
+    }
+
+    function addDoctorMessage(sender, text) {
+        const messagesDiv = document.getElementById('doctor-chat-messages');
+        const div = document.createElement('div');
+        div.style.marginBottom = '15px';
+        div.style.display = 'flex';
+        div.style.alignItems = 'flex-start';
+        if (sender === 'doctor') {
+            div.innerHTML = `<span style="font-size: 1.5rem;">👨‍⚕️</span><div style="background: #e8f0e4; padding: 10px 15px; border-radius: 18px; margin-left: 10px; max-width: 80%;">${text}</div>`;
+        } else {
+            div.innerHTML = `<div style="background: #8fa882; color: white; padding: 10px 15px; border-radius: 18px; margin-right: 10px; max-width: 80%; margin-left: auto;">${text}</div><span style="font-size: 1.5rem;">🧑</span>`;
+        }
+        messagesDiv.appendChild(div);
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
+
+    function detectDoctorQuestionType(originalText) {
+        const text = cleanText(originalText);
+
+        // Плохо себя чувствую
+        const isNotWell = text.includes('ne me sens pas bien') ||
+                          text.includes('pas bien') ||
+                          text.includes('malade');
+
+        // Симптомы: температура + кашель
+        const isSymptoms = (text.includes('fièvre') || text.includes('fievre')) &&
+                           (text.includes('tousse') || text.includes('toux'));
+
+        // Что делать?
+        const isAdvice = text.includes('dois-je faire') ||
+                         text.includes('que faire') ||
+                         text.includes('conseillez');
+
+        // Где аптека?
+        const isPharmacy = text.includes('pharmacie') ||
+                           text.includes('apothicaire');
+
+        const isThanks = text.includes('merci');
+
+        if (isThanks) return 'thanks';
+        if (isNotWell) return 'notwell';
+        if (isSymptoms) return 'symptoms';
+        if (isAdvice) return 'advice';
+        if (isPharmacy) return 'pharmacy';
+        return 'unrelated';
+    }
+
+    function sendDoctorMessage() {
+        if (doctorFinished) return;
+        const input = document.getElementById('doctor-user-input');
+        const originalMsg = input.value.trim();
+        if (!originalMsg) return;
+        addDoctorMessage('user', originalMsg);
+        input.value = '';
+
+        const q = detectDoctorQuestionType(originalMsg);
+        const cleanMsg = cleanText(originalMsg);
+
+        // Посторонний вопрос
+        if (q === 'unrelated') {
+            addDoctorMessage('doctor', "Désolé, je suis médecin. Parlez-moi de vos symptômes.");
+            return;
+        }
+
+        // 1. Плохо себя чувствую
+        if (q === 'notwell' && !saidNotWell) {
+            saidNotWell = true;
+            addDoctorMessage('doctor', "Je vois. Décrivez vos symptômes, s'il vous plaît.");
+            return;
+        }
+        if (q === 'notwell' && saidNotWell) {
+            addDoctorMessage('doctor', "Vous avez déjà dit que vous ne vous sentez pas bien. Quels sont vos symptômes?");
+            return;
+        }
+
+        // 2. Симптомы (температура + кашель)
+        if (q === 'symptoms' && !saidSymptoms) {
+            saidSymptoms = true;
+            addDoctorMessage('doctor', "D'accord. Je vais vous prescrire des vitamines. Prenez-en une boîte par jour pendant une semaine.");
+            return;
+        }
+        if (q === 'symptoms' && saidSymptoms) {
+            addDoctorMessage('doctor', "Je vous ai déjà prescrit des vitamines. Autre chose?");
+            return;
+        }
+
+        // 3. Что делать?
+        if (q === 'advice' && !askedAdvice) {
+            askedAdvice = true;
+            addDoctorMessage('doctor', "Reposez-vous, buvez beaucoup d'eau et prenez vos médicaments. Autre chose?");
+            return;
+        }
+        if (q === 'advice' && askedAdvice) {
+            addDoctorMessage('doctor', "Je vous ai déjà dit: reposez-vous et prenez vos médicaments.");
+            return;
+        }
+
+        // 4. Где ближайшая аптека?
+        if (q === 'pharmacy' && !askedPharmacy) {
+            askedPharmacy = true;
+            addDoctorMessage('doctor', "La pharmacie la plus proche est à deux rues d'ici, à gauche. Autre chose?");
+            return;
+        }
+        if (q === 'pharmacy' && askedPharmacy) {
+            addDoctorMessage('doctor', "Je vous ai déjà dit: deux rues à gauche.");
+            return;
+        }
+
+        // 5. Благодарность
+        if (q === 'thanks') {
+            if (saidNotWell && saidSymptoms && askedAdvice && askedPharmacy) {
+                saidMerci = true;
+                addDoctorMessage('doctor', "Merci à vous! Bon rétablissement! 👋");
+                doctorFinished = true;
+                showDoctorReport();
+            } else {
+                const missing = [];
+                if (!saidNotWell) missing.push("🤒 сказать что плохо себя чувствуете");
+                if (!saidSymptoms) missing.push("🌡️ описать симптомы (температура и кашель)");
+                if (!askedAdvice) missing.push("📋 спросить что делать");
+                if (!askedPharmacy) missing.push("💊 спросить где аптека");
+                addDoctorMessage('doctor', `Merci! Mais vous avez oublié: ${missing.join(', ')}. Répondez à tout, puis dites merci.`);
+            }
+            return;
+        }
+
+        addDoctorMessage('doctor', "Je ne comprends pas. Parlez-moi de vos symptômes.");
+    }
+
+    function showDoctorReport() {
+        setTimeout(() => {
+            let correct = '', errors = '';
+            if (saidNotWell) correct += '<li>✅ Сказали, что плохо себя чувствуете</li>'; else errors += '<li>❌ Не сказали, что плохо себя чувствуете</li>';
+            if (saidSymptoms) correct += '<li>✅ Описали симптомы (температура и кашель)</li>'; else errors += '<li>❌ Не описали симптомы</li>';
+            if (askedAdvice) correct += '<li>✅ Спросили, что делать</li>'; else errors += '<li>❌ Не спросили, что делать</li>';
+            if (askedPharmacy) correct += '<li>✅ Спросили, где аптека</li>'; else errors += '<li>❌ Не спросили про аптеку</li>';
+            if (saidMerci) correct += '<li>✅ Поблагодарили</li>'; else errors += '<li>❌ Не поблагодарили</li>';
+
+            const reportDiv = document.createElement('div');
+            reportDiv.style.marginTop = '20px';
+            reportDiv.style.padding = '20px';
+            reportDiv.style.backgroundColor = '#f0f4ec';
+            reportDiv.style.borderRadius = '16px';
+            reportDiv.style.borderLeft = '4px solid #8fa882';
+            reportDiv.innerHTML = `
+                <h4>📊 ИТОГИ ДИАЛОГА</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 15px 0;">
+                    <div><strong>✅ Что сделали правильно:</strong><ul>${correct}</ul></div>
+                    <div><strong>❌ Что забыли:</strong><ul>${errors || '<li>Нет ошибок! 🎉</li>'}</ul></div>
+                </div>
+                <div style="margin-top: 15px; padding: 15px; background: white; border-radius: 12px;">
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                        <strong>📝 Пример правильного диалога:</strong>
+                        <audio controls style="height: 30px;">
+                            <source src="{{ url_for('static', filename='audio/doctor_dialog.mp3') }}" type="audio/mpeg">
+                        </audio>
+                    </div>
+                    "Je ne me sens pas bien, docteur."<br>
+                    "J'ai de la fièvre et je tousse."<br>
+                    "Que dois-je faire?"<br>
+                    "Où est la pharmacie la plus proche?"<br>
+                    "Merci beaucoup, docteur!"
+                </div>
+                <form method="POST" style="margin-top: 15px;">
+                    <input type="hidden" name="answer" value="готово">
+                    <button type="submit" style="background: #8fa882; color: white; border: none; padding: 10px 20px; border-radius: 25px; cursor: pointer;">✅ Завершить урок</button>
+                </form>
+                <button onclick="resetDoctorChat()" style="margin-top: 10px;">🔄 Попробовать снова</button>
+            `;
+            document.getElementById('doctor-chat-container').appendChild(reportDiv);
+            document.getElementById('doctor-user-input').disabled = true;
+            document.getElementById('doctor-send-btn').disabled = true;
+        }, 500);
+    }
+
+    function resetDoctorChat() { location.reload(); }
+</script>
+
+
+    {# ==================== ТИП 17: НА ПОЧТЕ ==================== #}
+{% elif day.type == 'post_practice' %}
+
+<div style="background: white; border-radius: 16px; padding: 20px; margin-bottom: 25px; border-left: 5px solid #8fa882; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+    <h3 style="margin-bottom: 15px;">🧾 ЗАДАНИЕ</h3>
+    <p>Вы на почте в Париже. Вам нужно:</p>
+    <ul style="margin: 15px 0 0 25px; line-height: 1.8;">
+        <li><strong>Сказать, что хотите отправить посылку в Россию</strong> 📦</li>
+        <li><strong>Спросить, сколько стоит отправка</strong> 💶</li>
+        <li><strong>Выбрать самолёт (авиаотправка)</strong> ✈️</li>
+        <li><strong>Спросить, сколько времени идёт посылка</strong> ⏰</li>
+        <li><strong>Поблагодарить сотрудника</strong> 🙏</li>
+    </ul>
+    <p style="margin-top: 15px; background: #e8f0e4; padding: 8px 12px; border-radius: 12px;">
+        💡 Задавайте вопросы по одному. Сотрудник почты ответит и спросит, чем ещё помочь.
+    </p>
+</div>
+
+<div id="post-chat-container" style="background: white; border-radius: 16px; overflow: hidden; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+    <div id="post-chat-messages" style="height: 400px; overflow-y: auto; padding: 20px; background: #fafbfa;">
+        <div style="margin-bottom: 15px; display: flex; align-items: flex-start;">
+            <span style="font-size: 1.5rem;">📮</span>
+            <div style="background: #e8f0e4; padding: 10px 15px; border-radius: 18px; margin-left: 10px;">
+                Bonjour! Je peux vous aider?
+            </div>
+        </div>
+    </div>
+    <div style="display: flex; padding: 15px; background: white; border-top: 1px solid #e1e8df;">
+        <input type="text" id="post-user-input" placeholder="Écrivez votre réponse..."
+               style="flex: 1; padding: 12px; border: 2px solid #d4dcd0; border-radius: 25px; margin-right: 10px; font-size: 1rem;">
+        <button id="post-send-btn" onclick="sendPostMessage()" style="padding: 10px 25px; border-radius: 25px; background: #8fa882; color: white; border: none; cursor: pointer;">📤 Envoyer</button>
+    </div>
+</div>
+
+<div style="text-align: center;">
+    <button onclick="resetPostChat()" style="background: #f0f2ef; color: var(--text-main); border: none; padding: 10px 20px; border-radius: 25px; cursor: pointer;">🔄 Начать разговор заново</button>
+</div>
+
+<script>
+    let postFinished = false;
+    let saidSend = false;
+    let askedPrice = false;
+    let choseAvion = false;
+    let askedTime = false;
+    let saidMerci = false;
+
+    function cleanText(text) {
+        return text.replace(/[😊🙏🎫🖼️🎓💶✅❌❓🔄📤👋📦✈️⏰📮]/g, '').trim().toLowerCase();
+    }
+
+    function addPostMessage(sender, text) {
+        const messagesDiv = document.getElementById('post-chat-messages');
+        const div = document.createElement('div');
+        div.style.marginBottom = '15px';
+        div.style.display = 'flex';
+        div.style.alignItems = 'flex-start';
+        if (sender === 'clerk') {
+            div.innerHTML = `<span style="font-size: 1.5rem;">📮</span><div style="background: #e8f0e4; padding: 10px 15px; border-radius: 18px; margin-left: 10px; max-width: 80%;">${text}</div>`;
+        } else {
+            div.innerHTML = `<div style="background: #8fa882; color: white; padding: 10px 15px; border-radius: 18px; margin-right: 10px; max-width: 80%; margin-left: auto;">${text}</div><span style="font-size: 1.5rem;">🧑</span>`;
+        }
+        messagesDiv.appendChild(div);
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
+
+    function detectPostQuestionType(originalText) {
+    const text = cleanText(originalText);
+
+    // Хочу отправить посылку в Россию
+    const isSend = (text.includes('envoyer') || text.includes('colis')) &&
+                   (text.includes('rus') || text.includes('russie'));
+
+    // Вопрос о цене (combien + стоит/цена)
+    const isPrice = (text.includes('combien') || text.includes('prix') ||
+                     text.includes('coûte') || text.includes('tarif') ||
+                     text.includes('frais') || text.includes('livraison') ||
+                     text.includes('coûtent')) &&
+                     !text.includes('temps');  // НЕ должно быть слова "temps"
+
+    // Выбор самолёта (авиа)
+    const isAvion = text.includes('avion') || text.includes('par avion') ||
+                    text.includes('transport aérien');
+
+    // Вопрос о времени (combien de temps, délai, combien ça va prendre)
+    const isTime = text.includes('temps') || text.includes('délai') ||
+                   text.includes('combien de temps') ||
+                   text.includes('combien ça va prendre') ||
+                   text.includes('faut-il') || text.includes('arrive') ||
+                   text.includes('durée');
+
+    const isThanks = text.includes('merci');
+
+    if (isThanks) return 'thanks';
+    if (isSend) return 'send';
+    if (isPrice) return 'price';
+    if (isAvion) return 'avion';
+    if (isTime) return 'time';
+    return 'unrelated';
+}
+
+    function sendPostMessage() {
+        if (postFinished) return;
+        const input = document.getElementById('post-user-input');
+        const originalMsg = input.value.trim();
+        if (!originalMsg) return;
+        addPostMessage('user', originalMsg);
+        input.value = '';
+
+        const q = detectPostQuestionType(originalMsg);
+        const cleanMsg = cleanText(originalMsg);
+
+        // Посторонний вопрос
+        if (q === 'unrelated') {
+            addPostMessage('clerk', "Désolé, je suis employé de la poste. Je peux vous aider à envoyer des colis, vous donner les tarifs et les délais.");
+            return;
+        }
+
+        // 1. Отправить посылку в Россию
+        if (q === 'send' && !saidSend) {
+            saidSend = true;
+            addPostMessage('clerk', "D'accord. Quel est le poids du colis? Environ deux kilos?");
+            return;
+        }
+        if (q === 'send' && saidSend) {
+            addPostMessage('clerk', "Vous voulez envoyer un colis en Russie. Autre chose?");
+            return;
+        }
+
+        // 2. Сколько стоит?
+        if (q === 'price' && !askedPrice) {
+            askedPrice = true;
+            addPostMessage('clerk', "Ça coûte 25 euros par voie maritime, ou 40 euros par avion. Vous préférez?");
+            return;
+        }
+        if (q === 'price' && askedPrice) {
+            addPostMessage('clerk', "Je vous ai déjà dit: 25€ par mer, 40€ par avion.");
+            return;
+        }
+
+        // 3. Выбор самолёта
+        if (q === 'avion' && !choseAvion) {
+            choseAvion = true;
+            addPostMessage('clerk', "Très bien! Envoi par avion. Autre chose?");
+            return;
+        }
+        if (q === 'avion' && choseAvion) {
+            addPostMessage('clerk', "Vous avez déjà choisi l'envoi par avion.");
+            return;
+        }
+
+        // 4. Сколько времени идёт?
+        if (q === 'time' && !askedTime) {
+            askedTime = true;
+            addPostMessage('clerk', "L'envoi par avion prend environ 10 jours. Autre chose?");
+            return;
+        }
+        if (q === 'time' && askedTime) {
+            addPostMessage('clerk', "Je vous ai déjà dit: environ 10 jours.");
+            return;
+        }
+
+        // 5. Благодарность
+        if (q === 'thanks') {
+            if (saidSend && askedPrice && choseAvion && askedTime) {
+                saidMerci = true;
+                addPostMessage('clerk', "Merci à vous! Bonne journée! 👋");
+                postFinished = true;
+                showPostReport();
+            } else {
+                const missing = [];
+                if (!saidSend) missing.push("📦 сказать об отправке посылки в Россию");
+                if (!askedPrice) missing.push("💶 спросить стоимость");
+                if (!choseAvion) missing.push("✈️ выбрать авиаотправку");
+                if (!askedTime) missing.push("⏰ спросить сколько времени идёт");
+                addPostMessage('clerk', `Merci! Mais vous avez oublié: ${missing.join(', ')}. Répondez à tout, puis dites merci.`);
+            }
+            return;
+        }
+
+        addPostMessage('clerk', "Je ne comprends pas. Parlez de votre colis, des tarifs, du délai ou du mode d'envoi.");
+    }
+
+    function showPostReport() {
+        setTimeout(() => {
+            let correct = '', errors = '';
+            if (saidSend) correct += '<li>✅ Сказали об отправке посылки в Россию</li>'; else errors += '<li>❌ Не сказали о посылке</li>';
+            if (askedPrice) correct += '<li>✅ Спросили стоимость</li>'; else errors += '<li>❌ Не спросили стоимость</li>';
+            if (choseAvion) correct += '<li>✅ Выбрали авиаотправку</li>'; else errors += '<li>❌ Не выбрали авиаотправку</li>';
+            if (askedTime) correct += '<li>✅ Спросили сколько времени идёт</li>'; else errors += '<li>❌ Не спросили о времени</li>';
+            if (saidMerci) correct += '<li>✅ Поблагодарили</li>'; else errors += '<li>❌ Не поблагодарили</li>';
+
+            const reportDiv = document.createElement('div');
+            reportDiv.style.marginTop = '20px';
+            reportDiv.style.padding = '20px';
+            reportDiv.style.backgroundColor = '#f0f4ec';
+            reportDiv.style.borderRadius = '16px';
+            reportDiv.style.borderLeft = '4px solid #8fa882';
+            reportDiv.innerHTML = `
+                <h4>📊 ИТОГИ ДИАЛОГА</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 15px 0;">
+                    <div><strong>✅ Что сделали правильно:</strong><ul>${correct}</ul></div>
+                    <div><strong>❌ Что забыли:</strong><ul>${errors || '<li>Нет ошибок! 🎉</li>'}</ul></div>
+                </div>
+                <div style="margin-top: 15px; padding: 15px; background: white; border-radius: 12px;">
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                        <strong>📝 Пример правильного диалога:</strong>
+                        <audio controls style="height: 30px;">
+                            <source src="{{ url_for('static', filename='audio/post_dialog.mp3') }}" type="audio/mpeg">
+                        </audio>
+                    </div>
+                    "Je voudrais envoyer ce colis en Russie."<br>
+                    "C'est combien?"<br>
+                    "Je préfère par avion."<br>
+                    "Combien de temps ça va prendre?"<br>
+                    "Merci beaucoup!"
+                </div>
+                <form method="POST" style="margin-top: 15px;">
+                    <input type="hidden" name="answer" value="готово">
+                    <button type="submit" style="background: #8fa882; color: white; border: none; padding: 10px 20px; border-radius: 25px; cursor: pointer;">✅ Завершить урок</button>
+                </form>
+                <button onclick="resetPostChat()" style="margin-top: 10px;">🔄 Попробовать снова</button>
+            `;
+            document.getElementById('post-chat-container').appendChild(reportDiv);
+            document.getElementById('post-user-input').disabled = true;
+            document.getElementById('post-send-btn').disabled = true;
+        }, 500);
+    }
+
+    function resetPostChat() { location.reload(); }
+</script>
+
+{# ==================== ТИП 19: НА ЭКСКУРСИИ ==================== #}
+{% elif day.type == 'excursion_practice' %}
+
+<div style="background: white; border-radius: 16px; padding: 20px; margin-bottom: 25px; border-left: 5px solid #8fa882; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+    <h3 style="margin-bottom: 15px;">🧾 ЗАДАНИЕ</h3>
+    <p>Вы на экскурсии в Париже. Вам нужно:</p>
+    <ul style="margin: 15px 0 0 25px; line-height: 1.8;">
+        <li><strong>Спросить, есть ли экскурсия на русском языке</strong> 🇷🇺</li>
+        <li><strong>Спросить, во сколько начинается экскурсия</strong> ⏰</li>
+        <li><strong>Спросить, сколько длится экскурсия</strong> ⏱️</li>
+        <li><strong>Спросить, можно ли фотографировать</strong> 📸</li>
+        <li><strong>Поблагодарить гида</strong> 🙏</li>
+    </ul>
+    <p style="margin-top: 15px; background: #e8f0e4; padding: 8px 12px; border-radius: 12px;">
+        💡 Задавайте вопросы по одному. Гид ответит и спросит, чем ещё помочь.
+    </p>
+</div>
+
+<div id="excursion-chat-container" style="background: white; border-radius: 16px; overflow: hidden; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+    <div id="excursion-chat-messages" style="height: 400px; overflow-y: auto; padding: 20px; background: #fafbfa;">
+        <div style="margin-bottom: 15px; display: flex; align-items: flex-start;">
+            <span style="font-size: 1.5rem;">🗺️</span>
+            <div style="background: #e8f0e4; padding: 10px 15px; border-radius: 18px; margin-left: 10px;">
+                Bonjour! Vous voulez faire une visite guidée?
+            </div>
+        </div>
+    </div>
+    <div style="display: flex; padding: 15px; background: white; border-top: 1px solid #e1e8df;">
+        <input type="text" id="excursion-user-input" placeholder="Écrivez votre réponse..."
+               style="flex: 1; padding: 12px; border: 2px solid #d4dcd0; border-radius: 25px; margin-right: 10px; font-size: 1rem;">
+        <button id="excursion-send-btn" onclick="sendExcursionMessage()" style="padding: 10px 25px; border-radius: 25px; background: #8fa882; color: white; border: none; cursor: pointer;">📤 Envoyer</button>
+    </div>
+</div>
+
+<div style="text-align: center;">
+    <button onclick="resetExcursionChat()" style="background: #f0f2ef; color: var(--text-main); border: none; padding: 10px 20px; border-radius: 25px; cursor: pointer;">🔄 Начать разговор заново</button>
+</div>
+
+<script>
+    let excursionFinished = false;
+    let askedRussian = false;
+    let askedStartTime = false;
+    let askedDuration = false;
+    let askedPhoto = false;
+    let saidMerci = false;
+
+    function cleanText(text) {
+        return text.replace(/[😊🙏🎫🖼️🎓💶✅❌❓🔄📤👋🗺️🇷🇺⏰⏱️📸]/g, '').trim().toLowerCase();
+    }
+
+    function addExcursionMessage(sender, text) {
+        const messagesDiv = document.getElementById('excursion-chat-messages');
+        const div = document.createElement('div');
+        div.style.marginBottom = '15px';
+        div.style.display = 'flex';
+        div.style.alignItems = 'flex-start';
+        if (sender === 'guide') {
+            div.innerHTML = `<span style="font-size: 1.5rem;">🗺️</span><div style="background: #e8f0e4; padding: 10px 15px; border-radius: 18px; margin-left: 10px; max-width: 80%;">${text}</div>`;
+        } else {
+            div.innerHTML = `<div style="background: #8fa882; color: white; padding: 10px 15px; border-radius: 18px; margin-right: 10px; max-width: 80%; margin-left: auto;">${text}</div><span style="font-size: 1.5rem;">🧑</span>`;
+        }
+        messagesDiv.appendChild(div);
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
+
+    function detectExcursionQuestionType(originalText) {
+        const text = cleanText(originalText);
+
+        // Экскурсия на русском
+        const isRussian = (text.includes('visite') || text.includes('excursion')) &&
+                          (text.includes('russe') || text.includes('rus'));
+
+        // Во сколько начинается?
+        const isStartTime = (text.includes('heure') || text.includes('commence')) &&
+                            (text.includes('quelle') || text.includes('à quelle'));
+
+        // Сколько длится?
+        const isDuration = text.includes('dure') || text.includes('durée') ||
+                          text.includes('combien de temps') || text.includes('longtemps') ||
+                          text.includes('longue');
+
+        // Можно ли фотографировать?
+        const isPhoto = text.includes('photo') || text.includes('photographier') ||
+                       text.includes('prendre des photos');
+
+        const isThanks = text.includes('merci');
+
+        if (isThanks) return 'thanks';
+        if (isRussian) return 'russian';
+        if (isStartTime) return 'starttime';
+        if (isDuration) return 'duration';
+        if (isPhoto) return 'photo';
+        return 'unrelated';
+    }
+
+    function sendExcursionMessage() {
+        if (excursionFinished) return;
+        const input = document.getElementById('excursion-user-input');
+        const originalMsg = input.value.trim();
+        if (!originalMsg) return;
+        addExcursionMessage('user', originalMsg);
+        input.value = '';
+
+        const q = detectExcursionQuestionType(originalMsg);
+        const cleanMsg = cleanText(originalMsg);
+
+        // Посторонний вопрос
+        if (q === 'unrelated') {
+            addExcursionMessage('guide', "Désolé, je suis guide touristique. Je peux vous parler des visites, des horaires, de la durée et des règles.");
+            return;
+        }
+
+        // 1. Экскурсия на русском языке?
+        if (q === 'russian' && !askedRussian) {
+            askedRussian = true;
+            addExcursionMessage('guide', "Oui, nous avons une visite guidée en russe. Autre chose?");
+            return;
+        }
+        if (q === 'russian' && askedRussian) {
+            addExcursionMessage('guide', "Oui, la visite en russe est à 14h.");
+            return;
+        }
+
+        // 2. Во сколько начинается?
+        if (q === 'starttime' && !askedStartTime) {
+            askedStartTime = true;
+            addExcursionMessage('guide', "La visite commence à 14h. Autre chose?");
+            return;
+        }
+        if (q === 'starttime' && askedStartTime) {
+            addExcursionMessage('guide', "Je vous ai déjà dit: à 14h.");
+            return;
+        }
+
+        // 3. Сколько длится экскурсия?
+        if (q === 'duration' && !askedDuration) {
+            askedDuration = true;
+            addExcursionMessage('guide', "La visite dure environ deux heures. Autre chose?");
+            return;
+        }
+        if (q === 'duration' && askedDuration) {
+            addExcursionMessage('guide', "Je vous ai déjà dit: environ deux heures.");
+            return;
+        }
+
+        // 4. Можно ли фотографировать?
+        if (q === 'photo' && !askedPhoto) {
+            askedPhoto = true;
+            addExcursionMessage('guide', "Oui, vous pouvez prendre des photos, mais sans flash à l'intérieur. Autre chose?");
+            return;
+        }
+        if (q === 'photo' && askedPhoto) {
+            addExcursionMessage('guide', "Je vous ai déjà dit: photos autorisées sans flash.");
+            return;
+        }
+
+        // 5. Благодарность
+        if (q === 'thanks') {
+            if (askedRussian && askedStartTime && askedDuration && askedPhoto) {
+                saidMerci = true;
+                addExcursionMessage('guide', "Merci à vous! Bonne visite! 👋");
+                excursionFinished = true;
+                showExcursionReport();
+            } else {
+                const missing = [];
+                if (!askedRussian) missing.push("🇷🇺 спросить про экскурсию на русском");
+                if (!askedStartTime) missing.push("⏰ спросить время начала");
+                if (!askedDuration) missing.push("⏱️ спросить длительность");
+                if (!askedPhoto) missing.push("📸 спросить про фото");
+                addExcursionMessage('guide', `Merci! Mais vous avez oublié: ${missing.join(', ')}. Répondez à tout, puis dites merci.`);
+            }
+            return;
+        }
+
+        addExcursionMessage('guide', "Je ne comprends pas. Parlez des visites, des horaires, de la durée ou des photos.");
+    }
+
+    function showExcursionReport() {
+        setTimeout(() => {
+            let correct = '', errors = '';
+            if (askedRussian) correct += '<li>✅ Спросили про экскурсию на русском</li>'; else errors += '<li>❌ Не спросили про русскую экскурсию</li>';
+            if (askedStartTime) correct += '<li>✅ Спросили время начала</li>'; else errors += '<li>❌ Не спросили время начала</li>';
+            if (askedDuration) correct += '<li>✅ Спросили длительность</li>'; else errors += '<li>❌ Не спросили длительность</li>';
+            if (askedPhoto) correct += '<li>✅ Спросили про фото</li>'; else errors += '<li>❌ Не спросили про фото</li>';
+            if (saidMerci) correct += '<li>✅ Поблагодарили</li>'; else errors += '<li>❌ Не поблагодарили</li>';
+
+            const reportDiv = document.createElement('div');
+            reportDiv.style.marginTop = '20px';
+            reportDiv.style.padding = '20px';
+            reportDiv.style.backgroundColor = '#f0f4ec';
+            reportDiv.style.borderRadius = '16px';
+            reportDiv.style.borderLeft = '4px solid #8fa882';
+            reportDiv.innerHTML = `
+                <h4>📊 ИТОГИ ДИАЛОГА</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 15px 0;">
+                    <div><strong>✅ Что сделали правильно:</strong><ul>${correct}</ul></div>
+                    <div><strong>❌ Что забыли:</strong><ul>${errors || '<li>Нет ошибок! 🎉</li>'}</ul></div>
+                </div>
+                <div style="margin-top: 15px; padding: 15px; background: white; border-radius: 12px;">
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                        <strong>📝 Пример правильного диалога:</strong>
+                        <audio controls style="height: 30px;">
+                            <source src="{{ url_for('static', filename='audio/excursion_dialog.mp3') }}" type="audio/mpeg">
+                        </audio>
+                    </div>
+                    "Est-ce que vous faites des visites guidées en russe?"<br>
+                    "À quelle heure commence la visite?"<br>
+                    "Combien de temps dure la visite?"<br>
+                    "Est-ce qu'on peut prendre des photos?"<br>
+                    "Merci beaucoup!"
+                </div>
+                <form method="POST" style="margin-top: 15px;">
+                    <input type="hidden" name="answer" value="готово">
+                    <button type="submit" style="background: #8fa882; color: white; border: none; padding: 10px 20px; border-radius: 25px; cursor: pointer;">✅ Завершить урок</button>
+                </form>
+                <button onclick="resetExcursionChat()" style="margin-top: 10px;">🔄 Попробовать снова</button>
+            `;
+            document.getElementById('excursion-chat-container').appendChild(reportDiv);
+            document.getElementById('excursion-user-input').disabled = true;
+            document.getElementById('excursion-send-btn').disabled = true;
+        }, 500);
+    }
+
+    function resetExcursionChat() { location.reload(); }
+</script>
+
+{# ==================== ТИП 21: ПОТЕРЯЛСЯ / СПРОСИТЬ ДОРОГУ ==================== #}
+{% elif day.type == 'lost_practice' %}
+
+<div style="background: white; border-radius: 16px; padding: 20px; margin-bottom: 25px; border-left: 5px solid #8fa882; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+    <h3 style="margin-bottom: 15px;">🧾 ЗАДАНИЕ</h3>
+    <p>Вы потерялись в Париже. Вам нужно спросить у прохожего:</p>
+    <ul style="margin: 15px 0 0 25px; line-height: 1.8;">
+        <li><strong>Сказать, что вы потерялись</strong> 🧭</li>
+        <li><strong>Спросить, как пройти к улице Риволи (rue de Rivoli)</strong> 🗺️</li>
+        <li><strong>Спросить, это далеко или близко</strong> 📍</li>
+        <li><strong>Уточнить номер дома (50)</strong> 🏠</li>
+        <li><strong>Поблагодарить прохожего</strong> 🙏</li>
+    </ul>
+    <p style="margin-top: 15px; background: #e8f0e4; padding: 8px 12px; border-radius: 12px;">
+        💡 Задавайте вопросы по одному. Прохожий ответит и поможет вам.
+    </p>
+</div>
+
+<div id="lost-chat-container" style="background: white; border-radius: 16px; overflow: hidden; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+    <div id="lost-chat-messages" style="height: 400px; overflow-y: auto; padding: 20px; background: #fafbfa;">
+        <div style="margin-bottom: 15px; display: flex; align-items: flex-start;">
+            <span style="font-size: 1.5rem;">🚶‍♀️</span>
+            <div style="background: #e8f0e4; padding: 10px 15px; border-radius: 18px; margin-left: 10px;">
+                Bonjour! Vous avez l'air perdu. Je peux vous aider?
+            </div>
+        </div>
+    </div>
+    <div style="display: flex; padding: 15px; background: white; border-top: 1px solid #e1e8df;">
+        <input type="text" id="lost-user-input" placeholder="Écrivez votre réponse..."
+               style="flex: 1; padding: 12px; border: 2px solid #d4dcd0; border-radius: 25px; margin-right: 10px; font-size: 1rem;">
+        <button id="lost-send-btn" onclick="sendLostMessage()" style="padding: 10px 25px; border-radius: 25px; background: #8fa882; color: white; border: none; cursor: pointer;">📤 Envoyer</button>
+    </div>
+</div>
+
+<div style="text-align: center;">
+    <button onclick="resetLostChat()" style="background: #f0f2ef; color: var(--text-main); border: none; padding: 10px 20px; border-radius: 25px; cursor: pointer;">🔄 Начать разговор заново</button>
+</div>
+
+<script>
+    let lostFinished = false;
+    let saidLost = false;
+    let askedHowToGet = false;
+    let askedDistance = false;
+    let askedNumber = false;
+    let saidMerci = false;
+
+    function cleanText(text) {
+        return text.replace(/[😊🙏🎫🖼️🎓💶✅❌❓🔄📤👋🧭🗺️📍🏠🚶‍♀️]/g, '').trim().toLowerCase();
+    }
+
+    function addLostMessage(sender, text) {
+        const messagesDiv = document.getElementById('lost-chat-messages');
+        const div = document.createElement('div');
+        div.style.marginBottom = '15px';
+        div.style.display = 'flex';
+        div.style.alignItems = 'flex-start';
+        if (sender === 'passerby') {
+            div.innerHTML = `<span style="font-size: 1.5rem;">🚶‍♀️</span><div style="background: #e8f0e4; padding: 10px 15px; border-radius: 18px; margin-left: 10px; max-width: 80%;">${text}</div>`;
+        } else {
+            div.innerHTML = `<div style="background: #8fa882; color: white; padding: 10px 15px; border-radius: 18px; margin-right: 10px; max-width: 80%; margin-left: auto;">${text}</div><span style="font-size: 1.5rem;">🧑</span>`;
+        }
+        messagesDiv.appendChild(div);
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
+
+    function detectLostQuestionType(originalText) {
+        const text = cleanText(originalText);
+
+        // Я потерялся
+        const isLost = text.includes('perdu') || text.includes('perdue') ||
+                       text.includes('je suis perdu');
+
+        // Как пройти к улице Риволи?
+        const isHowToGet = (text.includes('rue de rivoli') || text.includes('rivoli')) &&
+                           (text.includes('où') || text.includes('comment') ||
+                            text.includes('aller') || text.includes('trouve') ||
+                            text.includes('se trouve'));
+
+        // Далеко ли?
+        const isDistance = text.includes('loin') || text.includes('distance') ||
+                           text.includes('c\'est loin') || text.includes('est-ce loin');
+
+        // Номер дома?
+        const isNumber = text.includes('numéro') || text.includes('adresse') ||
+                         text.includes('quel numéro') || text.includes('50') ||
+                         (text.includes('numéro') && text.includes('cinquante'));
+
+        const isThanks = text.includes('merci');
+
+        if (isThanks) return 'thanks';
+        if (isLost) return 'lost';
+        if (isHowToGet) return 'howtoget';
+        if (isDistance) return 'distance';
+        if (isNumber) return 'number';
+        return 'unrelated';
+    }
+
+    function sendLostMessage() {
+        if (lostFinished) return;
+        const input = document.getElementById('lost-user-input');
+        const originalMsg = input.value.trim();
+        if (!originalMsg) return;
+        addLostMessage('user', originalMsg);
+        input.value = '';
+
+        const q = detectLostQuestionType(originalMsg);
+        const cleanMsg = cleanText(originalMsg);
+
+        // Посторонний вопрос
+        if (q === 'unrelated') {
+            addLostMessage('passerby', "Désolé, je ne comprends pas. Je peux vous aider à trouver une rue, un numéro, ou vous dire si c'est loin.");
+            return;
+        }
+
+        // 1. Я потерялся
+        if (q === 'lost' && !saidLost) {
+            saidLost = true;
+            addLostMessage('passerby', "Ne vous inquiétez pas. Où voulez-vous aller?");
+            return;
+        }
+        if (q === 'lost' && saidLost) {
+            addLostMessage('passerby', "Vous êtes perdu? Dites-moi où vous voulez aller.");
+            return;
+        }
+
+        // 2. Как пройти к улице Риволи?
+        if (q === 'howtoget' && !askedHowToGet) {
+            askedHowToGet = true;
+            addLostMessage('passerby', "Vous allez tout droit, puis vous prenez la première rue à gauche. Autre chose?");
+            return;
+        }
+        if (q === 'howtoget' && askedHowToGet) {
+            addLostMessage('passerby', "Je vous ai déjà dit: tout droit, puis première rue à gauche.");
+            return;
+        }
+
+        // 3. Это далеко?
+        if (q === 'distance' && !askedDistance) {
+            askedDistance = true;
+            addLostMessage('passerby', "Non, c'est à environ cinq minutes à pied. Autre chose?");
+            return;
+        }
+        if (q === 'distance' && askedDistance) {
+            addLostMessage('passerby', "Je vous ai déjà dit: cinq minutes à pied.");
+            return;
+        }
+
+        // 4. Какой номер дома?
+        if (q === 'number' && !askedNumber) {
+            askedNumber = true;
+            addLostMessage('passerby', "Le numéro 50 se trouve après le carrefour. Autre chose?");
+            return;
+        }
+        if (q === 'number' && askedNumber) {
+            addLostMessage('passerby', "Je vous ai déjà dit: numéro 50 après le carrefour.");
+            return;
+        }
+
+        // 5. Благодарность
+        if (q === 'thanks') {
+            if (saidLost && askedHowToGet && askedDistance && askedNumber) {
+                saidMerci = true;
+                addLostMessage('passerby', "Merci à vous! Bonne journée et faites attention! 👋");
+                lostFinished = true;
+                showLostReport();
+            } else {
+                const missing = [];
+                if (!saidLost) missing.push("🧭 сказать что потерялись");
+                if (!askedHowToGet) missing.push("🗺️ спросить дорогу к rue de Rivoli");
+                if (!askedDistance) missing.push("📍 спросить далеко ли");
+                if (!askedNumber) missing.push("🏠 уточнить номер дома");
+                addLostMessage('passerby', `Merci! Mais vous avez oublié: ${missing.join(', ')}. Répondez à tout, puis dites merci.`);
+            }
+            return;
+        }
+
+        addLostMessage('passerby', "Je ne comprends pas. Parlez-moi de l'adresse, de la distance ou du numéro.");
+    }
+
+    function showLostReport() {
+        setTimeout(() => {
+            let correct = '', errors = '';
+            if (saidLost) correct += '<li>✅ Сказали, что потерялись</li>'; else errors += '<li>❌ Не сказали, что потерялись</li>';
+            if (askedHowToGet) correct += '<li>✅ Спросили дорогу к rue de Rivoli</li>'; else errors += '<li>❌ Не спросили дорогу</li>';
+            if (askedDistance) correct += '<li>✅ Спросили, далеко ли это</li>'; else errors += '<li>❌ Не спросили про расстояние</li>';
+            if (askedNumber) correct += '<li>✅ Уточнили номер дома</li>'; else errors += '<li>❌ Не уточнили номер</li>';
+            if (saidMerci) correct += '<li>✅ Поблагодарили</li>'; else errors += '<li>❌ Не поблагодарили</li>';
+
+            const reportDiv = document.createElement('div');
+            reportDiv.style.marginTop = '20px';
+            reportDiv.style.padding = '20px';
+            reportDiv.style.backgroundColor = '#f0f4ec';
+            reportDiv.style.borderRadius = '16px';
+            reportDiv.style.borderLeft = '4px solid #8fa882';
+            reportDiv.innerHTML = `
+                <h4>📊 ИТОГИ ДИАЛОГА</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 15px 0;">
+                    <div><strong>✅ Что сделали правильно:</strong><ul>${correct}</ul></div>
+                    <div><strong>❌ Что забыли:</strong><ul>${errors || '<li>Нет ошибок! 🎉</li>'}</ul></div>
+                </div>
+                <div style="margin-top: 15px; padding: 15px; background: white; border-radius: 12px;">
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                        <strong>📝 Пример правильного диалога:</strong>
+                        <audio controls style="height: 30px;">
+                            <source src="{{ url_for('static', filename='audio/lost_dialog.mp3') }}" type="audio/mpeg">
+                        </audio>
+                    </div>
+                    "Excusez-moi, je suis perdu."<br>
+                    "Où se trouve la rue de Rivoli?"<br>
+                    "C'est loin d'ici?"<br>
+                    "C'est à quel numéro?"<br>
+                    "Merci beaucoup!"
+                </div>
+                <form method="POST" style="margin-top: 15px;">
+                    <input type="hidden" name="answer" value="готово">
+                    <button type="submit" style="background: #8fa882; color: white; border: none; padding: 10px 20px; border-radius: 25px; cursor: pointer;">✅ Завершить урок</button>
+                </form>
+                <button onclick="resetLostChat()" style="margin-top: 10px;">🔄 Попробовать снова</button>
+            `;
+            document.getElementById('lost-chat-container').appendChild(reportDiv);
+            document.getElementById('lost-user-input').disabled = true;
+            document.getElementById('lost-send-btn').disabled = true;
+        }, 500);
+    }
+
+    function resetLostChat() { location.reload(); }
+</script>
+
+{# ==================== ТИП 23: РАЗГОВОР С ДРУЗЬЯМИ ==================== #}
+{% elif day.type == 'friends_practice' %}
+
+<div style="background: white; border-radius: 16px; padding: 20px; margin-bottom: 25px; border-left: 5px solid #8fa882; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+    <h3 style="margin-bottom: 15px;">🧾 ЗАДАНИЕ</h3>
+    <p>Вы встречаетесь с другом/подругой в Париже. Вам нужно:</p>
+    <ul style="margin: 15px 0 0 25px; line-height: 1.8;">
+        <li><strong>Выбрать, с кем встретиться (друг 👦 или подруга 👧)</strong></li>
+        <li><strong>Поздороваться и спросить, как дела</strong> 👋</li>
+        <li><strong>Ответить на вопрос, как прошли дни в Париже</strong> 🗼</li>
+        <li><strong>Рассказать, что больше всего понравилось</strong> ❤️</li>
+        <li><strong>Рассказать историю (потерялся ИЛИ заболел), но не забыть сказать, что всё закончилось хорошо</strong> 📖</li>
+        <li><strong>Согласиться пойти в магазин и кафе, упомянуть, что нужна новая футболка и что проголодался</strong> 🛍️☕</li>
+    </ul>
+    <p style="margin-top: 15px; background: #e8f0e4; padding: 8px 12px; border-radius: 12px;">
+        💡 Отвечайте на вопросы друга/подруги. Диалог будет длинным и интересным!
+    </p>
+</div>
+
+<div id="friends-chat-container" style="background: white; border-radius: 16px; overflow: hidden; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+    <div id="friends-chat-messages" style="height: 450px; overflow-y: auto; padding: 20px; background: #fafbfa;">
+        <div style="margin-bottom: 15px; display: flex; align-items: flex-start;">
+            <span style="font-size: 1.5rem;" id="friend-emoji">👋</span>
+            <div style="background: #e8f0e4; padding: 10px 15px; border-radius: 18px; margin-left: 10px; max-width: 80%;" id="first-message">
+                Salut! Content de te voir! Tu veux qu'on parle avec mon ami ou mon amie? (ami = garçon 👦 / amie = fille 👧)
+            </div>
+        </div>
+    </div>
+    <div style="display: flex; padding: 15px; background: white; border-top: 1px solid #e1e8df;">
+        <input type="text" id="friends-user-input" placeholder="Écrivez votre réponse..."
+               style="flex: 1; padding: 12px; border: 2px solid #d4dcd0; border-radius: 25px; margin-right: 10px; font-size: 1rem;">
+        <button id="friends-send-btn" onclick="sendFriendsMessage()" style="padding: 10px 25px; border-radius: 25px; background: #8fa882; color: white; border: none; cursor: pointer;">📤 Envoyer</button>
+    </div>
+</div>
+
+<div style="text-align: center;">
+    <button onclick="resetFriendsChat()" style="background: #f0f2ef; color: var(--text-main); border: none; padding: 10px 20px; border-radius: 25px; cursor: pointer;">🔄 Начать разговор заново</button>
+</div>
+
+<script>
+    let friendsFinished = false;
+    let step = 1;
+    let friendGender = null;
+    let storyType = null;
+
+    let greeted = false;
+    let askedHowWas = false;
+    let askedWhatLiked = false;
+    let toldStory = false;
+    let agreedShopping = false;
+
+    function cleanText(text) {
+        return text.replace(/[😊🙏🎫🖼️🎓💶✅❌❓🔄📤👋👦👧🗼🛍️☕❤️]/g, '').trim().toLowerCase();
+    }
+
+    function addFriendsMessage(sender, text) {
+        const messagesDiv = document.getElementById('friends-chat-messages');
+        const div = document.createElement('div');
+        div.style.marginBottom = '15px';
+        div.style.display = 'flex';
+        div.style.alignItems = 'flex-start';
+
+        if (sender === 'friend') {
+            const friendEmoji = friendGender === 'male' ? '👦' : (friendGender === 'female' ? '👧' : '👋');
+            div.innerHTML = `<span style="font-size: 1.5rem;">${friendEmoji}</span><div style="background: #e8f0e4; padding: 10px 15px; border-radius: 18px; margin-left: 10px; max-width: 80%;">${text}</div>`;
+        } else {
+            div.innerHTML = `<div style="background: #8fa882; color: white; padding: 10px 15px; border-radius: 18px; margin-right: 10px; max-width: 80%; margin-left: auto;">${text}</div><span style="font-size: 1.5rem;">🧑</span>`;
+        }
+        messagesDiv.appendChild(div);
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
+
+    function sendFriendsMessage() {
+        if (friendsFinished) return;
+        const input = document.getElementById('friends-user-input');
+        const originalMsg = input.value.trim();
+        if (!originalMsg) return;
+        addFriendsMessage('user', originalMsg);
+        input.value = '';
+
+        const cleanMsg = cleanText(originalMsg);
+
+        // ШАГ 1: Выбор друга или подруги
+        if (step === 1) {
+            if (cleanMsg.includes('ami') || cleanMsg.includes('garçon') || cleanMsg.includes('male') || cleanMsg.includes('друг') || cleanMsg.includes('мальчик')) {
+                friendGender = 'male';
+                addFriendsMessage('friend', "Super! Alors je suis ton ami. Ça te va?");
+                addFriendsMessage('friend', "Salut mon ami! Comment ça va?");
+                step = 2;
+            }
+            else if (cleanMsg.includes('amie') || cleanMsg.includes('fille') || cleanMsg.includes('female') || cleanMsg.includes('подруга') || cleanMsg.includes('девушка')) {
+                friendGender = 'female';
+                addFriendsMessage('friend', "Super! Alors je suis ton amie. Ça te va?");
+                addFriendsMessage('friend', "Salut mon amie! Comment ça va?");
+                step = 2;
+            }
+            else {
+                addFriendsMessage('friend', "Je ne comprends pas. Tu veux parler avec un ami (garçon 👦) ou une amie (fille 👧)?");
+            }
+            return;
+        }
+
+        // ШАГ 2: Приветствие
+        if (step === 2 && !greeted) {
+            greeted = true;
+            step = 3;
+            addFriendsMessage('friend', "Tant mieux! Dis-moi, comment se sont passés tes jours à Paris? Tu as aimé?");
+            return;
+        }
+
+        // ШАГ 3: Как прошли дни в Париже?
+        if (step === 3 && !askedHowWas) {
+            askedHowWas = true;
+            step = 4;
+            addFriendsMessage('friend', "Ah oui? Raconte-moi! Qu'est-ce qui t'a le plus plu à Paris?");
+            return;
+        }
+
+        // ШАГ 4: Что больше всего понравилось?
+        if (step === 4 && !askedWhatLiked) {
+            askedWhatLiked = true;
+            step = 5;
+            addFriendsMessage('friend', "C'est génial! Tout s'est bien passé ou il y a eu des imprévus?");
+            return;
+        }
+
+        // ШАГ 5: История (с хорошим концом)
+        if (step === 5 && !toldStory) {
+            const hasGoodEnding = cleanMsg.includes('bien') || cleanMsg.includes('final') || cleanMsg.includes('tout va bien') ||
+                                  cleanMsg.includes('finalement') || cleanMsg.includes('heureusement') ||
+                                  cleanMsg.includes('хорошо') || cleanMsg.includes('всё хорошо') ||
+                                  cleanMsg.includes('закончилось') || cleanMsg.includes('к счастью');
+
+            if (cleanMsg.includes('perdu') || cleanMsg.includes('lost') || cleanMsg.includes('потерялся')) {
+                storyType = 'lost';
+            } else if (cleanMsg.includes('fièvre') || cleanMsg.includes('malade') || cleanMsg.includes('sick') ||
+                       cleanMsg.includes('температура') || cleanMsg.includes('болел') || cleanMsg.includes('заболел')) {
+                storyType = 'sick';
+            }
+
+            if (hasGoodEnding) {
+                toldStory = true;
+                if (storyType === 'lost') {
+                    addFriendsMessage('friend', "Oh là là! Tu t'es perdu? Mais heureusement que tout s'est bien terminé!");
+                } else if (storyType === 'sick') {
+                    addFriendsMessage('friend', "Oh non! Tu étais malade? Mais heureusement que tu vas mieux maintenant!");
+                } else {
+                    addFriendsMessage('friend', "D'accord, je vois. L'important c'est que tout se soit bien terminé!");
+                }
+                addFriendsMessage('friend', "Dis-moi, tu ne veux pas faire du shopping? J'ai besoin d'acheter des vêtements. Et après, on pourrait aller au café?");
+                step = 6;
+            } else {
+                addFriendsMessage('friend', "Tu as oublié de dire comment ça s'est terminé! Raconte-moi toute l'histoire, et n'oublie pas de dire que tout s'est bien fini!");
+            }
+            return;
+        }
+
+        // ШАГ 6: Согласие на магазин и кафе (с упоминанием футболки и голода)
+        // ШАГ 6: Согласие на магазин и кафе (с упоминанием футболки и голода)
+        if (step === 6 && !agreedShopping) {
+            // Проверяем, есть ли согласие (oui, veux, d'accord, super, oui oui, etc.)
+            const hasAgreement = cleanMsg.includes('oui') || cleanMsg.includes('veux') || cleanMsg.includes('d\'accord') ||
+                                 cleanMsg.includes('super') || cleanMsg.includes('ok') || cleanMsg.includes('bien') ||
+                                 cleanMsg.includes('да') || cleanMsg.includes('хочу') || cleanMsg.includes('согласен') ||
+                                 cleanMsg.includes('хорошо') || cleanMsg.includes('отлично');
+
+            if (hasAgreement) {
+                agreedShopping = true;
+
+                const mentionsShirt = cleanMsg.includes('t-shirt') || cleanMsg.includes('teeshirt') ||
+                                      cleanMsg.includes('chemise') || cleanMsg.includes('футболка') ||
+                                      cleanMsg.includes('рубашка') || cleanMsg.includes('shirt') ||
+                                      cleanMsg.includes('nouveau t-shirt');
+                const mentionsHungry = cleanMsg.includes('faim') || cleanMsg.includes('manger') ||
+                                       cleanMsg.includes('голодна') || cleanMsg.includes('голоден') ||
+                                       cleanMsg.includes('проголодался') || cleanMsg.includes('très faim');
+
+                if (mentionsShirt && mentionsHungry) {
+                    addFriendsMessage('friend', "Parfait! On va d'abord au magasin acheter ta nouvelle chemise, puis au café parce que j'ai aussi faim! Allons-y! 🎉");
+                } else if (mentionsShirt) {
+                    addFriendsMessage('friend', "Super pour la chemise! Et moi, j'ai faim. On va au café après le shopping? Allons-y! 🎉");
+                } else if (mentionsHungry) {
+                    addFriendsMessage('friend', "Moi aussi j'ai faim! Et on trouvera une chemise pour toi en chemin. Allons-y! 🎉");
+                } else {
+                    addFriendsMessage('friend', "D'accord! On va au magasin, puis au café. Allons-y! 🎉");
+                }
+
+                friendsFinished = true;
+                showFriendsReport();
+                return;
+            } else {
+                addFriendsMessage('friend', "Tu ne veux pas venir? Ça serait sympa! Tu as besoin d'un nouveau t-shirt et moi j'ai faim!");
+            }
+            return;
+        }
+    }
+
+    function showFriendsReport() {
+        setTimeout(() => {
+            let correct = '', errors = '';
+            if (greeted) correct += '<li>✅ Поздоровались и ответили на вопрос "Comment ça va?"</li>'; else errors += '<li>❌ Не поздоровались</li>';
+            if (askedHowWas) correct += '<li>✅ Ответили про дни в Париже</li>'; else errors += '<li>❌ Не ответили про Париж</li>';
+            if (askedWhatLiked) correct += '<li>✅ Рассказали, что больше всего понравилось</li>'; else errors += '<li>❌ Не рассказали, что понравилось</li>';
+            if (toldStory) correct += '<li>✅ Рассказали историю с хорошим концом</li>'; else errors += '<li>❌ Не рассказали историю</li>';
+            if (agreedShopping) correct += '<li>✅ Согласились пойти в магазин и кафе, упомянули футболку и голод</li>'; else errors += '<li>❌ Не согласились</li>';
+
+            const reportDiv = document.createElement('div');
+            reportDiv.style.marginTop = '20px';
+            reportDiv.style.padding = '20px';
+            reportDiv.style.backgroundColor = '#f0f4ec';
+            reportDiv.style.borderRadius = '16px';
+            reportDiv.style.borderLeft = '4px solid #8fa882';
+            reportDiv.innerHTML = `
+                <h4>📊 ИТОГИ ДИАЛОГА</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 15px 0;">
+                    <div><strong>✅ Что сделали правильно:</strong><ul>${correct}</ul></div>
+                    <div><strong>❌ Что забыли:</strong><ul>${errors || '<li>Нет ошибок! 🎉</li>'}</ul></div>
+                </div>
+                <div style="margin-top: 15px; padding: 15px; background: white; border-radius: 12px;">
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                        <strong>📝 Пример правильного диалога:</strong>
+                        <audio controls style="height: 30px;">
+                            <source src="{{ url_for('static', filename='audio/friends_dialog.mp3') }}" type="audio/mpeg">
+                        </audio>
+                    </div>
+                    "<strong>Вы:</strong> Je voudrais parler avec une amie (fille)."<br>
+                    "<strong>Подруга:</strong> Salut mon amie! Comment ça va?"<br>
+                    "<strong>Вы:</strong> Ça va très bien, et toi?"<br>
+                    "<strong>Подруга:</strong> Tant mieux! Dis-moi, comment se sont passés tes jours à Paris?"<br>
+                    "<strong>Вы:</strong> C'était génial! J'ai visité la Tour Eiffel."<br>
+                    "<strong>Подруга:</strong> Qu'est-ce qui t'a le plus plu à Paris?"<br>
+                    "<strong>Вы:</strong> La Tour Eiffel, c'était magnifique!"<br>
+                    "<strong>Подруга:</strong> Tout s'est bien passé ou il y a eu des imprévus?"<br>
+                    "<strong>Вы:</strong> Je me suis perdu une fois, mais heureusement tout s'est bien terminé!"<br>
+                    "<strong>Подруга:</strong> Tu ne veux pas faire du shopping et après aller au café?"<br>
+                    "<strong>Вы:</strong> Oui! J'ai besoin d'un nouveau t-shirt et j'ai faim!"<br>
+                    "<strong>Подруга:</strong> Parfait! Allons-y! 🎉"<br>
+                </div>
+                <form method="POST" style="margin-top: 15px;">
+                    <input type="hidden" name="answer" value="готово">
+                    <button type="submit" style="background: #8fa882; color: white; border: none; padding: 10px 20px; border-radius: 25px; cursor: pointer;">✅ Завершить урок</button>
+                </form>
+                <button onclick="resetFriendsChat()" style="margin-top: 10px;">🔄 Попробовать снова</button>
+            `;
+            document.getElementById('friends-chat-container').appendChild(reportDiv);
+            document.getElementById('friends-user-input').disabled = true;
+            document.getElementById('friends-send-btn').disabled = true;
+        }, 500);
+    }
+
+    function resetFriendsChat() { location.reload(); }
+</script>
+
+
+
     {# ==================== ОБЫЧНЫЙ УРОК С ДИАЛОГОМ ==================== #}
     {% elif day.dialogue %}
 
