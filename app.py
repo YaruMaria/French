@@ -100,31 +100,8 @@ ADVANCED_DAYS = {
 
     # ========== ДЕНЬ 7: В ТЕАТРЕ / КИНО ==========
     7: {
-        "title": "Практика: В театре / кино",
-        "type": "advanced_lesson",
-        "dialogue": {
-            "fr": """— Deux places pour le film de ce soir, s'il vous plaît.
-— À quelle séance ?
-— À vingt heures.
-— Il reste des places au premier rang ?
-— Non, désolé, mais il y a des places au milieu de la salle.
-— D'accord, je prends ces deux places. C'est combien ?
-— Vingt euros. Bonne séance !""",
-            "ru": """— Два билета на сегодняшний фильм, пожалуйста.
-— На какой сеанс?
-— На восемь вечера.
-— Есть места в первом ряду?
-— Нет, извините, но есть места в середине зала.
-— Хорошо, я беру эти два места. Сколько?
-— Двадцать евро. Приятного просмотра!"""
-        },
-        "phrases": [
-            {"fr": "Deux places, s'il vous plaît", "ru": "Два билета, пожалуйста"},
-            {"fr": "À quelle séance ?", "ru": "На какой сеанс?"},
-            {"fr": "Quel film passe ce soir ?", "ru": "Какой фильм идёт сегодня вечером?"},
-            {"fr": "C'est à quelle heure ?", "ru": "Во сколько?"},
-            {"fr": "J'aimerais m'abonner", "ru": "Я хотел(а) бы купить абонемент"}
-        ],
+        "title": "🎬 В театре / кино — практика",
+        "type": "cinema_practice",
         "correct_answer": "готово"
     },
 
@@ -139,29 +116,8 @@ ADVANCED_DAYS = {
 
     # ========== ДЕНЬ 9: В МУЗЕЕ ==========
     9: {
-        "title": "Практика: В музее",
-        "type": "advanced_lesson",
-        "dialogue": {
-            "fr": """— Bonjour, un billet pour le Louvre, s'il vous plaît.
-— C'est 17 euros. Vous avez droit au tarif réduit ?
-— Oui, je suis étudiant.
-— Alors, c'est 13 euros. Voici votre billet. Les audioguides sont à l'accueil.
-— Merci. Où se trouve la Joconde ?
-— Au premier étage, dans la salle des États. Suivez les panneaux.""",
-            "ru": """— Здравствуйте, один билет в Лувр, пожалуйста.
-— 17 евро. У вас есть право на льготный билет?
-— Да, я студент.
-— Тогда 13 евро. Вот ваш билет. Аудиогиды на входе.
-— Спасибо. Где находится Джоконда?
-— На втором этаже, в зале Штатов. Следуйте за указателями."""
-        },
-        "phrases": [
-            {"fr": "Un billet, s'il vous plaît", "ru": "Один билет, пожалуйста"},
-            {"fr": "J'ai droit au tarif réduit", "ru": "У меня есть право на льготный билет"},
-            {"fr": "Où se trouve... ?", "ru": "Где находится...?"},
-            {"fr": "Est-ce qu'on peut prendre des photos ?", "ru": "Можно фотографировать?"},
-            {"fr": "À quelle heure ferme le musée ?", "ru": "Во сколько закрывается музей?"}
-        ],
+        "title": "🖼️ В музее — практика",
+        "type": "museum_practice",
         "correct_answer": "готово"
     },
 
