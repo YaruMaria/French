@@ -440,6 +440,224 @@
         function resetTransportChat() { location.reload(); }
     </script>
 
+        {# ==================== ТИП 3: КАФЕ / РЕСТОРАН ==================== #}
+    {% elif day.type == 'cafe_practice' %}
+
+    <!-- ЗАДАНИЕ -->
+    <div style="background: white; border-radius: 16px; padding: 20px; margin-bottom: 25px; border-left: 5px solid #8fa882; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+        <h3 style="margin-bottom: 15px;">🧾 ЗАДАНИЕ</h3>
+        <p>Вы в парижском кафе. Вам нужно:</p>
+        <ul style="margin: 15px 0 0 25px; line-height: 1.8;">
+            <li><strong>Попросить столик на двоих</strong> 🪑</li>
+            <li><strong>Попросить меню</strong> 📋</li>
+            <li><strong>Сделать заказ</strong> ☕ (кофе и круассан)</li>
+            <li><strong>Попросить счёт</strong> 💶</li>
+            <li><strong>Поблагодарить официанта</strong> 🙏</li>
+        </ul>
+        <p style="margin-top: 15px; background: #e8f0e4; padding: 8px 12px; border-radius: 12px;">
+            💡 Задавайте вопросы по одному. Официант ответит и спросит, чем ещё помочь.
+        </p>
+    </div>
+
+    <!-- ОКНО ДИАЛОГА -->
+    <div id="cafe-chat-container" style="background: white; border-radius: 16px; overflow: hidden; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+        <div id="cafe-chat-messages" style="height: 400px; overflow-y: auto; padding: 20px; background: #fafbfa;">
+            <div style="margin-bottom: 15px; display: flex; align-items: flex-start;">
+                <span style="font-size: 1.5rem;">👨‍🍳</span>
+                <div style="background: #e8f0e4; padding: 10px 15px; border-radius: 18px; margin-left: 10px;">
+                    Bonjour! Asseyez-vous. Voici la carte.
+                </div>
+            </div>
+        </div>
+        <div style="display: flex; padding: 15px; background: white; border-top: 1px solid #e1e8df;">
+            <input type="text" id="cafe-user-input" placeholder="Écrivez votre réponse..."
+                   style="flex: 1; padding: 12px; border: 2px solid #d4dcd0; border-radius: 25px; margin-right: 10px; font-size: 1rem;">
+            <button id="cafe-send-btn" onclick="sendCafeMessage()" style="padding: 10px 25px; border-radius: 25px; background: #8fa882; color: white; border: none; cursor: pointer;">📤 Envoyer</button>
+        </div>
+    </div>
+
+    <div style="text-align: center;">
+        <button onclick="resetCafeChat()" style="background: #f0f2ef; color: var(--text-main); border: none; padding: 10px 20px; border-radius: 25px; cursor: cursor: pointer;">🔄 Начать разговор заново</button>
+    </div>
+
+    <script>
+        let cafeFinished = false;
+        let askedTable = false;
+        let askedMenu = false;
+        let ordered = false;
+        let askedBill = false;
+        let saidMerci = false;
+
+        function addCafeMessage(sender, text) {
+            const messagesDiv = document.getElementById('cafe-chat-messages');
+            const div = document.createElement('div');
+            div.style.marginBottom = '15px';
+            div.style.display = 'flex';
+            div.style.alignItems = 'flex-start';
+            if (sender === 'waiter') {
+                div.innerHTML = `<span style="font-size: 1.5rem;">👨‍🍳</span><div style="background: #e8f0e4; padding: 10px 15px; border-radius: 18px; margin-left: 10px; max-width: 80%;">${text}</div>`;
+            } else {
+                div.innerHTML = `<div style="background: #8fa882; color: white; padding: 10px 15px; border-radius: 18px; margin-right: 10px; max-width: 80%; margin-left: auto;">${text}</div><span style="font-size: 1.5rem;">🧑</span>`;
+            }
+            messagesDiv.appendChild(div);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        function detectCafeQuestionType(text) {
+            const lower = text.toLowerCase();
+
+            const isTable = lower.includes('table') || lower.includes('place') || lower.includes('deux') || (lower.includes('pour deux'));
+            const isMenu = lower.includes('carte') || lower.includes('menu');
+            const isOrder = lower.includes('café') || lower.includes('cafe') || lower.includes('croissant') || lower.includes('commander') || lower.includes('voudrais');
+            const isBill = lower.includes('addition') || lower.includes('payer');
+            const isThanks = lower.includes('merci');
+
+            if (isThanks) return 'thanks';
+            if (isTable) return 'table';
+            if (isMenu) return 'menu';
+            if (isOrder) return 'order';
+            if (isBill) return 'bill';
+            return 'unrelated';
+        }
+
+        function sendCafeMessage() {
+            if (cafeFinished) return;
+            const input = document.getElementById('cafe-user-input');
+            const msg = input.value.trim();
+            if (!msg) return;
+            addCafeMessage('user', msg);
+            input.value = '';
+
+            const questionType = detectCafeQuestionType(msg);
+
+            // Посторонний вопрос
+            if (questionType === 'unrelated') {
+                addCafeMessage('waiter', "Désolé, je ne comprends pas. Je suis serveur. Vous voulez une table, la carte, commander ou l'addition?");
+                return;
+            }
+
+            // Столик
+            if (questionType === 'table' && !askedTable) {
+                askedTable = true;
+                addCafeMessage('waiter', "Voilà une table pour deux. Voici la carte. Que voulez-vous commander?");
+                return;
+            }
+
+            // Меню
+            if (questionType === 'menu' && !askedMenu && !askedTable) {
+                askedMenu = true;
+                addCafeMessage('waiter', "Voici la carte. Que voulez-vous commander?");
+                return;
+            }
+            if (questionType === 'menu' && askedTable) {
+                addCafeMessage('waiter', "Voilà la carte. Que désirez-vous?");
+                return;
+            }
+
+            // Заказ
+            if (questionType === 'order' && !ordered) {
+                ordered = true;
+                // Проверяем, что в заказе есть кофе и круассан
+                const lower = msg.toLowerCase();
+                const hasCafe = lower.includes('café') || lower.includes('cafe');
+                const hasCroissant = lower.includes('croissant');
+                if (hasCafe && hasCroissant) {
+                    addCafeMessage('waiter', "Très bien! Un café et un croissant. Autre chose?");
+                } else if (hasCafe) {
+                    addCafeMessage('waiter', "Un café. Et voulez-vous aussi un croissant?");
+                } else if (hasCroissant) {
+                    addCafeMessage('waiter', "Un croissant. Et voulez-vous aussi un café?");
+                } else {
+                    addCafeMessage('waiter', "D'accord. Et avec ceci?");
+                }
+                return;
+            }
+
+            // Счёт
+            if (questionType === 'bill' && !askedBill && ordered) {
+                askedBill = true;
+                addCafeMessage('waiter', "Voilà l'addition. Ça fait 5 euros. Merci!");
+                return;
+            }
+            if (questionType === 'bill' && !ordered) {
+                addCafeMessage('waiter', "Vous n'avez encore rien commandé. Voulez-vous un café ou un croissant?");
+                return;
+            }
+
+            // Благодарность
+            if (questionType === 'thanks') {
+                if (askedTable && ordered && askedBill) {
+                    saidMerci = true;
+                    addCafeMessage('waiter', "Merci à vous! Bonne journée! 👋");
+                    cafeFinished = true;
+                    showCafeReport();
+                }
+                return;
+            }
+
+            // Если уже сделали что-то
+            if (questionType === 'table' && askedTable) {
+                addCafeMessage('waiter', "Vous avez déjà une table. Voulez-vous commander?");
+                return;
+            }
+            if (questionType === 'menu' && askedMenu) {
+                addCafeMessage('waiter', "Voici la carte. Que voulez-vous?");
+                return;
+            }
+            if (questionType === 'order' && ordered) {
+                addCafeMessage('waiter', "Vous avez déjà commandé. Voulez-vous l'addition?");
+                return;
+            }
+            if (questionType === 'bill' && askedBill) {
+                addCafeMessage('waiter', "Je vous ai déjà donné l'addition. Merci et bonne journée!");
+                return;
+            }
+
+            addCafeMessage('waiter', "Je ne comprends pas. Vous voulez une table, la carte, commander ou l'addition?");
+        }
+
+        function showCafeReport() {
+            setTimeout(() => {
+                let correct = '', errors = '';
+                if (askedTable) correct += '<li>✅ Попросили столик</li>'; else errors += '<li>❌ Не попросили столик</li>';
+                if (ordered) correct += '<li>✅ Сделали заказ (кофе + круассан)</li>'; else errors += '<li>❌ Не сделали заказ</li>';
+                if (askedBill) correct += '<li>✅ Попросили счёт</li>'; else errors += '<li>❌ Не попросили счёт</li>';
+                if (saidMerci) correct += '<li>✅ Поблагодарили</li>'; else errors += '<li>❌ Не поблагодарили</li>';
+
+                const reportDiv = document.createElement('div');
+                reportDiv.style.marginTop = '20px';
+                reportDiv.style.padding = '20px';
+                reportDiv.style.backgroundColor = '#f0f4ec';
+                reportDiv.style.borderRadius = '16px';
+                reportDiv.style.borderLeft = '4px solid #8fa882';
+                reportDiv.innerHTML = `
+                    <h4>📊 ИТОГИ ДИАЛОГА</h4>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 15px 0;">
+                        <div><strong>✅ Что вы сделали правильно:</strong><ul>${correct}</ul></div>
+                        <div><strong>❌ Что вы забыли:</strong><ul>${errors || '<li>Нет ошибок! 🎉</li>'}</ul></div>
+                    </div>
+                    <div style="margin-top: 15px; padding: 15px; background: white; border-radius: 12px;">
+                        <strong>📝 Пример правильного диалога:</strong><br>
+                        "Une table pour deux, s'il vous plaît."<br>
+                        "Je voudrais un café et un croissant."<br>
+                        "L'addition, s'il vous plaît."<br>
+                        "Merci beaucoup!"
+                    </div>
+                    <form method="POST" style="margin-top: 15px;">
+                        <input type="hidden" name="answer" value="готово">
+                        <button type="submit" style="background: #8fa882; color: white; border: none; padding: 10px 20px; border-radius: 25px; cursor: pointer;">✅ Завершить урок</button>
+                    </form>
+                    <button onclick="resetCafeChat()" style="margin-top: 10px;">🔄 Попробовать снова</button>
+                `;
+                document.getElementById('cafe-chat-container').appendChild(reportDiv);
+                document.getElementById('cafe-user-input').disabled = true;
+                document.getElementById('cafe-send-btn').disabled = true;
+            }, 500);
+        }
+
+        function resetCafeChat() { location.reload(); }
+    </script>
+
     {# ==================== ТИП 3: ОБЫЧНЫЙ УРОК С ДИАЛОГОМ ==================== #}
     {% elif day.dialogue %}
 

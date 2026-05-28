@@ -84,31 +84,8 @@ ADVANCED_DAYS = {
 
     # ========== ДЕНЬ 5: В КАФЕ / РЕСТОРАНЕ ==========
     5: {
-        "title": "Практика: В кафе / ресторане",
-        "type": "advanced_lesson",
-        "dialogue": {
-            "fr": """— Bonsoir, vous avez une table pour deux ?
-— Oui, bien sûr, par ici, Madame, Monsieur. Voici la carte.
-— Merci. Qu'est-ce que vous nous recommandez ?
-— Le plat du jour est un confit de canard avec des pommes de terre.
-— Parfait, je vais prendre ça. Et en dessert ?
-— La tarte aux pomches est délicieuse.
-— D'accord, je prends la tarte. L'addition, s'il vous plaît !""",
-            "ru": """— Добрый вечер, у вас есть столик на двоих?
-— Да, конечно, сюда, мадам, мсье. Вот меню.
-— Спасибо. Что вы нам посоветуете?
-— Дежурное блюдо — конфи из утки с картофелем.
-— Прекрасно, я возьму это. А на десерт?
-— Яблочный пирог восхитителен.
-— Хорошо, я беру пирог. Счёт, пожалуйста!"""
-        },
-        "phrases": [
-            {"fr": "Une table pour deux, s'il vous plaît", "ru": "Столик на двоих, пожалуйста"},
-            {"fr": "La carte, s'il vous plaît", "ru": "Меню, пожалуйста"},
-            {"fr": "Je voudrais commander...", "ru": "Я хотел(а) бы заказать..."},
-            {"fr": "Qu'est-ce que vous recommandez ?", "ru": "Что вы рекомендуете?"},
-            {"fr": "L'addition, s'il vous plaît", "ru": "Счёт, пожалуйста"}
-        ],
+        "title": "☕ В кафе / ресторане — практика",
+        "type": "cafe_practice",
         "correct_answer": "готово"
     },
 
@@ -463,7 +440,7 @@ ADVANCED_DAYS = {
     }
 }
 # Заполним заглушками на 24 дня
-for i in range(6, 25):
+for i in range(10, 25):
     ADVANCED_DAYS[i] = {"title": f"Практика: День {i}", "type": "advanced_lesson",
                         "content": "Скоро здесь появится новый полезный диалог!", "correct_answer": "готово"}
 
