@@ -52,14 +52,14 @@ with app.app_context():
 ADVANCED_DAYS = {
     # ========== ДЕНЬ 1: В МАГАЗИНЕ ==========
     1: {
-        "title": "🎯 В магазине — практика",
+        "title": "🎯 В магазине",
         "type": "shopping_practice",
         "correct_answer": "готово"
     },
 
-    # ========== ДЕНЬ 2: ЧТЕНИЕ (Глава VII, часть 1) ==========
+    # ========== ДЕНЬ 2: ЧТЕНИЕ (Глава 5, часть 2/2) ==========
     2: {
-        "title": "Чтение: Капитанская дочка (Глава VII, часть 1/2)",
+        "title": "📖 Чтение: Капитанская дочка (Глава V, часть 2/2 — La lettre du père)",
         "type": "advanced_reading",
         "reading_id": "captains_daughter",
         "chapter_part": 18,
@@ -73,174 +73,174 @@ ADVANCED_DAYS = {
         "correct_answer": "готово"
     },
 
-    # ========== ДЕНЬ 4: ЧТЕНИЕ (Глава VII, часть 2) ==========
+    # ========== ДЕНЬ 4: ЧТЕНИЕ (Глава 6, часть 1/2) ==========
     4: {
-        "title": "Чтение: Капитанская дочка (Глава VII, часть 2/2)",
+        "title": "📖 Чтение: Капитанская дочка (Глава VI, часть 1/2 — L'arrivée de Pougatcheff)",
+        "type": "advanced_reading",
+        "reading_id": "captains_daughter",
+        "chapter_part": 19,
+        "correct_answer": "готово"
+    },
+
+    # ========== ДЕНЬ 5: В КАФЕ / РЕСТОРАНЕ ==========
+    5: {
+        "title": "☕ В кафе / ресторане",
+        "type": "cafe_practice",
+        "correct_answer": "готово"
+    },
+
+    # ========== ДЕНЬ 6: ЧТЕНИЕ (Глава 6, часть 2/2) ==========
+    6: {
+        "title": "📖 Чтение: Капитанская дочка (Глава VI, часть 2/2 — Les préparatifs)",
+        "type": "advanced_reading",
+        "reading_id": "captains_daughter",
+        "chapter_part": 20,
+        "correct_answer": "готово"
+    },
+
+    # ========== ДЕНЬ 7: В ТЕАТРЕ / КИНО ==========
+    7: {
+        "title": "🎬 В театре / кино",
+        "type": "cinema_practice",
+        "correct_answer": "готово"
+    },
+
+    # ========== ДЕНЬ 8: ЧТЕНИЕ (Глава 7, часть 1/2) ==========
+    8: {
+        "title": "📖 Чтение: Капитанская дочка (Глава VII, часть 1/2 — L'assaut, la nuit avant)",
+        "type": "advanced_reading",
+        "reading_id": "captains_daughter",
+        "chapter_part": 21,
+        "correct_answer": "готово"
+    },
+
+    # ========== ДЕНЬ 9: В МУЗЕЕ ==========
+    9: {
+        "title": "🖼️ В музее",
+        "type": "museum_practice",
+        "correct_answer": "готово"
+    },
+
+    # ========== ДЕНЬ 10: ЧТЕНИЕ (Глава 7, часть 2/2) ==========
+    10: {
+        "title": "📖 Чтение: Капитанская дочка (Глава VII, часть 2/2 — La mort du commandant)",
         "type": "advanced_reading",
         "reading_id": "captains_daughter",
         "chapter_part": 22,
         "correct_answer": "готово"
     },
 
-    # ========== ДЕНЬ 5: В КАФЕ / РЕСТОРАНЕ ==========
-    5: {
-        "title": "☕ В кафе / ресторане — практика",
-        "type": "cafe_practice",
+    # ========== ДЕНЬ 11: В ОТЕЛЕ / ГОСТИНИЦЕ ==========
+    11: {
+        "title": "🏨 В отеле / гостинице",
+        "type": "hotel_practice",
         "correct_answer": "готово"
     },
 
-    # ========== ДЕНЬ 6: ЧТЕНИЕ (Глава VIII, часть 1) ==========
-    6: {
-        "title": "Чтение: Капитанская дочка (Глава VIII, часть 1/2)",
+    # ========== ДЕНЬ 12: ЧТЕНИЕ (Глава 8, часть 1/2) ==========
+    12: {
+        "title": "📖 Чтение: Капитанская дочка (Глава VIII, часть 1/2 — La grâce inattendue)",
         "type": "advanced_reading",
         "reading_id": "captains_daughter",
         "chapter_part": 23,
         "correct_answer": "готово"
     },
 
-    # ========== ДЕНЬ 7: В ТЕАТРЕ / КИНО ==========
-    7: {
-        "title": "🎬 В театре / кино — практика",
-        "type": "cinema_practice",
+    # ========== ДЕНЬ 13: НА ВОКЗАЛЕ / В АЭРОПОРТУ ==========
+    13: {
+        "title": "🚉 На вокзале / в аэропорту",
+        "type": "station_practice",
         "correct_answer": "готово"
     },
 
-    # ========== ДЕНЬ 8: ЧТЕНИЕ (Глава VIII, часть 2) ==========
-    8: {
-        "title": "Чтение: Капитанская дочка (Глава VIII, часть 2/2)",
+    # ========== ДЕНЬ 14: ЧТЕНИЕ (Глава 8, часть 2/2) ==========
+    14: {
+        "title": "📖 Чтение: Капитанская дочка (Глава VIII, часть 2/2 - Le souper chez Pougatcheff)",
         "type": "advanced_reading",
         "reading_id": "captains_daughter",
         "chapter_part": 24,
         "correct_answer": "готово"
     },
 
-    # ========== ДЕНЬ 9: В МУЗЕЕ ==========
-    9: {
-        "title": "🖼️ В музее — практика",
-        "type": "museum_practice",
+    # ========== ДЕНЬ 15: У ВРАЧА / В АПТЕКЕ ==========
+    15: {
+        "title": "👨‍⚕️ У врача / в аптеке",
+        "type": "doctor_practice",
         "correct_answer": "готово"
     },
 
-    # ========== ДЕНЬ 10: ЧТЕНИЕ (Глава IX, часть 1) ==========
-    10: {
-        "title": "Чтение: Капитанская дочка (Глава IX, часть 1/2)",
+    # ========== ДЕНЬ 16: ЧТЕНИЕ (Глава 9, часть 1/2) ==========
+    16: {
+        "title": "📖 Чтение: Капитанская дочка (Глава IX, часть 1/2 - La séparation)",
         "type": "advanced_reading",
         "reading_id": "captains_daughter",
         "chapter_part": 25,
         "correct_answer": "готово"
     },
 
-    # ========== ДЕНЬ 11: В ОТЕЛЕ / ГОСТИНИЦЕ ==========
-    11: {
-        "title": "🏨 В отеле / гостинице — практика",
-        "type": "hotel_practice",
+    # ========== ДЕНЬ 17: НА ПОЧТЕ ==========
+    17: {
+        "title": "📮 На почте",
+        "type": "post_practice",
         "correct_answer": "готово"
     },
 
-    # ========== ДЕНЬ 12: ЧТЕНИЕ (Глава IX, часть 2) ==========
-    12: {
-        "title": "Чтение: Капитанская дочка (Глава IX, часть 2/2)",
+    # ========== ДЕНЬ 18: ЧТЕНИЕ (Глава 9, часть 2/2) ==========
+    18: {
+        "title": "📖 Чтение: Капитанская дочка (Глава IX, часть 2/2 - Le départ et le cadeau)",
         "type": "advanced_reading",
         "reading_id": "captains_daughter",
         "chapter_part": 26,
         "correct_answer": "готово"
     },
 
-    # ========== ДЕНЬ 13: НА ВОКЗАЛЕ / В АЭРОПОРТУ ==========
-    13: {
-        "title": "🚉 На вокзале / в аэропорту — практика",
-        "type": "station_practice",
+    # ========== ДЕНЬ 19: НА ЭКСКУРСИИ ==========
+    19: {
+        "title": "🗺️ На экскурсии",
+        "type": "excursion_practice",
         "correct_answer": "готово"
     },
 
-    # ========== ДЕНЬ 14: ЧТЕНИЕ (Глава X, часть 1) ==========
-    14: {
-        "title": "Чтение: Капитанская дочка (Глава X, часть 1/2)",
+    # ========== ДЕНЬ 20: ЧТЕНИЕ (Глава 10, полностью) ==========
+    20: {
+        "title": "📖 Чтение: Капитанская дочка (Глава X - Le siège)",
         "type": "advanced_reading",
         "reading_id": "captains_daughter",
         "chapter_part": 27,
         "correct_answer": "готово"
     },
 
-    # ========== ДЕНЬ 15: У ВРАЧА / В АПТЕКЕ ==========
-    15: {
-        "title": "👨‍⚕️ У врача / в аптеке — практика",
-        "type": "doctor_practice",
+    # ========== ДЕНЬ 21: ПОТЕРЯЛСЯ / СПРОСИТЬ ДОРОГУ ==========
+    21: {
+        "title": "🧭 Потерялся / спросить дорогу",
+        "type": "lost_practice",
         "correct_answer": "готово"
     },
 
-    # ========== ДЕНЬ 16: ЧТЕНИЕ (Глава X, часть 2) ==========
-    16: {
-        "title": "Чтение: Капитанская дочка (Глава X, часть 2/2)",
-        "type": "advanced_reading",
-        "reading_id": "captains_daughter",
-        "chapter_part": 28,
-        "correct_answer": "готово"
-    },
-
-    # ========== ДЕНЬ 17: НА ПОЧТЕ ==========
-    17: {
-        "title": "📮 На почте — практика",
-        "type": "post_practice",
-        "correct_answer": "готово"
-    },
-
-    # ========== ДЕНЬ 18: ЧТЕНИЕ (Глава XI, часть 1) ==========
-    18: {
-        "title": "Чтение: Капитанская дочка (Глава XI, часть 1/2)",
+    # ========== ДЕНЬ 22: ЧТЕНИЕ (Глава 11) ==========
+    22: {
+        "title": "📖 Чтение: Капитанская дочка (Глава XI - XII)",
         "type": "advanced_reading",
         "reading_id": "captains_daughter",
         "chapter_part": 29,
         "correct_answer": "готово"
     },
 
-    # ========== ДЕНЬ 19: НА ЭКСКУРСИИ ==========
-    19: {
-        "title": "🗺️ На экскурсии — практика",
-        "type": "excursion_practice",
-        "correct_answer": "готово"
-    },
-
-    # ========== ДЕНЬ 20: ЧТЕНИЕ (Глава XI, часть 2) ==========
-    20: {
-        "title": "Чтение: Капитанская дочка (Глава XI, часть 2/2)",
-        "type": "advanced_reading",
-        "reading_id": "captains_daughter",
-        "chapter_part": 30,
-        "correct_answer": "готово"
-    },
-
-    # ========== ДЕНЬ 21: РАЗГОВОР С ДРУЗЬЯМИ ==========
-    21: {
-        "title": "🧭 Потерялся / спросить дорогу — практика",
-        "type": "lost_practice",
-        "correct_answer": "готово"
-    },
-
-    # ========== ДЕНЬ 22: ЧТЕНИЕ (Глава XII, часть 1) ==========
-    22: {
-        "title": "Чтение: Капитанская дочка (Глава XII, часть 1/2)",
-        "type": "advanced_reading",
-        "reading_id": "captains_daughter",
-        "chapter_part": 31,
-        "correct_answer": "готово"
-    },
-
-    # ========== ДЕНЬ 23: ПОТЕРЯЛСЯ / СПРОСИТЬ ДОРОГУ ==========
+    # ========== ДЕНЬ 23: РАЗГОВОР С ДРУЗЬЯМИ ==========
     23: {
         "title": "👥 Разговор с друзьями — практика",
         "type": "friends_practice",
         "correct_answer": "готово"
     },
 
-    # ========== ДЕНЬ 24: ЧТЕНИЕ (Глава XII, часть 2) ==========
+    # ========== ДЕНЬ 24: ЧТЕНИЕ (Глава 12) ==========
     24: {
-        "title": "Чтение: Капитанская дочка (Глава XII, часть 2/2)",
+        "title": "📖 Чтение: Капитанская дочка (Глава XIII - XIV)",
         "type": "advanced_reading",
         "reading_id": "captains_daughter",
-        "chapter_part": 32,
+        "chapter_part": 30,
         "correct_answer": "готово"
-    }
+    },
 }
 # Заполним заглушками на 24 дня
 
@@ -283,23 +283,38 @@ def month_view(month_id):
 
     if user_id:
         if is_advanced:
-            # Для продвинутого курса берем из таблицы AdvancedProgress
             completed = AdvancedProgress.query.filter_by(user_id=user_id).all()
             completed_days = [p.day_id for p in completed]
         else:
             completed = Progress.query.filter_by(user_id=user_id).all()
             completed_days = [p.day_id for p in completed]
 
+    # ========== ГЛАВНОЕ ИСПРАВЛЕНИЕ ЗДЕСЬ ==========
     month_days = {}
+
     if is_advanced:
-        # === ВАЖНО: Берем данные из ADVANCED_DAYS, а не из COURSE_DAYS ===
+        # Для продвинутого курса (месяц 4) - берем из ADVANCED_DAYS
         for key, data in ADVANCED_DAYS.items():
             month_days[key] = data
     else:
-        for key, data in COURSE_DAYS.items():
-            if isinstance(key, int) and 1 <= key <= 92:
-                month_days[key] = data
-    month_days = dict(sorted(month_days.items()))
+        # Для месяцев 1, 2, 3 - берем из COURSE_DAYS
+        # ВАЖНО: нужно брать ТОЛЬКО дни для этого месяца!
+        if month_id == 1:
+            day_range = range(1, 31)  # Дни 1-30
+        elif month_id == 2:
+            day_range = range(31, 62)  # Дни 31-61 (исправлено!)
+        elif month_id == 3:
+            day_range = range(62, 68)  # Дни 62-92
+        else:
+            day_range = []
+
+        for day_num in day_range:
+            if day_num in COURSE_DAYS:
+                month_days[day_num] = COURSE_DAYS[day_num]
+
+    # Для отладки - выведем в консоль, какие дни загрузились
+    print(f"=== Month {month_id} loaded {len(month_days)} days ===")
+    print(f"First 10 days: {list(month_days.keys())[:10]}")
 
     return render_template('month.html',
                            month_id=month_id,
