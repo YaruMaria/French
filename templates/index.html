@@ -1,17 +1,43 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div style="text-align: center; margin-bottom: 40px;">
-        <h2 style="font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 10px;">Выберите этап обучения</h2>
-        <p style="color: var(--text-muted);">Программа разбита на 3 логических шага. Двигайтесь шаг за шагом.</p>
+    <div style="text-align: center; margin-bottom: 50px;">
+        <!-- Элегантная надпись вместо старой -->
+        <div style="margin-bottom: 20px;">
+            <span style="font-family: 'Playfair Display', serif; font-size: 0.9rem; letter-spacing: 4px; color: #c4d4bc; text-transform: uppercase;">Bienvenue</span>
+        </div>
+
+        <h1 style="font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 15px; background: linear-gradient(135deg, #2c3e24 0%, #8fa882 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">
+            Ваш осознанный путь<br>к французскому языку
+        </h1>
+
+        <div style="display: flex; justify-content: center; gap: 15px; margin-top: 15px;">
+            <div style="background: #f0f2ef; padding: 5px 15px; border-radius: 50px; display: inline-block;">
+                <span style="font-size: 0.85rem; font-weight: 500; color: #5a7a4a;">🎯 91 день</span>
+            </div>
+            <div style="background: #f0f2ef; padding: 5px 15px; border-radius: 50px; display: inline-block;">
+                <span style="font-size: 0.85rem; font-weight: 500; color: #5a7a4a;">📚 3 месяца</span>
+            </div>
+            <div style="background: #f0f2ef; padding: 5px 15px; border-radius: 50px; display: inline-block;">
+                <span style="font-size: 0.85rem; font-weight: 500; color: #5a7a4a;">🇫🇷 A1 → B1</span>
+            </div>
+        </div>
+
+        <div style="width: 60px; height: 2px; background: linear-gradient(90deg, #c4d4bc, #8fa882); margin: 25px auto 15px auto; border-radius: 2px;"></div>
+
+        <p style="color: var(--text-muted); max-width: 550px; margin: 0 auto; font-size: 0.95rem;">
+            Системный курс с нуля до свободного общения. Фонетика, грамматика, чтение и разговорная практика.
+        </p>
     </div>
 
     <!-- Сетка из 3 больших карточек месяцев -->
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 20px;">
         {% for id, info in months.items() %}
-            <div style="background-color: var(--card-bg); border-radius: var(--radius); padding: 30px; box-shadow: var(--shadow); border: 1px solid #e1e8df; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.3s ease;">
+            <div style="background-color: var(--card-bg); border-radius: 24px; padding: 30px; box-shadow: var(--shadow); border: 1px solid #e1e8df; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.3s ease, box-shadow 0.3s ease;"
+                 onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 35px rgba(0,0,0,0.1)'"
+                 onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='var(--shadow)'">
                 <div>
                     <!-- Пастельный бейдж с уровнем -->
-                    <span style="display: inline-block; background-color: var(--primary-light); color: var(--primary-dark); font-size: 0.8rem; font-weight: 600; padding: 4px 12px; border-radius: 100px; margin-bottom: 15px;">
+                    <span style="display: inline-block; background-color: var(--primary-light); color: var(--primary-dark); font-size: 0.75rem; font-weight: 600; padding: 4px 12px; border-radius: 100px; margin-bottom: 15px;">
                         {{ info.badge }}
                     </span>
 
@@ -19,13 +45,38 @@
                         {{ info.title }}
                     </h3>
 
-                    <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 25px; line-height: 1.5;">
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 25px; line-height: 1.5;">
                         {{ info.desc }}
                     </p>
+
+                    <!-- Маленькая статистика по месяцам -->
+                    {% if not info.advanced %}
+                    <div style="margin-bottom: 20px;">
+                        <div style="display: flex; justify-content: space-between; font-size: 0.7rem; color: #8fa882; margin-bottom: 5px;">
+                            <span>Уроков в месяце</span>
+                            <span>{{ '30' if id == 1 else '31' if id == 2 else '30' }}</span>
+                        </div>
+                        <div style="height: 3px; background: #eef2ed; border-radius: 3px; overflow: hidden;">
+                            <div style="width: 0%; height: 100%; background: #8fa882; border-radius: 3px;"></div>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div style="margin-bottom: 20px;">
+                        <div style="display: flex; justify-content: space-between; font-size: 0.7rem; color: #8fa882; margin-bottom: 5px;">
+                            <span>Тем в курсе</span>
+                            <span>24</span>
+                        </div>
+                        <div style="height: 3px; background: #eef2ed; border-radius: 3px; overflow: hidden;">
+                            <div style="width: 0%; height: 100%; background: #8fa882; border-radius: 3px;"></div>
+                        </div>
+                    </div>
+                    {% endif %}
                 </div>
 
                 <a href="{{ url_for('month_view', month_id=id) }}" style="text-decoration: none;">
-                    <button style="width: 100%; padding: 14px; font-weight: 600; letter-spacing: 0.5px;">
+                    <button style="width: 100%; padding: 12px; font-weight: 600; letter-spacing: 0.5px; background: white; border: 2px solid #e1e8df; color: var(--text-main); transition: all 0.2s ease;"
+                            onmouseover="this.style.background='#8fa882'; this.style.color='white'; this.style.borderColor='#8fa882'"
+                            onmouseout="this.style.background='white'; this.style.color='var(--text-main)'; this.style.borderColor='#e1e8df'">
                         Открыть месяц →
                     </button>
                 </a>

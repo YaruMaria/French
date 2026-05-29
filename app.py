@@ -610,14 +610,37 @@ def progress():
         except (ValueError, TypeError):
             pass
 
-    total_days = 92
-    completed_count = len([d for d in numeric_completed if 1 <= d <= 92])
+    # ========== ИСПРАВЛЕНО: ВСЕГО 91 ДЕНЬ! ==========
+    total_days = 91  # ← ИСПРАВЛЕНО! Было 92
+    completed_count = len([d for d in numeric_completed if 1 <= d <= total_days])
     percent = int((completed_count / total_days) * 100) if total_days > 0 else 0
 
     month1_count = sum(1 for d in numeric_completed if 1 <= d <= 30)
     month2_count = sum(1 for d in numeric_completed if 31 <= d <= 61)
-    month3_count = sum(1 for d in numeric_completed if 62 <= d <= 92)
+    month3_count = sum(1 for d in numeric_completed if 62 <= d <= 91)  # ← ИСПРАВЛЕНО! Было 92
+
     tests_passed = len([d for d in completed_days_str if d.startswith('test_')])
+
+    # ========== НОВЫЙ КОД: СРЕДНИЙ БАЛЛ ПО ТЕСТАМ ==========
+    # Получаем все пройденные тесты и их результаты
+    test_results = []
+
+    # Проходим по всем пройденным дням
+    for day_id in completed_days_str:
+        # Проверяем, является ли этот день тестом
+        if day_id.startswith('test_') or (
+                day_id.isdigit() and int(day_id) in COURSE_DAYS and COURSE_DAYS[int(day_id)].get('type') == 'test'):
+            # Здесь нужно будет хранить результаты тестов в отдельной таблице
+            # Пока сделаем заглушку — считаем, что тест пройден на 100%
+            # В будущем нужно будет сохранять результаты в БД
+            test_results.append(100)  # Временное решение
+
+    # Если есть реальные данные из БД, их нужно загрузить
+    # Например, если у вас есть таблица TestResult:
+    # test_records = TestResult.query.filter_by(user_id=user_id).all()
+    # test_results = [record.score for record in test_records]
+
+    avg_test_score = sum(test_results) / len(test_results) if test_results else 0
 
     return render_template(
         'progress.html',
@@ -633,7 +656,9 @@ def progress():
         advanced_count=advanced_count,
         reading_count=reading_count,
         total_advanced=24,
-        total_reading_parts=16
+        total_reading_parts=16,
+        tests_scores=test_results,  # ← НОВАЯ ПЕРЕМЕННАЯ
+        avg_test_score=avg_test_score  # ← НОВАЯ ПЕРЕМЕННАЯ (если хотите использовать)
     )
 
 
